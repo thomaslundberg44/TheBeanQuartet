@@ -23,7 +23,7 @@ public class JPABaseDataDAO implements BaseDataDAO {
 	
 	public void addData(BaseData disc) {
 	
-		Query query = em.createQuery("from Base_Data");
+		Query query = em.createQuery("from BaseData");
 		List<BaseData> data = query.getResultList(); 
 		if (!data.contains(disc))
 			em.persist(disc);	
@@ -51,7 +51,7 @@ public class JPABaseDataDAO implements BaseDataDAO {
 
 	public Collection<BaseData> getAllData() {
 		// TODO Auto-generated method stub
-		Query query = em.createQuery("from Base_Data");
+		Query query = em.createQuery("from BaseData");
 		List<BaseData> bData = query.getResultList(); 
 		return bData;
 		

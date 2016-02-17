@@ -15,24 +15,25 @@ import javax.persistence.Table;
 @NamedQueries(
 		{
 		@NamedQuery(name = "basedata.getAll",
-				query = "select data from BaseData data where data.eventId > :eventId") 
+				query = "select data from BaseData data where data.eventId like :eventId") 
 		})
 
 @Entity
 @Table(name="Base_Data")
 public class BaseData implements Serializable {
 
+	// auto generated serial id
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id")
+	@Column(name="id")
 	private int id;
 
 //	@Column(name = "date")private String date;
-	@Column(name="eventId")private Integer eventId;
-	@Column(name="failureClass")private Integer failureClass;
-	@Column(name="UEType")private Integer UEType;
+	@Column(name="event_Id")private Integer eventId;
+	@Column(name="failure_Class")private Integer failureClass;
+	@Column(name="UE_Type")private Integer UEType;
 	
 	public BaseData() {}
 	

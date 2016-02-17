@@ -8,6 +8,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class BaseDataList implements Serializable {
 
+	// auto generated serial id
 	private static final long serialVersionUID = 1L;
 	
 	private Collection<BaseData> data;
