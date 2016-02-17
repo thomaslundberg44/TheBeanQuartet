@@ -1,9 +1,0 @@
-com\the_bean_quartet\msc_project\dao\BaseDataDAO.class
-com\the_bean_quartet\msc_project\entities\BaseDataList.class
-com\the_bean_quartet\msc_project\dao\jpa\JPABaseDataDAO.class
-com\the_bean_quartet\msc_project\services\BaseDataService.class
-com\the_bean_quartet\msc_project\entities\BaseData.class
-com\the_bean_quartet\msc_project\services\BaseDataServiceEJB.class
-com\the_bean_quartet\msc_project\entities\User.class
-com\the_bean_quartet\msc_project\services\SimpleRest.class
-com\the_bean_quartet\msc_project\jax_rs\BaseDataCRUDService.class

@@ -11,11 +11,15 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
-@NamedQueries({
-		@NamedQuery(name = "basedata.getAll", query = "select cd from Base_Data data where data.event_id > :event_id") })
+
+@NamedQueries(
+		{
+		@NamedQuery(name = "basedata.getAll",
+				query = "select data from BaseData data where data.eventId > :eventId") 
+		})
 
 @Entity
-@Table(name = "Base_Data")
+@Table(name="Base_Data")
 public class BaseData implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -25,14 +29,10 @@ public class BaseData implements Serializable {
 	@Column(name = "id")
 	private int id;
 
-//	@Column(name = "date")
-//	private String date;
-	@Column(name = "eventId")
-	private Integer eventId;
-	@Column(name = "failureClass")
-	private Integer failureClass;
-	@Column(name = "UEType")
-	private Integer UEType;
+//	@Column(name = "date")private String date;
+	@Column(name="eventId")private Integer eventId;
+	@Column(name="failureClass")private Integer failureClass;
+	@Column(name="UEType")private Integer UEType;
 	
 	public BaseData() {}
 	

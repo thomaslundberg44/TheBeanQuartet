@@ -25,8 +25,8 @@ public class JPABaseDataDAO implements BaseDataDAO {
 	
 		Query query = em.createQuery("from Base_Data");
 		List<BaseData> data = query.getResultList(); 
-		if (!data.contains(data))
-			em.persist(data);	
+		if (!data.contains(disc))
+			em.persist(disc);	
 	}
 
 
@@ -56,5 +56,7 @@ public class JPABaseDataDAO implements BaseDataDAO {
 		return bData;
 		
 	}
+
+
 
 }
