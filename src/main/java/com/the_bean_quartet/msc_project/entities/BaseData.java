@@ -19,7 +19,7 @@ import javax.persistence.Table;
 		})
 
 @Entity
-@Table(name="Base_Data")
+@Table(name="base_data")
 public class BaseData implements Serializable {
 
 	// auto generated serial id
@@ -27,21 +27,43 @@ public class BaseData implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="id")
+	@Column(name="Base_Data_Id")
 	private int id;
 
-//	@Column(name = "date")private String date;
-	@Column(name="event_Id")private Integer eventId;
-	@Column(name="failure_Class")private Integer failureClass;
+	@Column(name="Date_Time")private String date;
+	@Column(name="Event_Id")private Integer eventId;
+	@Column(name="Failure_Class")private Integer failureClass;
 	@Column(name="UE_Type")private Integer UEType;
+	@Column(name="Market")private Integer market;
+	@Column(name="Operator")private Integer operator;
+	@Column(name="Cell_Id")private Integer cellId;
+	@Column(name="Duration")private Integer duration;
+	@Column(name="Cause_Code")private Integer causeCode;
+	@Column(name="NE_Version")private String neVersion;
+	@Column(name="IMSI")private Long imsi;
+	@Column(name="HIER3_ID")private Long heir3Id;
+	@Column(name="HIER32_ID")private Long heir32Id;
+	@Column(name="HIER321_ID")private Long heir321Id;
 	
 	public BaseData() {}
 	
-	public BaseData(Integer eventId, Integer failureClass, Integer UEType) {
+	public BaseData(Integer eventId, Integer failureClass, Integer UEType, 
+			Integer market, Integer operator, Integer cellId, Integer duration, Integer causeCode,
+			String neVersion, Long imsi, Long heir3Id, Long heir32Id, Long heir321Id) {
 		//this.date = date;
 		this.eventId = eventId;
 		this.failureClass = failureClass;
 		this.UEType = UEType;
+		this.market = market;
+		this.operator = operator;
+		this.cellId = cellId;
+		this.duration = duration;
+		this.causeCode = causeCode;
+		this.neVersion = neVersion;
+		this.imsi = imsi;
+		this.heir3Id = heir3Id;
+		this.heir32Id = heir32Id;
+		this.heir321Id = heir321Id;
 	}
 
 	public int getId() {
@@ -59,6 +81,90 @@ public class BaseData implements Serializable {
 //	public void setDate(String date) {
 //		this.date = date;
 //	}
+
+	public Integer getMarket() {
+		return market;
+	}
+
+	public void setMarket(Integer market) {
+		this.market = market;
+	}
+
+	public Integer getOperator() {
+		return operator;
+	}
+
+	public void setOperator(Integer operator) {
+		this.operator = operator;
+	}
+
+	public Integer getCellId() {
+		return cellId;
+	}
+
+	public void setCellId(Integer cellId) {
+		this.cellId = cellId;
+	}
+
+	public Integer getDuration() {
+		return duration;
+	}
+
+	public void setDuration(Integer duration) {
+		this.duration = duration;
+	}
+
+	public Integer getCauseCode() {
+		return causeCode;
+	}
+
+	public void setCauseCode(Integer causeCode) {
+		this.causeCode = causeCode;
+	}
+
+	public String getNeVersion() {
+		return neVersion;
+	}
+
+	public void setNeVersion(String neVersion) {
+		this.neVersion = neVersion;
+	}
+
+	public Long getImsi() {
+		return imsi;
+	}
+
+	public void setImsi(Long imsi) {
+		this.imsi = imsi;
+	}
+
+	public Long getHeir3Id() {
+		return heir3Id;
+	}
+
+	public void setHeir3Id(Long heir3Id) {
+		this.heir3Id = heir3Id;
+	}
+
+	public Long getHeir32Id() {
+		return heir32Id;
+	}
+
+	public void setHeir32Id(Long heir32Id) {
+		this.heir32Id = heir32Id;
+	}
+
+	public Long getHeir321Id() {
+		return heir321Id;
+	}
+
+	public void setHeir321Id(Long heir321Id) {
+		this.heir321Id = heir321Id;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 
 	public Integer getEventId() {
 		return eventId;
