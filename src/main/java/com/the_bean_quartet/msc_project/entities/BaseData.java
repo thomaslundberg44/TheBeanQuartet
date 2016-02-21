@@ -33,7 +33,7 @@ public class BaseData implements Serializable {
 	@Column(name="Date_Time")private String date;
 	@Column(name="Event_Id")private Integer eventId;
 	@Column(name="Failure_Class")private Integer failureClass;
-	@Column(name="UE_Type")private Integer UEType;
+	@Column(name="UE_Type")private Integer ueType;
 	@Column(name="Market")private Integer market;
 	@Column(name="Operator")private Integer operator;
 	@Column(name="Cell_Id")private Integer cellId;
@@ -47,13 +47,13 @@ public class BaseData implements Serializable {
 	
 	public BaseData() {}
 	
-	public BaseData(Integer eventId, Integer failureClass, Integer UEType, 
+	public BaseData(String date, Integer eventId, Integer failureClass, Integer ueType, 
 			Integer market, Integer operator, Integer cellId, Integer duration, Integer causeCode,
 			String neVersion, Long imsi, Long heir3Id, Long heir32Id, Long heir321Id) {
-		//this.date = date;
+		this.date = date;
 		this.eventId = eventId;
 		this.failureClass = failureClass;
-		this.UEType = UEType;
+		this.ueType = ueType;
 		this.market = market;
 		this.operator = operator;
 		this.cellId = cellId;
@@ -74,13 +74,13 @@ public class BaseData implements Serializable {
 		this.id = id;
 	}
 
-//	public String getDate() {
-//		return date;
-//	}
-//
-//	public void setDate(String date) {
-//		this.date = date;
-//	}
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
+	}
 
 	public Integer getMarket() {
 		return market;
@@ -182,12 +182,12 @@ public class BaseData implements Serializable {
 		this.failureClass = failureClass;
 	}
 
-	public Integer getUEType() {
-		return UEType;
+	public Integer getUeType() {
+		return ueType;
 	}
 
-	public void setUEType(Integer uEType) {
-		UEType = uEType;
+	public void setUeType(Integer ueType) {
+		this.ueType = ueType;
 	}
 	
 	// might need relationship to failure class etc
