@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 
@@ -44,6 +45,11 @@ public class BaseData implements Serializable {
 	@Column(name="HIER3_ID")private Long heir3Id;
 	@Column(name="HIER32_ID")private Long heir32Id;
 	@Column(name="HIER321_ID")private Long heir321Id;
+	
+	// relationship field for failure class table mapping
+	
+	@OneToOne(mappedBy="data")
+	private FailureClass failureClassTbl;
 	
 	public BaseData() {}
 	
@@ -162,16 +168,21 @@ public class BaseData implements Serializable {
 		this.heir321Id = heir321Id;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
 	public Integer getEventId() {
 		return eventId;
 	}
 
 	public void setEventId(Integer eventId) {
 		this.eventId = eventId;
+	}
+
+
+	public Integer getUeType() {
+		return ueType;
+	}
+
+	public void setUeType(Integer ueType) {
+		this.ueType = ueType;
 	}
 
 	public Integer getFailureClass() {
@@ -181,15 +192,5 @@ public class BaseData implements Serializable {
 	public void setFailureClass(Integer failureClass) {
 		this.failureClass = failureClass;
 	}
-
-	public Integer getUeType() {
-		return ueType;
-	}
-
-	public void setUeType(Integer ueType) {
-		this.ueType = ueType;
-	}
 	
-	// might need relationship to failure class etc
-
 }
