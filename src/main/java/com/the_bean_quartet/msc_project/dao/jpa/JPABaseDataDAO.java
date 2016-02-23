@@ -30,6 +30,7 @@ public class JPABaseDataDAO implements BaseDataDAO {
 	}
 
 
+	
 //	public CompactDisc getCompactDiscByTitle(String title) {
 //		// TODO Auto-generated method stub		
 //		Query query  = em.createQuery("from CompactDisc cd where cd.title = :title");
@@ -56,6 +57,8 @@ public class JPABaseDataDAO implements BaseDataDAO {
 		return bData;
 		
 	}
+	
+	
 
 
 

@@ -6,11 +6,55 @@
 </head>
 <body>
 
-	<h1>Base Data Example</h1>
-	<p>
-		Example of full vertical slice through Java EE <br> DB ->
-		Connection Pool -> JPA -> EJB -> REST -> HTML
-	</p>
+
+<h1>Base Data Example</h1>
+<p>
+Example of full vertical slice through Java EE
+<br>
+DB -> Connection Pool -> JPA -> EJB -> REST -> HTMLsdfjdsfsfs
+<br>
+navi added this extra stuff.................
+</p>
+
+<div class="container">
+		<h2>Form control: input</h2>
+		<form role="form" id="myform">
+
+			<div class="form-group">
+				<label for="id">ID:</label> <input type="number"
+					class="form-control bfh-number" data-zeros="false" 
+					id="id">
+			</div>
+			
+			<div class="form-group">
+				<label for="event_Id">Title:</label> <input type="number"
+					class="form-control bfh-number" data-zeros="false" 
+					id="eventId">
+			</div>
+			
+			<div class="form-group">
+				<label for="failureClass">ID:</label> <input type="number"
+					class="form-control bfh-number" data-zeros="false"
+					id="failureClass">
+			</div>
+			
+			<div class="form-group">
+				<label for="UEType">ID:</label> <input type="number"
+					class="form-control bfh-number" data-zeros="false" 
+					id="UE">
+			</div>
+	
+
+			<input type="submit" class="btn btn-info" value="Submit Button">
+		</form>
+	</div>
+
+
+<a href="http://localhost:8080/TheBeanQuartet/rest/basedata">Link to base data content</a>
+<a href="http://localhost:8080/TheBeanQuartet/rest/userdata">Link to user data content</a>
+<a href="http://localhost:8080/TheBeanQuartet/rest/mccdata">Link to Mcc data content</a>
+
+
 	<ul>
 		<li><a href="http://localhost:8080/TheBeanQuartet/rest/basedata">
 				Link to base data JSON content</a></li>
@@ -21,5 +65,40 @@
 		<li><a href="http://localhost:8080/TheBeanQuartet/failureClassTable.html">
 				Link to Failure Class Data Table</a></li>
 	</ul>
+	<script>
+
+	
+
+//	var data = {id:'#id', eventID:#eventID, failureClass:#failureClass, UEType:#UEType}; 
+
+	function BaseData( id,  eventId,  failureClass,  UEType) {
+		this.id = id;
+		this.eventId = eventId;
+		this.failureClass = failureClass;
+		this.UEType = UEType;//having a problem here
+	}
+	$("#myform").submit(
+			function postNewCD() {
+				
+			//	var data = {id:#id, eventID:#eventID, failureClass:#failureClass, UEType:#UEType};
+				
+				var disc = new BaseData(
+						$("#_id").val(),
+						$("#eventId").val(), 
+						$("#failureClass").val(), 
+						$("#UE").val()
+						);
+				$.ajax({
+					type : 'POST',
+					url : 'rest/basedata',
+					data : JSON.stringify(disc),
+					success : handlePost,
+					contentType : 'application/json'
+				});
+			});
+
+	function handlePost() {
+	}
+</script>
 </body>
 </html>
