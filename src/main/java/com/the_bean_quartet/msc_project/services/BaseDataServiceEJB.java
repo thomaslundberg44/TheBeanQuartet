@@ -11,8 +11,10 @@ import javax.inject.Inject;
 
 import com.the_bean_quartet.msc_project.dao.BaseDataDAO;
 import com.the_bean_quartet.msc_project.dao.FailureClassDAO;
+import com.the_bean_quartet.msc_project.dao.UETypeClassDAO;
 import com.the_bean_quartet.msc_project.entities.BaseData;
 import com.the_bean_quartet.msc_project.entities.FailureClass;
+import com.the_bean_quartet.msc_project.entities.UETypeClass;
 
 @Stateless
 @Local
@@ -27,6 +29,28 @@ public class BaseDataServiceEJB implements BaseDataService {
 
 	@Inject
 	private FailureClass failureClass;
+	
+	@EJB
+	private UETypeClassDAO ueTypeClassDAO;
+
+	@Inject
+	private UETypeClass ueTypeClass;
+	
+	public UETypeClassDAO getUeTypeClassDAO() {
+		return ueTypeClassDAO;
+	}
+
+	public void setUeTypeClassDAO(UETypeClassDAO ueTypeClassDAO) {
+		this.ueTypeClassDAO = ueTypeClassDAO;
+	}
+
+	public UETypeClass getUeTypeClass() {
+		return ueTypeClass;
+	}
+
+	public void setUeTypeClass(UETypeClass ueTypeClass) {
+		this.ueTypeClass = ueTypeClass;
+	}
 
 	// @Resource
 	// private SessionContext context;
@@ -68,6 +92,14 @@ public class BaseDataServiceEJB implements BaseDataService {
 
 	public void addToFailureDataset(FailureClass fData) {
 		failuresDAO.addFailures(fData);
+	}
+	
+	public Collection<UETypeClass> getUEDataset() {
+		return ueTypeClassDAO.getAllUEType();
+	}
+
+	public void addToUEDataset(UETypeClass ueData) {
+		ueTypeClassDAO.addUE(ueData);		
 	}
 
 }
