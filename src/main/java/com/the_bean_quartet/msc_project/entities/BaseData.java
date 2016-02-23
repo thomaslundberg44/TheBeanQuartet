@@ -193,4 +193,13 @@ public class BaseData implements Serializable {
 		this.failureClass = failureClass;
 	}
 	
+//	@XmlTransient
+//	public FailureClass getFailureClassTbl() {
+//		return failureClassTbl;
+//	}
+//	
+//	public void setFailureClassTbl(FailureClass failureClassTbl) {
+//		this.failureClassTbl = failureClassTbl;
+//	}
+	
 }

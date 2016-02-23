@@ -3,19 +3,9 @@ package com.the_bean_quartet.msc_project.entities;
 import java.io.Serializable;
 
 import javax.persistence.Column;
-import javax.persistence.Embeddable;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.Table;
-
-@Embeddable 
-class EventCauseId2 implements java.io.Serializable {
-	// auto generated serial id
-	private static final long serialVersionUID = 4445553741072449878L;
-	
-	@Column(name="Cause_Code")Integer causeCode;
-	@Column(name="Event_Id")Integer eventId;
-}
 
 @Entity
 @Table(name="event_cause")
@@ -24,8 +14,8 @@ public class EventCause implements Serializable {
 	// auto generated serial id
 	private static final long serialVersionUID = 7857838356841390003L;
 	
-	@Id private EventCauseId2 id;
-	
+	@EmbeddedId private EventCauseId id;
+
 	@Column(name="Description") private String description;
 	
 	// relationship field for BaseData table class

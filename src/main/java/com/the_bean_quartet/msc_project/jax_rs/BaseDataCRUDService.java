@@ -10,7 +10,6 @@ import javax.ws.rs.core.MediaType;
 
 import com.the_bean_quartet.msc_project.entities.BaseData;
 import com.the_bean_quartet.msc_project.entities.BaseDataList;
-import com.the_bean_quartet.msc_project.entities.FailureDataList;
 import com.the_bean_quartet.msc_project.services.BaseDataService;
 
 @Path("/basedata")
