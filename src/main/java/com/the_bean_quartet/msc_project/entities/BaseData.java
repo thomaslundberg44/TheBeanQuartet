@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 
@@ -33,7 +34,7 @@ public class BaseData implements Serializable {
 	@Column(name="Date_Time")private String date;
 	@Column(name="Event_Id")private Integer eventId;
 	@Column(name="Failure_Class")private Integer failureClass;
-	@Column(name="UE_Type")private Integer UEType;
+	@Column(name="UE_Type")private Integer ueType;
 	@Column(name="Market")private Integer market;
 	@Column(name="Operator")private Integer operator;
 	@Column(name="Cell_Id")private Integer cellId;
@@ -45,15 +46,20 @@ public class BaseData implements Serializable {
 	@Column(name="HIER32_ID")private Long heir32Id;
 	@Column(name="HIER321_ID")private Long heir321Id;
 	
+	// relationship field for failure class table mapping
+	
+	@OneToOne(mappedBy="data")
+	private FailureClass failureClassTbl;
+	
 	public BaseData() {}
 	
-	public BaseData(Integer eventId, Integer failureClass, Integer UEType, 
+	public BaseData(String date, Integer eventId, Integer failureClass, Integer ueType, 
 			Integer market, Integer operator, Integer cellId, Integer duration, Integer causeCode,
 			String neVersion, Long imsi, Long heir3Id, Long heir32Id, Long heir321Id) {
-		//this.date = date;
+		this.date = date;
 		this.eventId = eventId;
 		this.failureClass = failureClass;
-		this.UEType = UEType;
+		this.ueType = ueType;
 		this.market = market;
 		this.operator = operator;
 		this.cellId = cellId;
@@ -74,13 +80,13 @@ public class BaseData implements Serializable {
 		this.id = id;
 	}
 
-//	public String getDate() {
-//		return date;
-//	}
-//
-//	public void setDate(String date) {
-//		this.date = date;
-//	}
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
+	}
 
 	public Integer getMarket() {
 		return market;
@@ -162,16 +168,21 @@ public class BaseData implements Serializable {
 		this.heir321Id = heir321Id;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
 	public Integer getEventId() {
 		return eventId;
 	}
 
 	public void setEventId(Integer eventId) {
 		this.eventId = eventId;
+	}
+
+
+	public Integer getUeType() {
+		return ueType;
+	}
+
+	public void setUeType(Integer ueType) {
+		this.ueType = ueType;
 	}
 
 	public Integer getFailureClass() {
@@ -181,15 +192,5 @@ public class BaseData implements Serializable {
 	public void setFailureClass(Integer failureClass) {
 		this.failureClass = failureClass;
 	}
-
-	public Integer getUEType() {
-		return UEType;
-	}
-
-	public void setUEType(Integer uEType) {
-		UEType = uEType;
-	}
 	
-	// might need relationship to failure class etc
-
 }
