@@ -44,7 +44,5 @@ public class EventCauseId implements Serializable {
 		return (other.causeCode.equals(this.causeCode) 
 				&& other.eventId.equals(this.eventId));
 	}
-	
-	
 
 }

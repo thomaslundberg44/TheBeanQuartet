@@ -17,6 +17,7 @@ import com.the_bean_quartet.msc_project.entities.EventCause;
 @TransactionAttribute(TransactionAttributeType.REQUIRED)
 public class EventCauseServiceEJB implements EventCauseService {
 	
+	
 	@EJB
 	private EventCauseDAO eventDao;
 
@@ -27,6 +28,17 @@ public class EventCauseServiceEJB implements EventCauseService {
 	public void setDao(JPAEventCauseDAO dao) {
 		this.eventDao = dao;
 	}
+	
+//	@EJB
+//	private DAO dao;
+//
+//	public DAO getDao() {
+//		return dao;
+//	}
+//
+//	public void setDao(DAO dao) {
+//		this.dao = dao;
+//	}
 
 	public Collection<EventCause> getEventCauseDataset() {
 		return eventDao.getAllEvents();
@@ -35,5 +47,13 @@ public class EventCauseServiceEJB implements EventCauseService {
 	public void addToEventCauseDataset(EventCause data) {
 		eventDao.addEvents(data);
 	}
+
+//	public Collection getDataset() {
+//		return dao.getAllData();
+//	}
+//
+//	public void addToDataset(Object data) {
+//		dao.addData(data);
+//	}
 
 }

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="initial-scale=1.0, maximum-scale=2.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="initial-scale=1.0, maximum-scale=2.0">
 	
-	<title>The Bean Quartet - Failure Class Table</title>
+	<title>The Bean Quartet - Data Tables</title>
 	
 	<link rel="stylesheet"
 		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
@@ -25,53 +25,30 @@
 	<script src="media/js/bootstrap-table.js"></script>
 	<script type="text/javascript" src="media/js/jquery.tablesorter.js"></script>
 	<script type="text/javascript" language="javascript" class="init"></script>
-
 </head>
 <body>
 
+
+
 	<ul class="nav nav-pills nav-justified">
 	
-		<li><a href="baseDataTable.html"><span
+		<li><a href="#"><span
 				class="glyphicon glyphicon-tasks"></span> Base Data Table</a></li>
 		
-		<li><a href="eventCauseTable.html"><span 
-				class="glyphicon glyphicon-screenshot"></span>Event Cause Table</a></li>
+		<li><a href="#"><span class="glyphicon glyphicon-screenshot"></span>
+				Event Cause Table</a></li>
 
-		<li class="active"><a href="#"><span 
-				class="glyphicon glyphicon-flag"></span>Failure Class Table</a></li>
+		<li class="active"><a href="#"><span class="glyphicon glyphicon-flag"></span>
+				Failure Class Table</a></li>
 
-		<li><a href="MccTable.html"><span class="glyphicon glyphicon-signal"></span>
+		<li><a href="#"><span class="glyphicon glyphicon-signal"></span>
 				MCC - MNC Table</a></li>
 				
 		<li><a href="#"><span class="glyphicon glyphicon-phone"></span>
 				UE Type Table</a></li>
 	</ul>
-	
-	<h2>Table containing some Failure Class Data</h2>
-	<table id="failureDataTable"
-		class="table tablesorter tablesorter-default table-striped table-bordered"
-		data-toggle="table" data-url="rest/failures" data-height="800"
-		data-response-handler="responseHandler">
-		<thead>
-			<tr>
-				<th data-field="failureClass">Failure Class Id</th>
-				<th data-field="description">Failure Description</th>
-			</tr>
-		</thead>
-	</table>
-	<script>
-		$(document).ready(function() {
-			$(function() {
-				$("#failureDataTable").tablesorter();
-			});
-		});
 
-		// client side
-		function responseHandler(res) {
-			return res.failureDataCollection;
-		}
-		
-	</script>
+
 
 </body>
 </html>
