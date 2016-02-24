@@ -24,52 +24,13 @@ public class BaseDataServiceEJB implements BaseDataService {
 	@EJB // uses reflection
 	private BaseDataDAO baseDAO;
 
-	@EJB
-	private FailureClassDAO failuresDAO;
 
-	@Inject
-	private FailureClass failureClass;
 	
-	@EJB
-	private UETypeClassDAO ueTypeClassDAO;
-
-	@Inject
-	private UETypeClass ueTypeClass;
-	
-	public UETypeClassDAO getUeTypeClassDAO() {
-		return ueTypeClassDAO;
-	}
-
-	public void setUeTypeClassDAO(UETypeClassDAO ueTypeClassDAO) {
-		this.ueTypeClassDAO = ueTypeClassDAO;
-	}
-
-	public UETypeClass getUeTypeClass() {
-		return ueTypeClass;
-	}
-
-	public void setUeTypeClass(UETypeClass ueTypeClass) {
-		this.ueTypeClass = ueTypeClass;
-	}
 
 	// @Resource
 	// private SessionContext context;
 
-	public FailureClassDAO getFailuresDAO() {
-		return failuresDAO;
-	}
 
-	public void setFailuresDAO(FailureClassDAO failuresDAO) {
-		this.failuresDAO = failuresDAO;
-	}
-
-	public FailureClass getFailureClass() {
-		return failureClass;
-	}
-
-	public void setFailureClass(FailureClass failureClass) {
-		this.failureClass = failureClass;
-	}
 
 	public void setDao(BaseDataDAO dao) {
 		// do something really important on injection
@@ -86,20 +47,7 @@ public class BaseDataServiceEJB implements BaseDataService {
 		return baseDAO.getAllData();
 	}
 
-	public Collection<FailureClass> getFailureDataset() {
-		return failuresDAO.getAllFailures();
-	}
 
-	public void addToFailureDataset(FailureClass fData) {
-		failuresDAO.addFailures(fData);
-	}
 	
-	public Collection<UETypeClass> getUEDataset() {
-		return ueTypeClassDAO.getAllUEType();
-	}
-
-	public void addToUEDataset(UETypeClass ueData) {
-		ueTypeClassDAO.addUE(ueData);		
-	}
 
 }

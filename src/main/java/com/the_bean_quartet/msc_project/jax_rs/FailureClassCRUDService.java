@@ -7,13 +7,13 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import com.the_bean_quartet.msc_project.entities.FailureDataList;
-import com.the_bean_quartet.msc_project.services.BaseDataService;
+import com.the_bean_quartet.msc_project.services.FailureDataService;
 
 @Path("/failures")
 public class FailureClassCRUDService {
 
 	@Inject
-	private BaseDataService service;
+	private FailureDataService service;
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
