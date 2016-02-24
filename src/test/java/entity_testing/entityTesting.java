@@ -11,6 +11,7 @@ import com.the_bean_quartet.msc_project.entities.EventCause;
 import com.the_bean_quartet.msc_project.entities.EventCauseId;
 import com.the_bean_quartet.msc_project.entities.FailureClass;
 import com.the_bean_quartet.msc_project.entities.MccData;
+import com.the_bean_quartet.msc_project.entities.SysUser;
 import com.the_bean_quartet.msc_project.entities.UETypeClass;
 import com.the_bean_quartet.msc_project.entities.UserData;
 
@@ -54,8 +55,6 @@ public class entityTesting {
 		assertEquals(3L,data.getHeir321Id().longValue());
 	}
 	
- 
-	
 	
 	@Test
 	public void testMccData() {
@@ -75,6 +74,23 @@ public class entityTesting {
 		assertNotSame("2",mccData.getCountry());
 		
 	}
+	
+	@Test
+	public void testSysUser() {
+		
+		SysUser sysUserConstructor = new SysUser("1","2","2");	
+		SysUser sysUser = new SysUser();
+		//MccDataList mccDataList = new MccDataList();
+		sysUser.setUserName("1");
+		sysUser.setUserPassword("2");
+		sysUser.setUserType("3");
+
+		assertEquals("1",sysUser.getUserName());
+		assertEquals("2",sysUser.getUserPassword());
+		assertEquals("3",sysUser.getUserType());
+		
+	}
+
 
 	
 	@Test
