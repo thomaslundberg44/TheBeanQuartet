@@ -16,14 +16,6 @@ public class EventCause implements Serializable {
 	
 	@EmbeddedId private EventCauseId id;
 
-	public EventCauseId getId() {
-		return id;
-	}
-
-	public void setId(EventCauseId id) {
-		this.id = id;
-	}
-
 	@Column(name="Description") private String description;
 	
 	// relationship field for BaseData table class
@@ -33,26 +25,20 @@ public class EventCause implements Serializable {
 	
 	public EventCause() {}
 	
-	public EventCause(Integer causeCode, Integer eventId, String description) {
-		id.causeCode = causeCode;
-		id.eventId = eventId;
+	public EventCause(Integer eventId, Integer causeCode, String description) {
+		EventCauseId id = new EventCauseId();
+		id.setEventId(1234);
+		id.setCauseCode(4321);
+		this.id = id;
 		this.description = description;
 	}
-
-	public Integer getCauseCode() {
-		return id.causeCode;
+	
+	public EventCauseId getId() {
+		return id;
 	}
 
-	public void setCauseCode(Integer causeCode) {
-		id.causeCode = causeCode;
-	}
-
-	public Integer getEventId() {
-		return id.eventId;
-	}
-
-	public void setEventId(Integer eventId) {
-		id.eventId = eventId;
+	public void setId(EventCauseId id) {
+		this.id = id;
 	}
 
 	public String getDescription() {

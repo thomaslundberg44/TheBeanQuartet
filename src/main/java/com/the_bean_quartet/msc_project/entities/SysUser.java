@@ -70,9 +70,6 @@ public class SysUser implements Serializable {
 	public int getId() {
 		return id;
 	}
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
 	
 	
 	

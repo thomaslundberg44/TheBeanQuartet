@@ -115,13 +115,6 @@ public class UETypeClass implements Serializable{
 		this.inputMode = inputMode;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
-
-
-
 
 	// relationship field to Base_Data table
 	//@JoinColumn (name="ue_table_Id", referencedColumnName="ue_table")
