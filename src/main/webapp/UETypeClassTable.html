@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="initial-scale=1.0, maximum-scale=2.0">
+	
+	<title>The Bean Quartet - UE Type Class Table</title>
+	
+	<link rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css"
+		href="resources/syntax/shCore.css">
+	<link rel="stylesheet" type="text/css" href="resources/demo.css">
+	<link rel="stylesheet" href="media/css/bootstrap-table.css">
+	<style type="text/css" class="init">
+	</style>
+	<script type="text/javascript" language="javascript"
+		src="media/js/jquery.js"></script>
+	<script type="text/javascript" language="javascript"
+		src="resources/syntax/shCore.js"></script>
+	<script type="text/javascript" language="javascript"
+		src="resources/demo.js"></script>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+	<script src="media/js/bootstrap-table.js"></script>
+	<script type="text/javascript" src="media/js/jquery.tablesorter.js"></script>
+	<script type="text/javascript" language="javascript" class="init"></script>
+
+</head>
+<body>
+
+	<h2>Table containing some UE Type Class Data</h2>
+	<table id="UETypeDataTable"
+		class="table tablesorter tablesorter-default table-striped table-bordered"
+		data-toggle="table" data-url="rest/UEData" data-height="800"
+		data-response-handler="responseHandler">
+		<thead>
+			<tr>
+				<!--  <th data-field="ue_table_Id">ue_table_Id</th>-->
+				<th data-field="tac">TAC</th>
+				<th data-field="marketingName">MarketingName</th>
+				<th data-field="manufacturer">Manufacturer</th>
+				<th data-field="accessCapability">AccessCapability</th>
+				<th data-field="model">Model</th>
+				<th data-field="vendorName">VendorName</th>
+				<th data-field="ueType">UEType</th>
+				<th data-field="os">OS</th>				
+				<th data-field="inputMode">InputMode</th>	
+			</tr>
+		</thead>
+	</table>
+	<script>
+		$(document).ready(function() {
+			$(function() {
+				$("#UETypeDataTable").tablesorter();
+			});
+		});
+
+		// client side
+		function responseHandler(res) {
+			return res.uedataCollection;
+		}
+		
+	</script>
+
+</body>
+</html>
