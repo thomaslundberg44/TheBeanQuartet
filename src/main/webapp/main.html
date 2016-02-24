@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Base Data Example</title>
+
+<script type="text/javascript" language="javascript"
+	src="media/js/jquery.js"></script>
+<script type="text/javascript" language="javascript" class="init"></script>
+
+</head>
+<body>
+
+
+
+
+	<h1>View Current Users</h1>
+	<ul>
+		<li><a href="http://localhost:8080/TheBeanQuartet/rest/user">Link
+				to User details JSON content</a></li>
+	</ul>
+
+	<label>View User Details by:</label>
+	<br>
+	<br>
+	<form role="form" id="viewBy">
+		<select id="viewSelected">
+			<option value="Admin">Administrator</option>
+			<option value="SupEng">Support Engineer</option>
+			<option value="NetEng">Network Management Engineer</option>
+			<option value="CSR">Customer Service Representative</option>
+		</select>
+		<br> <br><input type="submit" class="btn btn-info"
+				value="viewBy">
+	</form>
+	<br>
+	<br>
+	<!--button onclick="viewUsersBySelection()">Enter</button-->
+	
+	
+	<div id="data_tables">
+	
+	<h1>Data Tables</h1>
+	<ul>
+	<li><a href="http://localhost:8080/TheBeanProject/eventCauseTable.html">Link to Data Tables</a></li>
+	</ul>
+	</div>
+
+
+
+	<div class="container">
+		<h1>Create User</h1>
+		<p>Enter Details below to create a new user.</p>
+		<form role="form" id="userDetails">
+
+
+			<div class="form-group">
+				<label>User Name:</label> <br> <input type="text"
+					class="form-control bfh-text" id="userName">
+			</div>
+			<div class="form-group">
+				<label>User Password:</label> <br> <input type="password"
+					class="form-control bfh-text" id="userPassword">
+			</div>
+			<div class="form-group">
+				<label>Re-Type Password:</label> <br> <input type="password"
+					class="form-control bfh-text" id="userPassword_retyped">
+			</div>
+
+			<div class="form-group">
+				<label>User Type:</label> <br> <select id="userSelect">
+					<option value="Admin">Administrator</option>
+					<option value="SupEng">Support Engineer</option>
+					<option value="NetEng">Network Management Engineer</option>
+					<option value="CSR">Customer Service Representative</option>
+				</select>
+				<!--input type="text" class="form-control bfh-text" id="userType"-->
+			</div>
+			<br> <input type="submit" class="btn btn-info"
+				value="Create User">
+		</form>
+	</div>
+
+
+	<script>
+
+		//constructor function
+		function SysUser(userName, userPassword, userType) {
+			this.userName = userName;
+			this.userPassword = userPassword;
+			this.userType = userType;
+		}
+		$("#userDetails").submit(
+				function createUser() {
+					var user1 = new SysUser(
+							document.getElementById("userName").value, 
+							document.getElementById("userPassword").value, 
+							document.getElementById("userSelect").value
+							);
+					if(document.getElementById("userPassword").value == document.getElementById("userPassword_retyped").value){
+						$.ajax({
+							type : 'POST',
+							url : 'rest/user',
+							data:JSON.stringify(user1),
+							contentType : 'application/json'
+						});
+					}
+					else
+						alert("Incorrect Password Match");
+		});
+		$("#viewBy").submit(function viewUsersBySelection() {
+			var user4 = new SysUser(
+					"name", 
+					"psw", 
+					document.getElementById("userSelect").value
+					);
+			$.ajax({
+				async: false,
+				type : 'POST',
+				url : 'rest/user/viewby',
+				data : JSON.stringify(document.getElementById("viewSelected").value),
+				success : function islogin(data) {
+					alert(JSON.stringify(data));
+				},
+				contentType : 'application/json'
+			});
+		});
+
+		
+
+	</script>
+
+
+
+
+
+
+</body>
+</html>

@@ -28,7 +28,13 @@ public class EventCauseId implements Serializable {
 		return (other.causeCode.equals(this.causeCode) 
 				&& other.eventId.equals(this.eventId));
 	}
-	
-	
+
+	public void setCauseCode(Integer causeCode) {
+		this.causeCode = causeCode;
+	}
+
+	public void setEventId(Integer eventId) {
+		this.eventId = eventId;
+	}
 
 }

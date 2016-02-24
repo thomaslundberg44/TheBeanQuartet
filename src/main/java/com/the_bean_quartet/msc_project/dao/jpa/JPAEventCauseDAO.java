@@ -32,4 +32,17 @@ public class JPAEventCauseDAO implements EventCauseDAO {
 		return events;
 	}
 
+//	public void addData(Object bData) {
+//		Query query = em.createQuery("from EventCause");
+//		List<Object> data = query.getResultList(); 
+//		if (!data.contains(bData))
+//			em.persist(bData);
+//	}
+//
+//	public Collection getAllData() {
+//		Query query = em.createQuery("from EventCause");
+//		List<EventCause> data = query.getResultList(); 
+//		return data;
+//	}
+
 }
