@@ -16,6 +16,14 @@ public class EventCause implements Serializable {
 	
 	@EmbeddedId private EventCauseId id;
 
+	public EventCauseId getId() {
+		return id;
+	}
+
+	public void setId(EventCauseId id) {
+		this.id = id;
+	}
+
 	@Column(name="Description") private String description;
 	
 	// relationship field for BaseData table class
