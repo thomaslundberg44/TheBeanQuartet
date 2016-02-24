@@ -7,6 +7,7 @@
 <script type="text/javascript" language="javascript"
 	src="media/js/jquery.js"></script>
 <script type="text/javascript" language="javascript" class="init"></script>
+<link rel="stylesheet" href="css/style.css">
 
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
@@ -15,38 +16,41 @@
 </head>
 <body>
 
+	<div class="login-card">
+		<h1>Create New User</h1>
+		<form role="form" id="userDetails">
 
+			<div class="form-group">
+				<label>User Name:</label> <br> 
+				<input type="text" class="form-control bfh-text" placeholder="Username" id="userName">
+			</div>
+			<div class="form-group">
+				<label>User Password:</label> <br> <input type="password"
+					class="form-control bfh-text" placeholder="User Password" id="userPassword">
+			</div>
+			<div class="form-group">
+				<label>Re-Type Password:</label> <br> <input type="password"
+					class="form-control bfh-text" placeholder="Retype Password" id="userPassword_retyped">
+			</div>
+			
+			
 
+			<div class="dropdown">
+				<label>User Type:</label> 
+				<br> 
+				<select id="userSelect">
+					<option value="Admin">Administrator</option>
+					<option value="SupEng">Support Engineer</option>
+					<option value="NetEng">Network Management Engineer</option>
+					<option value="CSR">Customer Service Representative</option>
+				</select>
+			</div>
+			<br> 
+			<input type="submit" class="login login-submit"
+				value="Create User">
+		</form>
+	</div>
 
-	<h1 align="center">Main web page</h1>
-
-<!--  
-	<label>View User Details by:</label>
-	<br>
-	<br>
-	<form role="form" id="viewBy">
-		<select id="viewSelected">
-			<option value="Admin">Administrator</option>
-			<option value="SupEng">Support Engineer</option>
-			<option value="NetEng">Network Management Engineer</option>
-			<option value="CSR">Customer Service Representative</option>
-		</select>
-		<br> <br><input type="submit" class="btn btn-info"
-				value="viewBy">
-	</form>
--->
-	
-	
-	
-	
-<div class="list-group">
-  <a href="http://localhost:8080/TheBeanQuartet/eventCauseTable.html" class="list-group-item">Link to Data Tables</a>
-  <a href="http://localhost:8080/TheBeanQuartet/createUser.html" class="list-group-item">Link to create user page</a>
-  <a href="http://localhost:8080/TheBeanQuartet/rest/user" class="list-group-item">Link to users JSON</a>
-</div>
-	
-	
-	
 
 	<script>
 
@@ -74,25 +78,6 @@
 					else
 						alert("Incorrect Password Match");
 		});
-		$("#viewBy").submit(function viewUsersBySelection() {
-			var user4 = new SysUser(
-					"name", 
-					"psw", 
-					document.getElementById("userSelect").value
-					);
-			$.ajax({
-				async: false,
-				type : 'POST',
-				url : 'rest/user/viewby',
-				data : JSON.stringify(document.getElementById("viewSelected").value),
-				success : function islogin(data) {
-					alert(JSON.stringify(data));
-				},
-				contentType : 'application/json'
-			});
-		});
-
-		
 
 	</script>
 
