@@ -12,6 +12,14 @@ public class EventCauseId implements Serializable {
 	// auto generated serial id
 	private static final long serialVersionUID = 2435367681693913886L;
 
+	public Integer getCauseCode() {
+		return causeCode;
+	}
+	
+	public Integer getEventId() {
+		return eventId;
+	}
+	
 	public void setCauseCode(Integer causeCode) {
 		this.causeCode = causeCode;
 	}
