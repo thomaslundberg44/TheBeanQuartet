@@ -1,4 +1,4 @@
-package dao__EJB_testing;
+package dao_testing;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
