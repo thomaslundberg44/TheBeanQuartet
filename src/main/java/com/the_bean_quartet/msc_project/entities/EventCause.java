@@ -33,6 +33,14 @@ public class EventCause implements Serializable {
 		this.description = description;
 	}
 	
+	public Integer getEventId() {
+		return id.getEventId();
+	}
+	
+	public Integer getCauseCode() {
+		return id.getCauseCode();
+	}
+	
 	public EventCauseId getId() {
 		return id;
 	}
