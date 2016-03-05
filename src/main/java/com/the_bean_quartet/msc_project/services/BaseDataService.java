@@ -14,6 +14,4 @@ public interface BaseDataService {
 
 	public void addToDataset(BaseData bData);
 
-
-
 }

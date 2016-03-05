@@ -3,12 +3,11 @@ package entity_testing;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotSame;
 
-import org.junit.Before;
+import java.util.Date;
+
 import org.junit.Test;
 
 import com.the_bean_quartet.msc_project.entities.BaseData;
-import com.the_bean_quartet.msc_project.entities.EventCause;
-import com.the_bean_quartet.msc_project.entities.EventCauseId;
 import com.the_bean_quartet.msc_project.entities.FailureClass;
 import com.the_bean_quartet.msc_project.entities.MccData;
 import com.the_bean_quartet.msc_project.entities.SysUser;
@@ -20,11 +19,11 @@ public class entityTesting {
 
 	@Test
 	public void testBaseData() {
-		BaseData dataConstructor = new BaseData("1",1,2,3,4,5,6,7,8,"2",0L, 
+		BaseData dataConstructor = new BaseData(new Date(),1,2,3,4,5,6,7,8,"2",0L, 
 															1L, 2L, 3L);
 		BaseData data = new BaseData();
 		
-		data.setDate("1");
+		data.setDate(new Date());
 		data.setEventId(1);
 		data.setFailureClass(2);
 		data.setUeType(3);

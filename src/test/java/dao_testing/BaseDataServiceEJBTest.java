@@ -6,6 +6,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -24,7 +25,7 @@ public class BaseDataServiceEJBTest {
 	@Before
 	public void setup(){
 		ArrayList<BaseData> mockedEvents = new ArrayList<BaseData>();
-		mockedEvents.add(new BaseData("1",1,2,3,4,5,6,7,8,"2",0L, 
+		mockedEvents.add(new BaseData(new Date(),1,2,3,4,5,6,7,8,"2",0L, 
 												1L, 2L, 3L));
 		JPABaseDataDAO mockedDAOALl = mock(JPABaseDataDAO.class);
 		when((mockedDAOALl.getAllData())).thenReturn(mockedEvents);

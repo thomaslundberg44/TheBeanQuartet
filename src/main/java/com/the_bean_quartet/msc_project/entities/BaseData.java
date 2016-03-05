@@ -1,6 +1,7 @@
 package com.the_bean_quartet.msc_project.entities;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,7 +10,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 
@@ -31,7 +31,7 @@ public class BaseData implements Serializable {
 	@Column(name="Base_Data_Id")
 	private int id;
 
-	@Column(name="Date_Time")private String date;
+	@Column(name="Date_Time")private Date date;
 	@Column(name="Event_Id")private Integer eventId;
 	@Column(name="Failure_Class")private Integer failureClass;
 	@Column(name="UE_Type")private Integer ueType;
@@ -48,12 +48,13 @@ public class BaseData implements Serializable {
 	
 	// relationship field for failure class table mapping
 	
-	@OneToOne(mappedBy="data")
-	private FailureClass failureClassTbl;
+//	@JoinColumn (name="Failure_Class_Id", referencedColumnName="Failure_Class")
+//	@ManyToOne
+//	private FailureClass failureClassTbl;
 	
 	public BaseData() {}
 	
-	public BaseData(String date, Integer eventId, Integer failureClass, Integer ueType, 
+	public BaseData(Date date, Integer eventId, Integer failureClass, Integer ueType, 
 			Integer market, Integer operator, Integer cellId, Integer duration, Integer causeCode,
 			String neVersion, Long imsi, Long heir3Id, Long heir32Id, Long heir321Id) {
 		this.date = date;
@@ -80,11 +81,11 @@ public class BaseData implements Serializable {
 		this.id = id;
 	}
 
-	public String getDate() {
+	public Date getDate() {
 		return date;
 	}
 
-	public void setDate(String date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 

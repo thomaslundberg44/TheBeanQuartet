@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 
 import org.junit.Test;
 
@@ -17,7 +18,7 @@ public class TestBaseDataList {
 		BaseData data = new BaseData();
 		data.setId(1234);
 		data.setCauseCode(4321);
-		data.setDate("23/2/16 16:43");
+		data.setDate(new Date());
 		data.setDuration(1000);
 		data.setEventId(1234);
 		data.setFailureClass(0);

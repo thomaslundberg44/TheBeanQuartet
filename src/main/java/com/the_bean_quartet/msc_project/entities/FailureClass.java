@@ -5,8 +5,6 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -24,9 +22,8 @@ public class FailureClass implements Serializable {
 	
 	
 	// relationship field to Base_Data table
-	@JoinColumn (name="Failure_Class_Id", referencedColumnName="Failure_Class")
-	@OneToOne
-	private BaseData  data;
+//	@OneToMany(mappedBy="failureClassTbl")
+//	private Set<BaseData>  data;
 	
 	public FailureClass () { }
 	
@@ -51,12 +48,12 @@ public class FailureClass implements Serializable {
 		this.description = description;
 	}
 
-	public BaseData getData() {
-		return data;
-	}
-
-	public void setData(BaseData data) {
-		this.data = data;
-	}
+//	public Set<BaseData> getData() {
+//		return data;
+//	}
+//
+//	public void setData(Set<BaseData> data) {
+//		this.data = data;
+//	}
 
 }
