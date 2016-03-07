@@ -13,5 +13,7 @@ public interface BaseDataService {
 	public Collection<BaseData> getDataset();
 
 	public void addToDataset(BaseData bData);
+	
+	public void addCollectionToDataset(Collection<BaseData> data);
 
 }
