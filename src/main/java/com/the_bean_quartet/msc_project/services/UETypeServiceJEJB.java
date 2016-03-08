@@ -37,4 +37,8 @@ public class UETypeServiceJEJB implements UETypeService{
 	public void addToUEDataset(UETypeClass ueData) {
 		ueTypeClassDAO.addUE(ueData);		
 	}
+
+	public void addListUEDataset(Collection<UETypeClass> ueList) {
+		ueTypeClassDAO.addListUE(ueList);
+	}
 }

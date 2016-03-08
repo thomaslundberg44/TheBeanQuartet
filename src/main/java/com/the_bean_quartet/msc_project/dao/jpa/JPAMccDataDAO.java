@@ -7,9 +7,6 @@ import javax.ejb.Local;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-
-
-
 import javax.persistence.Query;
 
 import com.the_bean_quartet.msc_project.dao.MccMncDataDAO;
@@ -26,7 +23,7 @@ public class JPAMccDataDAO implements MccMncDataDAO{
 	public void addData(MccData mccData) {
 		
 		Query query = em.createQuery("from MccData");
-		List<BaseData> data = query.getResultList(); 
+		List<MccData> data = query.getResultList(); 
 		if (!data.contains(mccData))
 			em.persist(mccData);	
 	}
@@ -37,5 +34,14 @@ public class JPAMccDataDAO implements MccMncDataDAO{
 		List<MccData> mccData = query.getResultList(); 
 		return mccData;
 		
+	}
+
+	public void addListData(Collection<MccData> dataList) {
+		Query query = em.createQuery("from MccData");
+		List<MccData> data = query.getResultList();
+		for(MccData mccData : dataList) {
+			if (!data.contains(mccData))
+				em.merge(mccData);
+		}
 	}
 }

@@ -27,8 +27,8 @@ public class EventCause implements Serializable {
 	
 	public EventCause(Integer eventId, Integer causeCode, String description) {
 		EventCauseId id = new EventCauseId();
-		id.setEventId(1234);
-		id.setCauseCode(4321);
+		id.setEventId(eventId);
+		id.setCauseCode(causeCode);
 		this.id = id;
 		this.description = description;
 	}

@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Add spreadsheet data</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 </head>
 <body>
 
@@ -20,33 +21,38 @@
 				value="Submit Path">
 		</form>
 	</div>
-	
+
+	<form action="demo_form.asp">
+		<input type="file" name="spreadsheet" accept=".xls" id="xlsFile"> 
+		<input type="submit">
+	</form>
+
 	<button onclick="test()">Test button</button>
 
 
 	<script type="text/javascript">
-	
 		function test() {
 			var pathStr = document.getElementById("path");
-			alert("Submit button pressed! "+pathStr);
-			$.ajax({
-				type : "POST",
-				url : "rest/xls_input",
-				data:JSON.stringify("/home/tommy/Documents/projectSampleData.xls"),
-				contentType : 'application/json'
-			});
+			alert("Submit button pressed! " + pathStr);
+			$
+					.ajax({
+						type : "POST",
+						url : "rest/xls_input",
+						data : JSON
+								.stringify("/home/tommy/Documents/projectSampleData.xls"),
+						contentType : 'application/json'
+					});
 		}
 
-		$("#spreadsheetPathForm").submit(
-			function addData() {
-				var pathStr = document.getElementById("path");
-				alert("Got file path: "+pathStr);
-				$.ajax({
-					type : 'POST',
-					url : 'rest/xls_input',
-					data:JSON.stringify(pathStr),
-					contentType : 'application/json'
-				});
+		$("#spreadsheetPathForm").submit(function addData() {
+			var pathStr = document.getElementById("path");
+			alert("Got file path: " + pathStr);
+			$.ajax({
+				type : 'POST',
+				url : 'rest/xls_input',
+				data : JSON.stringify(pathStr),
+				contentType : 'application/json'
+			});
 		});
 	</script>
 </body>

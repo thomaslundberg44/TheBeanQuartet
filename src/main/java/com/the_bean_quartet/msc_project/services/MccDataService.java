@@ -11,4 +11,6 @@ public interface MccDataService {
 	public Collection<MccData> getDataset();
 
 	public void addToDataset(MccData bData);
+	
+	public void addListToDataset(Collection<MccData> dataList);
 }

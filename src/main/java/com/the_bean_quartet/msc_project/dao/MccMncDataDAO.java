@@ -10,5 +10,5 @@ public interface MccMncDataDAO {
 	
 	void addData(MccData uData);
     Collection<MccData> getAllMccData();
-
+    void addListData(Collection<MccData> dataList);
 }

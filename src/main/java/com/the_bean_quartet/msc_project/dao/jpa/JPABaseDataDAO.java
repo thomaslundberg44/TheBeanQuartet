@@ -31,15 +31,10 @@ public class JPABaseDataDAO implements BaseDataDAO {
 	public void addCollectionData(Collection<BaseData> data) {
 		Query query = em.createQuery("from BaseData");
 		List<BaseData> dataList = query.getResultList();
-		System.out.println("Inserting entities from list into DB...");
-		long startTime = System.currentTimeMillis();
 		for(BaseData dataItem : data) {
 			if(!dataList.contains(dataItem))
-			em.persist(dataItem);
+				em.persist(dataItem);
 		}
-		long endTime = System.currentTimeMillis();
-		long duration = endTime - startTime;
-		System.out.println("Total time to insert entities: "+duration/1000.0+" seconds");
 	}
 	
 //	public CompactDisc getCompactDiscByTitle(String title) {

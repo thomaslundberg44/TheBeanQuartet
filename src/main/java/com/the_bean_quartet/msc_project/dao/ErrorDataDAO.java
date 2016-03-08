@@ -10,4 +10,5 @@ import com.the_bean_quartet.msc_project.entities.ErrorData;
 public interface ErrorDataDAO {
 	void addData(ErrorData eData);
     Collection<ErrorData> getAllData();
+    void addListData(Collection<ErrorData> errorList);
 }

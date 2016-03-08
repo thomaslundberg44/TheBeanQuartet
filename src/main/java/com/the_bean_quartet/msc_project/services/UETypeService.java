@@ -12,4 +12,5 @@ public interface UETypeService {
 
 	public void addToUEDataset(UETypeClass ueData);
 
+	public void addListUEDataset(Collection<UETypeClass> ueList);
 }

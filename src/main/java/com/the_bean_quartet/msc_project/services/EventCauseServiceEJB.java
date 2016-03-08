@@ -48,6 +48,10 @@ public class EventCauseServiceEJB implements EventCauseService {
 		eventDao.addEvents(data);
 	}
 
+	public void addListEventCauseDataset(Collection<EventCause> eventList) {
+		eventDao.addListEvents(eventList);
+	}
+
 //	public Collection getDataset() {
 //		return dao.getAllData();
 //	}

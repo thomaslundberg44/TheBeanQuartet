@@ -9,5 +9,5 @@ public interface UETypeClassDAO {
 	
 	void addUE(UETypeClass UEType);
     Collection<UETypeClass> getAllUEType();
-	
+	void addListUE(Collection<UETypeClass> ueList);
 }

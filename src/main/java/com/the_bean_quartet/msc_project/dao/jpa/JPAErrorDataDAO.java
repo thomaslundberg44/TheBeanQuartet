@@ -32,4 +32,13 @@ public class JPAErrorDataDAO implements ErrorDataDAO {
 		return eData;
 	}
 
+	public void addListData(Collection<ErrorData> errorList) {
+		Query query = em.createQuery("from ErrorData");
+		List<ErrorData> data = query.getResultList(); 
+		for(ErrorData error : errorList) {
+			if(!data.contains(error))
+				em.persist(error);
+		}
+	}
+
 }

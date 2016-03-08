@@ -33,4 +33,12 @@ public class JPAUETypeClassDAO implements UETypeClassDAO {
 		return UEType;
 	}
 
+	public void addListUE(Collection<UETypeClass> ueList) {
+		Query query = em.createQuery("from UETypeClass");
+		List<UETypeClass> ueDBList = query.getResultList(); 
+		for(UETypeClass ueClass : ueList) {
+			if (!ueDBList.contains(ueClass))
+				em.merge(ueClass);
+		}
+	}
 }

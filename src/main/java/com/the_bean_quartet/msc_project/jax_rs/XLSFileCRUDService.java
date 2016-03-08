@@ -6,7 +6,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Date;
 
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -21,20 +20,35 @@ import org.apache.poi.ss.usermodel.Row;
 
 import com.the_bean_quartet.msc_project.entities.BaseData;
 import com.the_bean_quartet.msc_project.entities.ErrorData;
+import com.the_bean_quartet.msc_project.entities.EventCause;
+import com.the_bean_quartet.msc_project.entities.EventCauseId;
+import com.the_bean_quartet.msc_project.entities.FailureClass;
+import com.the_bean_quartet.msc_project.entities.MccData;
+import com.the_bean_quartet.msc_project.entities.MccDataId;
+import com.the_bean_quartet.msc_project.entities.UETypeClass;
 import com.the_bean_quartet.msc_project.services.BaseDataService;
 import com.the_bean_quartet.msc_project.services.ErrorDataService;
+import com.the_bean_quartet.msc_project.services.EventCauseService;
+import com.the_bean_quartet.msc_project.services.FailureDataService;
+import com.the_bean_quartet.msc_project.services.MccDataService;
+import com.the_bean_quartet.msc_project.services.UETypeService;
 
 @Path("/xls_input")
 public class XLSFileCRUDService {
 	
-	@Inject
-	private BaseDataService baseDataService;
-	
-	@Inject 
-	private ErrorDataService errorService;
+	@Inject private BaseDataService baseDataService;
+	@Inject private ErrorDataService errorService;
+	@Inject private FailureDataService failureClassService;
+	@Inject private EventCauseService eventCauseService;
+	@Inject private MccDataService mccDataService;
+	@Inject private UETypeService ueDataService;
 	
 	private Collection<BaseData> baseList;
-	private ArrayList<ErrorData> errorList;
+	private Collection<ErrorData> errorList;
+	private Collection<FailureClass> failureClassList;
+	private Collection<EventCause> eventList;
+	private Collection<MccData> mccList;
+	private Collection<UETypeClass> ueList;
 	
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -43,24 +57,22 @@ public class XLSFileCRUDService {
 		System.out.println("Processing file at path: "+path);
 		long startTime = System.currentTimeMillis();
 		
-		baseList = new ArrayList<BaseData>();
-		errorList = new ArrayList<ErrorData>();
 		try {
 			FileInputStream file = new FileInputStream(new File(path));
 			HSSFWorkbook workbook = new HSSFWorkbook(file);
-			HSSFSheet sheet = workbook.getSheetAt(0);
 			
-			for(Row row : sheet) {
-				if(row.getRowNum() > 0) // first row contains headings/null values
-					processCells(row);
-			}
+			readEventCauseDataSheet(workbook.getSheetAt(1));
+			readFailureDataSheet(workbook.getSheetAt(2));
+			readUEDataSheet(workbook.getSheetAt(3));
+			readMccTableSheet(workbook.getSheetAt(4));
+			readBaseDataSheet(workbook.getSheetAt(0));
+			
+			
 			long endTime = System.currentTimeMillis();
 			long duration = endTime - startTime;
 			System.out.println("Total time to read file: "+duration/1000.0+" seconds");
 			
 			file.close();
-			
-			baseDataService.addCollectionToDataset(baseList);
 			
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -69,14 +81,109 @@ public class XLSFileCRUDService {
 		}
 	}
 	
-	private void processCells(Row row) {
+	private void readEventCauseDataSheet(HSSFSheet sheet) {
+		eventList = new ArrayList<EventCause>();
+		for(Row row : sheet) {
+			if(row.getRowNum() > 0) // first row contains headings/null values
+				processEventCauseDataCells(row);
+		}
+		eventCauseService.addListEventCauseDataset(eventList);
+	}
+
+	private void processEventCauseDataCells(Row row) {
+		EventCause event = new EventCause();
+		EventCauseId eventId = new EventCauseId();
+		eventId.setCauseCode((int)(row.getCell(0).getNumericCellValue()));
+		eventId.setEventId((int)(row.getCell(1).getNumericCellValue()));
+		event.setId(eventId);
+		event.setDescription(row.getCell(2).getStringCellValue());
+		eventList.add(event);
+	}
+
+	private void readFailureDataSheet(HSSFSheet sheet) {
+		failureClassList = new ArrayList<FailureClass>();
+		for(Row row : sheet) {
+			if(row.getRowNum() > 0) // first row contains headings/null values
+				processFailureDataCells(row);
+		}
+		failureClassService.addListFailureDataset(failureClassList);
+	}
+	
+	private void processFailureDataCells(Row row) {
+		FailureClass failureClass = new FailureClass();
+		failureClass.setFailureClass((int)row.getCell(0).getNumericCellValue());
+		failureClass.setDescription(row.getCell(1).getStringCellValue());
+		failureClassList.add(failureClass);
+	}
+	
+
+	private void readUEDataSheet(HSSFSheet sheet) {
+		ueList = new ArrayList<UETypeClass>(); 
+		for(Row row : sheet) {
+			if(row.getRowNum() > 0) // first row contains headings/null values
+				processUETypeCells(row);
+		}
+		ueDataService.addListUEDataset(ueList);
+	}
+
+	private void processUETypeCells(Row row) {
+		UETypeClass ueClass = new UETypeClass();
+		ueClass.setTac((int)(row.getCell(0).getNumericCellValue()));
+		ueClass.setMarketingName(getStringFromCell(row.getCell(1)));
+		ueClass.setManufacturer(getStringFromCell(row.getCell(2)));
+		ueClass.setAccessCapability(getStringFromCell(row.getCell(3)));
+		ueClass.setModel(getStringFromCell(row.getCell(4)));
+		ueClass.setVendorName(getStringFromCell(row.getCell(5)));
+		ueClass.setUeType(getStringFromCell(row.getCell(6)));
+		ueClass.setOs(getStringFromCell(row.getCell(7)));
+		ueClass.setInputMode(getStringFromCell(row.getCell(8)));
+		ueList.add(ueClass);
+	}
+	
+	private String getStringFromCell(Cell cell) {
+		if(cell.getCellType() == Cell.CELL_TYPE_STRING)
+			return cell.getStringCellValue();
+		else
+			return (String)(cell.getNumericCellValue()+"");
+	}
+	
+	private void readMccTableSheet(HSSFSheet sheet) {
+		mccList = new ArrayList<MccData>();
+		for(Row row : sheet) {
+			if(row.getRowNum() > 0) // first row contains headings/null values
+				processMccDataCells(row);
+		}
+		mccDataService.addListToDataset(mccList);
+	}
+
+	private void processMccDataCells(Row row) {
+		MccData mccData = new MccData();
+		MccDataId mccId = new MccDataId();
+		mccId.setMcc((int)row.getCell(0).getNumericCellValue());
+		mccId.setMnc((int)row.getCell(1).getNumericCellValue());
+		mccData.setId(mccId);
+		mccData.setCountry(row.getCell(2).getStringCellValue());
+		mccData.setOperator(row.getCell(3).getStringCellValue());
+		mccList.add(mccData);
+	}
+
+	private void readBaseDataSheet(HSSFSheet sheet) {
+		baseList = new ArrayList<BaseData>();
+		errorList = new ArrayList<ErrorData>();
+		for(Row row : sheet) {
+			if(row.getRowNum() > 0) // first row contains headings/null values
+				processBaseDataCells(row);
+		}
+		baseDataService.addCollectionToDataset(baseList);
+		errorService.addListErrorData(errorList);
+	}
+	
+	private void processBaseDataCells(Row row) {
 		try{
-//			baseDataService.addToDataset(getBaseDataFromRow(row));
 			baseList.add(getBaseDataFromRow(row));
 		}catch(IllegalStateException e) {
-//			errorService.addToErrorData(getErrorDataFromRow(row));
 			errorList.add(getErrorDataFromRow(row));
-		}	
+		}
 	}
 	
 	private BaseData getBaseDataFromRow(Row row) {

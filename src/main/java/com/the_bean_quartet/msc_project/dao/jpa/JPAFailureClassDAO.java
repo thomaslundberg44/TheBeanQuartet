@@ -38,4 +38,12 @@ public class JPAFailureClassDAO implements FailureClassDAO {
 		return failures;
 	}
 
+	public void addListFailures(Collection<FailureClass> failureClassList) {
+		Query query = em.createQuery("from FailureClass");
+		List<FailureClass> failureClasses = query.getResultList(); 
+		for(FailureClass failureClass : failureClassList) {
+			if (!failureClasses.contains(failureClass))
+				em.merge(failureClass);
+		}
+	}
 }

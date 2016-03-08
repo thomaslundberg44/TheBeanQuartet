@@ -57,7 +57,7 @@
 		<thead>
 			<tr>
 				<th data-field="id">Id</th>
-				<th data-field="date">Date / Time</th>
+				<th data-field="formatDate(date)">Date / Time</th>
 				<th data-field="eventId">Event Id</th>
 				<th data-field="failureClass">Failure Class Id</th>
 				<th data-field="ueType">UE Type</th>
@@ -80,6 +80,10 @@
 		// client side
 		function responseHandler(res) {
 			return res.baseDataCollection;
+		}
+		
+		function formatDate(date) {
+			return $.datepicker.formatDate('mm/dd/yy', new Date(Date(date)));
 		}
 		
 	</script>
