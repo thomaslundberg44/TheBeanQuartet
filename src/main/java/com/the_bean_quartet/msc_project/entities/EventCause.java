@@ -1,14 +1,24 @@
 package com.the_bean_quartet.msc_project.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
 
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="event_cause")
+@XmlRootElement
 public class EventCause implements Serializable {
 
 	// auto generated serial id
@@ -19,9 +29,9 @@ public class EventCause implements Serializable {
 	@Column(name="Description") private String description;
 	
 	// relationship field for BaseData table class
-//	@JoinColumn(name="Cause_Code", referencedColumnName="id", nullable=false)
-//	@ManyToOne
-//	private BaseData data;
+	@OneToMany(mappedBy="eventCause", cascade={CascadeType.ALL})
+	@JsonIgnore
+	private Collection<BaseData> data = new ArrayList<BaseData>();
 	
 	public EventCause() {}
 	

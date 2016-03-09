@@ -1,10 +1,13 @@
 package com.the_bean_quartet.msc_project.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -22,8 +25,8 @@ public class FailureClass implements Serializable {
 	
 	
 	// relationship field to Base_Data table
-//	@OneToMany(mappedBy="failureClassTbl")
-//	private Set<BaseData>  data;
+	@OneToMany(mappedBy="failureClass")
+	private Collection<BaseData> data = new ArrayList<BaseData>();
 	
 	public FailureClass () { }
 	
