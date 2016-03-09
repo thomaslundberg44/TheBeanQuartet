@@ -9,8 +9,15 @@
 <body>
 
 	<div class="login-card">
+		
 		<h1>Get data from spreadsheet</h1>
-		<form role="form" id="spreadsheetPathForm">
+		
+		<form action="demo_form.asp" id="spreadsheetForm">
+			<input type="file" name="spreadsheet" accept=".xls" id="xlsFile">
+			<input type="submit">
+		</form>
+		
+		<!-- <form role="form" id="spreadsheetPathForm">
 
 			<div class="form-group">
 				<label>Path to file</label> <br> <input type="text"
@@ -19,13 +26,9 @@
 
 			<br> <input type="submit" class="login login-submit"
 				value="Submit Path">
-		</form>
+		</form>  -->
 	</div>
 
-	<form action="demo_form.asp">
-		<input type="file" name="spreadsheet" accept=".xls" id="xlsFile"> 
-		<input type="submit">
-	</form>
 
 	<button onclick="test()">Test button</button>
 
@@ -44,7 +47,7 @@
 					});
 		}
 
-		$("#spreadsheetPathForm").submit(function addData() {
+		$("#spreadsheetForm").submit(function addData() {
 			var pathStr = document.getElementById("path");
 			alert("Got file path: " + pathStr);
 			$.ajax({

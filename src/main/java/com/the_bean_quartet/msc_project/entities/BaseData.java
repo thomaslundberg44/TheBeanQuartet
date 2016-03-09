@@ -29,14 +29,8 @@ public class BaseData implements Serializable {
 	private int id;
 
 	@Column(name = "Date_Time") private Date date;
-//	@Column(name="Event_Id")private Integer eventId;
-//	@Column(name = "Failure_Class") private Integer failureClass;
-//	@Column(name="UE_Type")private Integer ueType;
-//	@Column(name = "Market") private Integer market;
-//	@Column(name = "Operator") private Integer operator;
 	@Column(name = "Cell_Id") private Integer cellId;
 	@Column(name = "Duration") private Integer duration;
-//	@Column(name="Cause_Code")private Integer causeCode;
 	@Column(name = "NE_Version") private String neVersion;
 	@Column(name = "IMSI") private Long imsi;
 	@Column(name = "HIER3_ID") private Long heir3Id;

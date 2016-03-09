@@ -50,6 +50,127 @@ public class XLSFileCRUDService {
 	private Collection<MccData> mccList;
 	private Collection<UETypeClass> ueList;
 	
+//	private final String UPLOADED_FILE_PATH = "d:\\";
+	
+//	@POST
+//	@Path("/upload")
+//	@Consumes("multipart/form-data")
+//	public Response uploadFile(MultipartFormDataInput input) {
+//
+//		String fileName = "";
+//		
+//		Map<String, List<InputPart>> uploadForm = input.getFormDataMap();
+//		List<InputPart> inputParts = uploadForm.get("uploadedFile");
+//
+//		for (InputPart inputPart : inputParts) {
+//
+//		 try {
+//
+//			MultivaluedMap<String, String> header = inputPart.getHeaders();
+//			fileName = getFileName(header);
+//
+//			//convert the uploaded file to inputstream
+//			InputStream inputStream = inputPart.getBody(InputStream.class,null);
+//
+//			byte [] bytes = IOUtils.toByteArray(inputStream);
+//				
+//			//constructs upload file path
+//			fileName = UPLOADED_FILE_PATH + fileName;
+//				
+//			writeFile(bytes,fileName);
+//				
+//			System.out.println("Done");
+//
+//		  } catch (IOException e) {
+//			e.printStackTrace();
+//		  }
+//
+//		}
+//
+//		return Response.status(200)
+//		    .entity("uploadFile is called, Uploaded file name : " + fileName).build();
+//
+//	}
+//	
+//	@POST
+//	@Path("/upload")
+//	@Consumes("multipart/form-data")
+//	public Response uploadFile(MultipartFormDataInput input) throws IOException {
+//
+//		Map<String, List<InputPart>> uploadForm = input.getFormDataMap();
+//		
+//		List<InputPart> inputParts = uploadForm.get("uploadFile");
+//
+//		for (InputPart inputPart : inputParts) {
+//			try {
+//				MultivaluedMap<String, String> header = inputPart.getHeaders();
+//				String fileName = getFileName(header);
+//				if(fileName.contains(".xls")){
+//					InputStream inputStream = inputPart.getBody(InputStream.class, null);
+//	
+//					byte[] bytes = IOUtils.toByteArray(inputStream);
+//					
+//					writeFile(bytes, fileName);
+//					
+//					java.net.URI location = new java.net.URI("http://localhost:8080/CallFailureEnterprise/uploadComplete.html");
+//					return Response.temporaryRedirect(location).build();
+////					return Response.status(200).entity("Dataset uploaded: " + fileName + 
+////							"<p><a href='http://localhost:8080/CallFailureEnterprise/erroneous.html'</a>View erroneous data" +
+////							"<p><a href='http://localhost:8080/CallFailureEnterprise/valid.html'</a>View valid data").build();
+//				}
+//				else{
+//					return null;
+////					return Response.status(200).entity("Please return to the upload page and provide an xls file").build();
+//				}
+//				
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			}
+//		}
+//		return null;
+//	}
+//
+//	/**
+//	 * header sample
+//	 * {
+//	 * 	Content-Type=[image/png], 
+//	 * 	Content-Disposition=[form-data; name="file"; filename="filename.extension"]
+//	 * }
+//	 **/
+//	//get uploaded filename, is there a easy way in RESTEasy?
+//	private String getFileName(MultivaluedMap<String, String> header) {
+//
+//		String[] contentDisposition = header.getFirst("Content-Disposition").split(";");
+//		
+//		for (String filename : contentDisposition) {
+//			if ((filename.trim().startsWith("filename"))) {
+//
+//				String[] name = filename.split("=");
+//				
+//				String finalFileName = name[1].trim().replaceAll("\"", "");
+//				return finalFileName;
+//			}
+//		}
+//		return "unknown";
+//	}
+//
+//	//save to somewhere
+//	private void writeFile(byte[] content, String filename) throws IOException {
+//
+//		File file = new File(filename);
+//
+//		if (!file.exists()) {
+//			file.createNewFile();
+//		}
+//
+//		FileOutputStream fop = new FileOutputStream(file);
+//
+//		fop.write(content);
+//		fop.flush();
+//		fop.close();
+//
+//	}
+	
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	public void addSpreadsheetData(String path) {
@@ -189,14 +310,18 @@ public class XLSFileCRUDService {
 	private BaseData getBaseDataFromRow(Row row) {
 		BaseData baseData = new BaseData();
 		baseData.setDate(row.getCell(0).getDateCellValue());
-		baseData.setEventId((int)(row.getCell(1).getNumericCellValue()));
-		baseData.setFailureClass((int)(row.getCell(2).getNumericCellValue()));
-		baseData.setUeType((int)(row.getCell(3).getNumericCellValue()));
-		baseData.setMarket((int)(row.getCell(4).getNumericCellValue()));
-		baseData.setOperator((int)(row.getCell(5).getNumericCellValue()));
+		baseData.setEventCause(getEventCause(row));
+		baseData.setFailureClass(getFailureClass(row));
+		baseData.setUeTable(getUETable(row));
+		baseData.setMccData(getMccData(row));
+//		baseData.setEventId((int)(row.getCell(1).getNumericCellValue()));
+//		baseData.setFailureClass((int)(row.getCell(2).getNumericCellValue()));
+//		baseData.setUeType((int)(row.getCell(3).getNumericCellValue()));
+//		baseData.setMarket((int)(row.getCell(4).getNumericCellValue()));
+//		baseData.setOperator((int)(row.getCell(5).getNumericCellValue()));
 		baseData.setCellId((int)(row.getCell(6).getNumericCellValue()));
 		baseData.setDuration((int)(row.getCell(7).getNumericCellValue()));
-		baseData.setCauseCode((int)(row.getCell(8).getNumericCellValue()));
+//		baseData.setCauseCode((int)(row.getCell(8).getNumericCellValue()));
 		baseData.setNeVersion(row.getCell(9).getStringCellValue());
 		baseData.setImsi((long)(row.getCell(10).getNumericCellValue()));
 		baseData.setHeir3Id((long)(row.getCell(11).getNumericCellValue()));
@@ -204,7 +329,41 @@ public class XLSFileCRUDService {
 		baseData.setHeir321Id((long)(row.getCell(13).getNumericCellValue()));
 		return baseData;
 	}
+
+	private EventCause getEventCause(Row row) {
+		for(EventCause event : eventList) {
+			if((event.getEventId() == (int)(row.getCell(1).getNumericCellValue())
+					&& (event.getCauseCode() == (int)(row.getCell(8).getNumericCellValue()))))
+				return event;
+		}
+		return new EventCause(); // return empty object if not found
+	}
 	
+	private FailureClass getFailureClass(Row row) {
+		for(FailureClass failure : failureClassList) {
+			if(failure.getFailureClass() == (int)(row.getCell(2).getNumericCellValue()))
+				return failure;
+		}
+		return new FailureClass();
+	}
+
+	private UETypeClass getUETable(Row row) {
+		for(UETypeClass ueClass : ueList) {
+			if(ueClass.getTac() == (int)(row.getCell(3).getNumericCellValue()))
+				return ueClass;
+		}
+		return new UETypeClass();
+	}
+
+	private MccData getMccData(Row row) {
+		for(MccData mccData : mccList) {
+			if(mccData.getMcc() == (int)(row.getCell(4).getNumericCellValue())
+					&& mccData.getMnc() == (int)(row.getCell(5).getNumericCellValue()))
+				return mccData;
+		}
+		return new MccData();
+	}
+
 	private ErrorData getErrorDataFromRow(Row row) {
 		ErrorData errorData = new ErrorData();
 		errorData.setDate(row.getCell(0).getDateCellValue());
