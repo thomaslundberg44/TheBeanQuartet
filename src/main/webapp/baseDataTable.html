@@ -57,20 +57,21 @@
 		<thead>
 			<tr>
 				<th data-field="id">Id</th>
-				<th data-field="formatDate(date)">Date / Time</th>
-				<th data-field="eventId">Event Id</th>
+				<th data-field="date">Date / Time</th>
+				<th data-field="eventCause">Event Id</th>
 				<th data-field="failureClass">Failure Class Id</th>
 				<th data-field="ueType">UE Type</th>
-				<th data-field="market">Market</th>
-				<th data-field="operator">Operator</th>
+				<th data-field="mccData">Market</th>
+				<th data-field="imsi">IMSI</th>
 				<th data-field="cellId">Cell Id</th>
 				<th data-field="duration">Duration</th>
 				<!-- <th data-field="description">Failure class description</th> -->
 			</tr>
 		</thead>
 	</table>
-	
+
 	<script>
+	
 		$(document).ready(function() {
 			$(function() {
 				$("#baseDataTable").tablesorter();
