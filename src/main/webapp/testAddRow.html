@@ -35,14 +35,14 @@
 
 	<script type="text/javascript">
 		function test() {
-			var pathStr = document.getElementById("path");
+			var pathStr = document.getElementById("path").value;
 			alert("Submit button pressed! " + pathStr);
 			$
 					.ajax({
 						type : "POST",
 						url : "rest/xls_input",
 						data : JSON
-								.stringify("/home/tommy/Documents/projectSampleData.xls"),
+								.stringify("/home/tommy/Documents/data.xls"),
 						contentType : 'application/json'
 					});
 		}

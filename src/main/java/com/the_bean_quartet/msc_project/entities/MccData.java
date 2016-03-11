@@ -56,6 +56,7 @@ public class MccData implements Serializable{
 		MccDataId id = new MccDataId();
 		id.mcc=mcc;
 		id.mnc=mnc;
+		this.id = id;
 		this.country=country;
 		this.operator=operator;
 	}

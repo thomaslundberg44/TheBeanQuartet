@@ -204,7 +204,7 @@ public class XLSFileCRUDService {
 		baseData.setHeir32Id((long)(row.getCell(12).getNumericCellValue()));
 		baseData.setHeir321Id((long)(row.getCell(13).getNumericCellValue()));
 		
-		BaseDataConsistencyCheck check = new BaseDataConsistencyCheck(baseData);
+		BaseDataConsistencyCheck check = new BaseDataConsistencyCheck(baseData, mccList);
 		if(check.checkBaseDataConsistency())
 			return baseData;
 		else
@@ -212,9 +212,14 @@ public class XLSFileCRUDService {
 	}
 
 	private String getDate(Row row) {
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd hh:mm");
-		Date date = row.getCell(0).getDateCellValue();
-		return sdf.format(date);
+		Cell cell = row.getCell(0);
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm");
+		if(cell.getCellType() == Cell.CELL_TYPE_NUMERIC) {
+			Date date = row.getCell(0).getDateCellValue();
+			return sdf.format(date);
+		} else {
+			return cell.getStringCellValue();
+		}
 	}
 
 	private EventCause getEventCause(Row row) {
@@ -243,12 +248,13 @@ public class XLSFileCRUDService {
 	}
 
 	private MccData getMccData(Row row) {
+		int mcc = (int)(row.getCell(4).getNumericCellValue());
+		int mnc = (int)(row.getCell(5).getNumericCellValue());
 		for(MccData mccData : mccList) {
-			if(mccData.getMcc() == (int)(row.getCell(4).getNumericCellValue())
-					&& mccData.getMnc() == (int)(row.getCell(5).getNumericCellValue()))
+			if(mccData.getMcc() == mcc && mccData.getMnc() == mnc)
 				return mccData;
 		}
-		return new MccData();
+		return new MccData(mcc, mnc, null, null);
 	}
 
 	private ErrorData getErrorDataFromRow(Row row) {

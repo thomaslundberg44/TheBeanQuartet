@@ -1,18 +1,20 @@
 package utilties_testing;
 
-import static com.the_bean_quartet.msc_project.utilities.BaseDataConsistencyCheck.dateTimeConsistent;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static com.the_bean_quartet.msc_project.utilities.BaseDataConsistencyCheck.*;
+import static org.junit.Assert.*;
 
-import java.util.Date;
+import java.util.ArrayList;
 
 import org.junit.Test;
+
+import com.the_bean_quartet.msc_project.entities.BaseData;
+import com.the_bean_quartet.msc_project.entities.MccData;
+import com.the_bean_quartet.msc_project.utilities.BaseDataConsistencyCheck;
 
 public class TestBaseDataConsistencyChecks {
 
 	@Test
 	public void testDateTimeConsistent() {
-
 		
 		// *--- test valid partitions ---*
 		
@@ -59,6 +61,34 @@ public class TestBaseDataConsistencyChecks {
 		// check if date exceeds current date
 		date = "2017/1/25 14:23";
 		assertFalse(dateTimeConsistent(date));
+		
+	}
+	
+	@Test
+	public void testMccMncIsValid() {
+		// create some mock mcc data items with valid values
+		ArrayList<MccData> mccList = new ArrayList<MccData>();
+		mccList.add(new MccData(344,930,"Antigua and Barbuda","AT&T Wireless-Antigua AG"));
+		mccList.add(new MccData(238,1,"Denmark","TDC-DK"));
+		mccList.add(new MccData(505,90,"Australia","Optus Ltd. AU"));
+		mccList.add(new MccData(440,11,"Japan","NTT DoCoMo"));
+		
+		BaseDataConsistencyCheck check = new BaseDataConsistencyCheck(new BaseData(), mccList);
+		
+		// *----- Valid partitions --- Valid combinations of MCC/MNC's
+		
+		assertTrue(check.mccMncIsValid(344,930));
+		assertTrue(check.mccMncIsValid(238, 1));
+		assertTrue(check.mccMncIsValid(505, 90));
+		assertTrue(check.mccMncIsValid(440, 11));
+		
+		
+		// *----- Invalid partitions --- Invalid combinations of MCC/MNC's
+		
+		assertFalse(check.mccMncIsValid(240, 36));
+		assertFalse(check.mccMncIsValid(440, 0));
+		assertFalse(check.mccMncIsValid(505, 11));
+		assertFalse(check.mccMncIsValid(405, 9));
 		
 	}
 }
