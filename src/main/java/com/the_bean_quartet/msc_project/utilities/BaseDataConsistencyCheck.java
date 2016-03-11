@@ -2,11 +2,11 @@ package com.the_bean_quartet.msc_project.utilities;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
 import com.the_bean_quartet.msc_project.entities.BaseData;
+import com.the_bean_quartet.msc_project.entities.EventCause;
 import com.the_bean_quartet.msc_project.entities.MccData;
 
 public class BaseDataConsistencyCheck {
@@ -14,16 +14,26 @@ public class BaseDataConsistencyCheck {
 	private BaseData data;
 	
 	private Collection<MccData> mccList;
+	private Collection<EventCause> eventList;
 	
-	public BaseDataConsistencyCheck(BaseData data, Collection<MccData> mccList) {
+	public BaseDataConsistencyCheck(BaseData data) {
 		this.data = data;
+	}
+
+	public void setMccList(Collection<MccData> mccList) {
 		this.mccList = mccList;
 	}
-	
+
+	public void setEventList(Collection<EventCause> eventList) {
+		this.eventList = eventList;
+	}
+
 	public boolean checkBaseDataConsistency() {
 		if(!dateTimeConsistent(data.getDate()))
 			return false;
 		if(!mccMncIsValid(data.getMccData().getMcc(), data.getMccData().getMnc()))
+			return false;
+		if(!isEventIdValid(data.getEventCause().getEventId()))
 			return false;
 		
 		return true;
@@ -51,6 +61,14 @@ public class BaseDataConsistencyCheck {
 			if(mccData.getMcc() == mcc && mccData.getMnc()== mnc)
 				return true;
 			
+		}
+		return false;
+	}
+	
+	public boolean isEventIdValid(int eventId) {
+		for(EventCause event : eventList) {
+			if(event.getEventId() == eventId)
+				return true;
 		}
 		return false;
 	}

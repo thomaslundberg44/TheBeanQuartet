@@ -204,7 +204,9 @@ public class XLSFileCRUDService {
 		baseData.setHeir32Id((long)(row.getCell(12).getNumericCellValue()));
 		baseData.setHeir321Id((long)(row.getCell(13).getNumericCellValue()));
 		
-		BaseDataConsistencyCheck check = new BaseDataConsistencyCheck(baseData, mccList);
+		BaseDataConsistencyCheck check = new BaseDataConsistencyCheck(baseData);
+		check.setMccList(mccList);
+		check.setEventList(eventList);
 		if(check.checkBaseDataConsistency())
 			return baseData;
 		else
@@ -223,12 +225,13 @@ public class XLSFileCRUDService {
 	}
 
 	private EventCause getEventCause(Row row) {
+		int eventId = (int)(row.getCell(1).getNumericCellValue());
+		int causeCode = (int)(row.getCell(8).getNumericCellValue());
 		for(EventCause event : eventList) {
-			if((event.getEventId() == (int)(row.getCell(1).getNumericCellValue())
-					&& (event.getCauseCode() == (int)(row.getCell(8).getNumericCellValue()))))
+			if((event.getEventId() == eventId && event.getCauseCode() == causeCode))
 				return event;
 		}
-		return new EventCause(); // return empty object if not found
+		return new EventCause(eventId, causeCode, null); // return empty object if not found
 	}
 	
 	private FailureClass getFailureClass(Row row) {

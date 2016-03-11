@@ -1,13 +1,15 @@
 package utilties_testing;
 
-import static com.the_bean_quartet.msc_project.utilities.BaseDataConsistencyCheck.*;
-import static org.junit.Assert.*;
+import static com.the_bean_quartet.msc_project.utilities.BaseDataConsistencyCheck.dateTimeConsistent;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 
 import org.junit.Test;
 
 import com.the_bean_quartet.msc_project.entities.BaseData;
+import com.the_bean_quartet.msc_project.entities.EventCause;
 import com.the_bean_quartet.msc_project.entities.MccData;
 import com.the_bean_quartet.msc_project.utilities.BaseDataConsistencyCheck;
 
@@ -73,7 +75,8 @@ public class TestBaseDataConsistencyChecks {
 		mccList.add(new MccData(505,90,"Australia","Optus Ltd. AU"));
 		mccList.add(new MccData(440,11,"Japan","NTT DoCoMo"));
 		
-		BaseDataConsistencyCheck check = new BaseDataConsistencyCheck(new BaseData(), mccList);
+		BaseDataConsistencyCheck check = new BaseDataConsistencyCheck(new BaseData());
+		check.setMccList(mccList);
 		
 		// *----- Valid partitions --- Valid combinations of MCC/MNC's
 		
@@ -90,5 +93,30 @@ public class TestBaseDataConsistencyChecks {
 		assertFalse(check.mccMncIsValid(505, 11));
 		assertFalse(check.mccMncIsValid(405, 9));
 		
+	}
+	
+	@Test
+	public void testIsEventIdValid() {
+		ArrayList<EventCause> events = new ArrayList<EventCause>();
+		events.add(new EventCause(4097,0,"RRC CONN SETUP-SUCCESS"));
+		events.add(new EventCause(4097,1,"RRC CONN SETUP-UNSPECIFIED"));
+		events.add(new EventCause(4098,0,"S1 SIG CONN SETUP-SUCCESS"));
+		events.add(new EventCause(4125,10,"UE CTXT RELEASE-USER INACTIVITY"));
+		
+		BaseDataConsistencyCheck check = new BaseDataConsistencyCheck(new BaseData());
+		check.setEventList(events);
+		
+		// *------ test valid partitions -----------
+		
+		assertTrue(check.isEventIdValid(4097));
+		assertTrue(check.isEventIdValid(4098));
+		assertTrue(check.isEventIdValid(4125));
+		
+		
+		// *----- Test invalid partitions ---------
+		
+		assertFalse(check.isEventIdValid(4099));
+		assertFalse(check.isEventIdValid(5059));
+		assertFalse(check.isEventIdValid(6197));
 	}
 }
