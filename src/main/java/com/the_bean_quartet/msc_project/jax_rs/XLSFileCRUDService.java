@@ -53,6 +53,12 @@ public class XLSFileCRUDService {
 	private Collection<MccData> mccList;
 	private Collection<UETypeClass> ueList;
 	
+	/**
+	 * POST method to process an spreadsheet in xls format. 
+	 * Spreadsheet data is persisted in database
+	 * 
+	 * @param path to xls spreadsheet
+	 */
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	public void addSpreadsheetData(String path) {

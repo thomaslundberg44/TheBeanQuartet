@@ -9,14 +9,14 @@
 <body>
 
 	<div class="login-card">
-		
+
 		<h1>Get data from spreadsheet</h1>
-		
+
 		<form action="demo_form.asp" id="spreadsheetForm">
 			<input type="file" name="spreadsheet" accept=".xls" id="xlsFile">
 			<input type="submit">
 		</form>
-		
+
 		<form role="form" id="spreadsheetPathForm">
 
 			<div class="form-group">
@@ -37,19 +37,17 @@
 		function test() {
 			var pathStr = document.getElementById("path").value;
 			alert("Submit button pressed! " + pathStr);
-			$
-					.ajax({
-						type : "POST",
-						url : "rest/xls_input",
-						data : JSON
-								.stringify("/home/tommy/Documents/data.xls"),
-						contentType : 'application/json'
-					});
+			$.ajax({
+				type : "POST",
+				url : "rest/xls_input",
+				data : JSON.stringify("/home/tommy/Documents/data.xls"),
+				contentType : 'application/json'
+			});
 		}
 
 		$("#spreadsheetPathForm").submit(function addData() {
-			var pathStr = document.getElementById("path").value
-			alert("Got file path: " + pathStr);
+			var pathStr = document.getElementById("path").value;
+			alert("Got file path by submit: " + pathStr);
 			$.ajax({
 				type : 'POST',
 				url : 'rest/xls_input',
