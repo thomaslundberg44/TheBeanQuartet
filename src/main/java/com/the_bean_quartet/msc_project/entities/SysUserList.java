@@ -8,11 +8,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class SysUserList implements Serializable {
 
-
-	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1356275368234432797L;
 	
 	

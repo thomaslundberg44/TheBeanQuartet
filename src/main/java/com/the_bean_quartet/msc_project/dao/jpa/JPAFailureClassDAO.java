@@ -37,5 +37,11 @@ public class JPAFailureClassDAO implements FailureClassDAO {
 		List<FailureClass> failures = query.getResultList();
 		return failures;
 	}
+	
+	public Collection<FailureClass> getallFailuresBaseData(int value) {
+		Query query = em.createQuery("select description from FailureClass cd where cd.failureClass = :value");
+		List<FailureClass> failures1 = query.getResultList();
+		return failures1;
+	}
 
 }

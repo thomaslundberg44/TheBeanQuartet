@@ -16,24 +16,19 @@ import com.the_bean_quartet.msc_project.dao.SysUserDAO;
 import com.the_bean_quartet.msc_project.entities.SysUser;
 
 
-
-
-
-
-
 @Default
 @Stateless
 @Local
 @TransactionAttribute (TransactionAttributeType.REQUIRED)
 public class JPASysUserDAO implements SysUserDAO{
-	
-	
-	
+
+
+
 	@PersistenceContext
 	private EntityManager em;
-	
 
-	
+
+
 	public void addUser(SysUser user) {
 		if(userExist(user)){
 			System.out.println("Userexists");
@@ -58,7 +53,7 @@ public class JPASysUserDAO implements SysUserDAO{
 		Query query = em.createQuery("from SysUser");
 		List<SysUser> users = query.getResultList(); 
 		return users;
-		
+
 	}
 	public boolean verify_user(SysUser user) {
 		Query query = em.createQuery("from SysUser");

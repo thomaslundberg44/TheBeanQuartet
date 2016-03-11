@@ -1,13 +1,17 @@
 package com.the_bean_quartet.msc_project.entities;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="ue_table")
@@ -29,6 +33,11 @@ public class UETypeClass implements Serializable{
 	@Column(name="UE_Type")private String ueType;
 	@Column(name="OS")private String os;
 	@Column(name="Input_Mode")private String inputMode;
+	
+	// relationship map to base data
+	@OneToMany(mappedBy="ueTable", cascade={CascadeType.ALL})
+	@JsonIgnore
+	private Set<BaseData> baseData = new HashSet<BaseData>();
 	
 	public UETypeClass(Integer tac, String marketingName, String manufacturer, String accessCapability, String model,
 			String vendorName, String ueType, String os, String inputMode) {

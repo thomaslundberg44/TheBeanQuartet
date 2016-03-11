@@ -23,15 +23,8 @@ public class BaseDataServiceEJB implements BaseDataService {
 
 	@EJB // uses reflection
 	private BaseDataDAO baseDAO;
-
-
-	
-
 	// @Resource
 	// private SessionContext context;
-
-
-
 	public void setDao(BaseDataDAO dao) {
 		// do something really important on injection
 		this.baseDAO = dao;
@@ -47,7 +40,14 @@ public class BaseDataServiceEJB implements BaseDataService {
 		return baseDAO.getAllData();
 	}
 
-
+	public Collection<BaseData> getIMSIData() {
+		return baseDAO.getAllIMSIData();
+	}
 	
+	public Collection<BaseData>getSelectedBaseData(String imsiVal)
+	{
+		return baseDAO.getAllIMSIRelatedData(imsiVal);
+		
+	}
 
 }

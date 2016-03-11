@@ -13,6 +13,7 @@ public class BaseDataList implements Serializable {
 	
 	private Collection<BaseData> data;
 	
+	
 	public Collection<BaseData> getBaseDataCollection() {
 		return data;
 	}
@@ -20,5 +21,11 @@ public class BaseDataList implements Serializable {
 	public void setBaseDataCollection(Collection<BaseData> data) {
 		this.data = data;
 	}
+
+	public void setBaseDataIMSICollection(Collection<BaseData> imsiData) {
+		this.data=imsiData;
+		
+	}
+	
 	
 }

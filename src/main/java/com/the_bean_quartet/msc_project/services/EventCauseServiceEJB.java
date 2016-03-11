@@ -43,7 +43,7 @@ public class EventCauseServiceEJB implements EventCauseService {
 	public Collection<EventCause> getEventCauseDataset() {
 		return eventDao.getAllEvents();
 	}
-
+	
 	public void addToEventCauseDataset(EventCause data) {
 		eventDao.addEvents(data);
 	}
