@@ -32,7 +32,7 @@ public class BaseData implements Serializable {
 	@Column(name = "Cell_Id") private Integer cellId;
 	@Column(name = "Duration") private Integer duration;
 	@Column(name = "NE_Version") private String neVersion;
-	@Column(name = "IMSI") private Long imsi;
+	@Column(name = "IMSI") private String imsi;
 	@Column(name = "HIER3_ID") private Long heir3Id;
 	@Column(name = "HIER32_ID") private Long heir32Id;
 	@Column(name = "HIER321_ID") private Long heir321Id;
@@ -61,12 +61,12 @@ public class BaseData implements Serializable {
 
 	public BaseData() {}
 	
-	public BaseData(Long imsi){
+	public BaseData(String imsi){
 		this.imsi=imsi;
 	}
 
 	public BaseData(Date date, FailureClass failureClass, MccData mccData, Integer cellId, Integer duration,
-			String neVersion, Long imsi, Long heir3Id, Long heir32Id, Long heir321Id, EventCause eventCause,
+			String neVersion, String imsi, Long heir3Id, Long heir32Id, Long heir321Id, EventCause eventCause,
 			UETypeClass ueTable) {
 		this.date = date;
 		this.failureClass = failureClass;
@@ -122,11 +122,11 @@ public class BaseData implements Serializable {
 		this.neVersion = neVersion;
 	}
 
-	public Long getImsi() {
+	public String getImsi() {
 		return imsi;
 	}
 
-	public void setImsi(Long imsi) {
+	public void setImsi(String imsi) {
 		this.imsi = imsi;
 	}
 

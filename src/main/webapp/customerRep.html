@@ -15,6 +15,7 @@
 <script type="text/javascript" src="../jqwidgets/jqxlistbox.js"></script>
 <script type="text/javascript" src="../jqwidgets/jqxdropdownlist.js"></script>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+
 </head>
 <title>Insert title here</title>
 </head>
@@ -25,16 +26,22 @@
 <div class="dropdown">
 <h1>Select IMSI: <select class="form-control" id="op1"></select>
 <form role="form" id="submitImsi">
-			<input type="submit" name="imsiVal" class="imsi-submit" value="SUBMIT IMSI">
+			<input type="submit" name="imsiVal" class="imsi-submit" onClick="GetSelectedItem(imageTable)" value="SUBMIT IMSI">
 </form></h1> <br>
           <a href="http://localhost:8080/TheBeanQuartet/rest/basedata/imsi" class="list-group-item">Link to imsi data JSON</a>
            <a href="http://localhost:8080/TheBeanQuartet/rest/basedata/imsirelation" class="list-group-item">Link to imsi related data JSON</a>
+	         
+</div>
+<div id="tableContainer">
+<table align="center" id="imageTable" border="3"></table>
+
 </div>
 
 
 <script>
 //get a reference to the select element
 var $select = $('#op1');
+var $tbSelect=$('#imageTable');
  
 //request the JSON data and parse into the select element
 $.ajax({
@@ -60,10 +67,15 @@ $("#submitImsi").submit(
 				type : 'POST',
 				url : 'rest/basedata/imsirelation',
 				data : JSON.stringify(checkImsi),
-				success : function islogin(data) {alert(JSON.stringify(data));},
+				success : function islogin(data) {
+					alert(JSON.stringify(data));
+					
+				},
 				contentType : 'application/json'
 			});
+						
 		});
+
 
 
 </script>

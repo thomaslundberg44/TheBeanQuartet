@@ -23,7 +23,8 @@ public class JPABaseDataDAO implements BaseDataDAO {
 
 	@PersistenceContext
 	private EntityManager em;
-	private Long imsi=new Long("344930000000011");
+	//private Long imsi=new Long("344930000000011");
+	//private String imsiVal;
 	
 	public void addData(BaseData disc) {
 	
@@ -59,7 +60,7 @@ public class JPABaseDataDAO implements BaseDataDAO {
 //	}
 
 
-	public Collection<BaseData> getAllIMSIRelatedData(String imsiVal) {
+	public Collection<BaseData> getAllIMSIRelatedData(String imsi) {
 		Query query  = em.createQuery("select bd.eventCause.eventId,bd.eventCause.causeCode,bd.eventCause.description,bd.failureClass.failureClass,bd.failureClass.description "
 				+ "from BaseData bd "
 				+ "where bd.imsi = :imsi");
