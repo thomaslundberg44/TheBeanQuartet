@@ -12,5 +12,7 @@ public interface EventCauseService {
 	public Collection<EventCause> getEventCauseDataset();
 
 	public void addToEventCauseDataset(EventCause event);
+	
+	public void addListEventCauseDataset(Collection<EventCause> eventList);
 
 }

@@ -35,4 +35,8 @@ public class ErrorDataServiceEJB implements ErrorDataService {
 		this.errorDAO = errorDAO;
 	}
 
+	public void addListErrorData(Collection<ErrorData> errorList) {
+		errorDAO.addListData(errorList);
+	}
+
 }

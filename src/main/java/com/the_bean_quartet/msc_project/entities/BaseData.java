@@ -1,26 +1,23 @@
 package com.the_bean_quartet.msc_project.entities;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
-
-@NamedQueries(
-		{
-		@NamedQuery(name = "basedata.getAll",
-				query = "select data from BaseData data where data.eventId like :eventId") 
-		})
+//
+//@NamedQueries({
+//		@NamedQuery(name = "basedata.getAll", query = "select data from BaseData data where data.eventId like :eventId") })
 
 @Entity
-@Table(name="base_data")
+@Table(name = "base_data")
 public class BaseData implements Serializable {
 
 	// auto generated serial id
@@ -28,48 +25,57 @@ public class BaseData implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="Base_Data_Id")
+	@Column(name = "Base_Data_Id")
 	private int id;
 
-	@Column(name="Date_Time")private String date;
-	@Column(name="Event_Id")private Integer eventId;
-	@Column(name="Failure_Class")private Integer failureClass;
-	@Column(name="UE_Type")private Integer ueType;
-	@Column(name="Market")private Integer market;
-	@Column(name="Operator")private Integer operator;
-	@Column(name="Cell_Id")private Integer cellId;
-	@Column(name="Duration")private Integer duration;
-	@Column(name="Cause_Code")private Integer causeCode;
-	@Column(name="NE_Version")private String neVersion;
-	@Column(name="IMSI")private Long imsi;
-	@Column(name="HIER3_ID")private Long heir3Id;
-	@Column(name="HIER32_ID")private Long heir32Id;
-	@Column(name="HIER321_ID")private Long heir321Id;
+	@Column(name = "Date_Time") private String date;
+	@Column(name = "Cell_Id") private Integer cellId;
+	@Column(name = "Duration") private Integer duration;
+	@Column(name = "NE_Version") private String neVersion;
+	@Column(name = "IMSI") private Long imsi;
+	@Column(name = "HIER3_ID") private Long heir3Id;
+	@Column(name = "HIER32_ID") private Long heir32Id;
+	@Column(name = "HIER321_ID") private Long heir321Id;
+
+	// relationship mapping for other tables
 	
-	// relationship field for failure class table mapping
+	@ManyToOne
+	@JoinColumns({ @JoinColumn(name = "Event_Id", referencedColumnName = "Event_Id"),
+			@JoinColumn(name = "Cause_Code", referencedColumnName = "Cause_Code") })
+	private EventCause eventCause;
 	
-	@OneToOne(mappedBy="data")
-	private FailureClass failureClassTbl;
+	@ManyToOne
+	@JoinColumn(name="Failure_Class", referencedColumnName="Failure_Class_Id")
+	private FailureClass failureClass;
 	
+	@ManyToOne
+	@JoinColumns({
+		@JoinColumn(name="Market", referencedColumnName = "Mcc"),
+		@JoinColumn(name="Operator", referencedColumnName = "Mnc")
+	})
+	private MccData mccData;
+
+	@ManyToOne
+	@JoinColumn(name = "UE_Type", referencedColumnName = "Tac")
+	private UETypeClass ueTable;
+
 	public BaseData() {}
-	
-	public BaseData(String date, Integer eventId, Integer failureClass, Integer ueType, 
-			Integer market, Integer operator, Integer cellId, Integer duration, Integer causeCode,
-			String neVersion, Long imsi, Long heir3Id, Long heir32Id, Long heir321Id) {
+
+	public BaseData(String date, FailureClass failureClass, MccData mccData, Integer cellId, Integer duration,
+			String neVersion, Long imsi, Long heir3Id, Long heir32Id, Long heir321Id, EventCause eventCause,
+			UETypeClass ueTable) {
 		this.date = date;
-		this.eventId = eventId;
 		this.failureClass = failureClass;
-		this.ueType = ueType;
-		this.market = market;
-		this.operator = operator;
+		this.mccData = mccData;
 		this.cellId = cellId;
 		this.duration = duration;
-		this.causeCode = causeCode;
 		this.neVersion = neVersion;
 		this.imsi = imsi;
 		this.heir3Id = heir3Id;
 		this.heir32Id = heir32Id;
 		this.heir321Id = heir321Id;
+		this.eventCause = eventCause;
+		this.ueTable = ueTable;
 	}
 
 	public int getId() {
@@ -88,22 +94,6 @@ public class BaseData implements Serializable {
 		this.date = date;
 	}
 
-	public Integer getMarket() {
-		return market;
-	}
-
-	public void setMarket(Integer market) {
-		this.market = market;
-	}
-
-	public Integer getOperator() {
-		return operator;
-	}
-
-	public void setOperator(Integer operator) {
-		this.operator = operator;
-	}
-
 	public Integer getCellId() {
 		return cellId;
 	}
@@ -118,14 +108,6 @@ public class BaseData implements Serializable {
 
 	public void setDuration(Integer duration) {
 		this.duration = duration;
-	}
-
-	public Integer getCauseCode() {
-		return causeCode;
-	}
-
-	public void setCauseCode(Integer causeCode) {
-		this.causeCode = causeCode;
 	}
 
 	public String getNeVersion() {
@@ -167,39 +149,38 @@ public class BaseData implements Serializable {
 	public void setHeir321Id(Long heir321Id) {
 		this.heir321Id = heir321Id;
 	}
+	
+	// relationship getter/setters
 
-	public Integer getEventId() {
-		return eventId;
+	public void setFailureClass(FailureClass failureClass) {
+		this.failureClass = failureClass;
 	}
 
-	public void setEventId(Integer eventId) {
-		this.eventId = eventId;
-	}
-
-
-	public Integer getUeType() {
-		return ueType;
-	}
-
-	public void setUeType(Integer ueType) {
-		this.ueType = ueType;
-	}
-
-	public Integer getFailureClass() {
+	public FailureClass getFailureClass() {
 		return failureClass;
 	}
 
-	public void setFailureClass(Integer failureClass) {
-		this.failureClass = failureClass;
+	public EventCause getEventCause() {
+		return eventCause;
+	}
+
+	public void setEventCause(EventCause eventCause) {
+		this.eventCause = eventCause;
 	}
 	
-//	@XmlTransient
-//	public FailureClass getFailureClassTbl() {
-//		return failureClassTbl;
-//	}
-//	
-//	public void setFailureClassTbl(FailureClass failureClassTbl) {
-//		this.failureClassTbl = failureClassTbl;
-//	}
-	
+	public MccData getMccData() {
+		return mccData;
+	}
+
+	public void setMccData(MccData mccData) {
+		this.mccData = mccData;
+	}
+
+	public UETypeClass getUeTable() {
+		return ueTable;
+	}
+
+	public void setUeTable(UETypeClass ueTable) {
+		this.ueTable = ueTable;
+	}
 }

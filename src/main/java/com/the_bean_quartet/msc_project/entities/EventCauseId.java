@@ -12,6 +12,9 @@ public class EventCauseId implements Serializable {
 	// auto generated serial id
 	private static final long serialVersionUID = 2435367681693913886L;
 
+	@Column(name="Cause_Code")Integer causeCode;
+	@Column(name="Event_Id")Integer eventId;
+
 	public Integer getCauseCode() {
 		return causeCode;
 	}
@@ -28,9 +31,6 @@ public class EventCauseId implements Serializable {
 		this.eventId = eventId;
 	}
 
-	@Column(name="Cause_Code")Integer causeCode;
-	@Column(name="Event_Id")Integer eventId;
-	
 	@Override
 	public int hashCode() {
 		return Objects.hashCode(causeCode+eventId);

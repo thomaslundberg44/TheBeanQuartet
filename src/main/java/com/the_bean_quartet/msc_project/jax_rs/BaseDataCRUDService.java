@@ -29,6 +29,7 @@ public class BaseDataCRUDService {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	public void addBaseData(BaseData data) {
+		System.out.println("adding base data object");
 		data.setId(0); // make sure the ID is not set
 		service.addToDataset(data);
 	}

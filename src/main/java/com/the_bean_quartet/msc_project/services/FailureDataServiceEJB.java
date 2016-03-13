@@ -36,5 +36,9 @@ public class FailureDataServiceEJB implements FailureDataService{
 	public void addToFailureDataset(FailureClass fData) {
 		failuresDAO.addFailures(fData);
 	}
+
+	public void addListFailureDataset(Collection<FailureClass> failureClassList) {
+		failuresDAO.addListFailures(failureClassList);
+	}
 	
 }

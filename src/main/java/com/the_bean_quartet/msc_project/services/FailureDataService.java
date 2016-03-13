@@ -11,4 +11,6 @@ public interface FailureDataService {
 	public Collection<FailureClass> getFailureDataset();
 
 	public void addToFailureDataset(FailureClass fData);
+	
+	public void addListFailureDataset(Collection<FailureClass> failureClassList);
 }

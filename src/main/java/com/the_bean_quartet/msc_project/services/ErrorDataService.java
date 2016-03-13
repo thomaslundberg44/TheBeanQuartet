@@ -13,4 +13,6 @@ public interface ErrorDataService {
 
 	public void addToErrorData(ErrorData eData);
 	
+	public void addListErrorData(Collection<ErrorData> errorList);
+	
 }

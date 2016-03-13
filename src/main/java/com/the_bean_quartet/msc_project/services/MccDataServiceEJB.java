@@ -35,4 +35,8 @@ public class MccDataServiceEJB implements MccDataService{
 		dao.addData(bData);
 	}
 
+	public void addListToDataset(Collection<MccData> dataList) {
+		dao.addListData(dataList);
+	}
+
 }

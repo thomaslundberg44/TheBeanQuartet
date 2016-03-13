@@ -22,14 +22,20 @@ public class JPABaseDataDAO implements BaseDataDAO {
 	private EntityManager em;
 	
 	public void addData(BaseData disc) {
-	
 		Query query = em.createQuery("from BaseData");
 		List<BaseData> data = query.getResultList(); 
 		if (!data.contains(disc))
 			em.persist(disc);	
 	}
 
-
+	public void addCollectionData(Collection<BaseData> data) {
+		Query query = em.createQuery("from BaseData");
+		List<BaseData> dataList = query.getResultList();
+		for(BaseData dataItem : data) {
+			if(!dataList.contains(dataItem))
+				em.persist(dataItem);
+		}
+	}
 	
 //	public CompactDisc getCompactDiscByTitle(String title) {
 //		// TODO Auto-generated method stub		
@@ -51,15 +57,8 @@ public class JPABaseDataDAO implements BaseDataDAO {
 //	}
 
 	public Collection<BaseData> getAllData() {
-		// TODO Auto-generated method stub
 		Query query = em.createQuery("from BaseData");
 		List<BaseData> bData = query.getResultList(); 
 		return bData;
-		
 	}
-	
-	
-
-
-
 }

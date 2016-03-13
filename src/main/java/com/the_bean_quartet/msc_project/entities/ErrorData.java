@@ -1,13 +1,13 @@
 package com.the_bean_quartet.msc_project.entities;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -39,8 +39,8 @@ public class ErrorData implements Serializable {
 	
 	// relationship field for failure class table mapping
 	
-	@OneToOne(mappedBy="data")
-	private FailureClass failureClassTbl;
+//	@OneToOne(mappedBy="data")
+//	private FailureClass failureClassTbl;
 	
 	public ErrorData() {}
 	
