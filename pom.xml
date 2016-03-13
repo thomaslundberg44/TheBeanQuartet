@@ -12,7 +12,7 @@
 		<!-- JEE Dependencies -->
 		<dependency>
 			<groupId>org.jboss.spec</groupId>
-			<artifactId>jboss-javaee-6.0</artifactId>
+			<artifactId>jboss-javaee-7.0</artifactId>
 			<version>1.0.0.Final</version>
 			<type>pom</type>
 			<scope>provided</scope>
@@ -47,6 +47,44 @@
 			<artifactId>poi</artifactId>
 			<version>3.8</version>
 		</dependency>
-
+		
+		
+		
+		<dependency>
+			<groupId>org.jboss.resteasy</groupId>
+			<artifactId>resteasy-jaxrs</artifactId>
+			<version>3.0.6.Final</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.resteasy</groupId>
+			<artifactId>resteasy-client</artifactId>
+			<version>3.0.6.Final</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.resteasy</groupId>
+			<artifactId>resteasy-jaxb-provider</artifactId>
+			<version>3.0.6.Final</version>
+			<scope>provided</scope>
+		</dependency>
+		<!-- <dependency>
+			<groupId>org.jboss.resteasy</groupId>
+			<artifactId>jaxrs-api</artifactId>
+			<scope>provided</scope>
+		</dependency> -->
+		<dependency>
+			<groupId>org.jboss.resteasy</groupId>
+			<artifactId>resteasy-multipart-provider</artifactId>
+			<version>3.0.6.Final</version>
+		</dependency>
+		
+		
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.4</version>
+		</dependency>
+		
 	</dependencies>
 </project>
