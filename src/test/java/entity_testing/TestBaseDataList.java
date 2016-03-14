@@ -44,8 +44,8 @@ public class TestBaseDataList {
 		list.setBaseDataCollection(dataList);
 		assertEquals(dataList, list.getBaseDataCollection());
 
-		list.setBaseDataIMSICollection(dataList);
-		assertEquals(dataList, list.getData());
+		list.setBaseDataCollection(dataList);
+		assertEquals(dataList, list.getBaseDataCollection());
 		
 	}
 

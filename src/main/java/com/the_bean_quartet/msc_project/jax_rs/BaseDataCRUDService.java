@@ -38,7 +38,8 @@ public class BaseDataCRUDService {
     @Produces(MediaType.APPLICATION_JSON)
     public BaseDataList getIMSIBaseData() {
         BaseDataList dataIMSI = new BaseDataList();
-        dataIMSI.setBaseDataIMSICollection(service.getIMSIData());
+        dataIMSI.setBaseDataCollection(service.getIMSIData());
+        
         return dataIMSI;
     }
 	
@@ -61,7 +62,7 @@ public class BaseDataCRUDService {
 		String imsiValue = mp.readValue(imsiVal, String.class);
 		System.out.println(imsiValue);
 		BaseDataList allDataIMSI = new BaseDataList();
-		allDataIMSI.setBaseDataIMSICollection(service.getSelectedBaseData(imsiValue));
+		allDataIMSI.setBaseDataCollection(service.getSelectedBaseData(imsiValue));
       	return allDataIMSI;
         
 	}
