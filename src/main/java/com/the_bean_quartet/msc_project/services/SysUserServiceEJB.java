@@ -25,13 +25,14 @@ public class SysUserServiceEJB implements SysUserService{
 	public void setDao(SysUserDAO dao) {
 		this.dao = dao;
 	}
-	public void addUser(SysUser user) {		
-			dao.addUser(user);
+	public String addUser(SysUser user) {		
+			
+			return dao.addUser(user);
 	}
 	public Collection<SysUser> getUsers() {
 		return dao.getAllUsers();
 	}
-	public boolean verifyUser(SysUser user) {
+	public String verifyUser(SysUser user) {
 		return dao.verify_user(user);
 	}
 	public Collection<SysUser> getUsersBy(String viewBy) {

@@ -1,0 +1,28 @@
+
+
+/* generic tag styles */
+html, body, input {
+	padding: 0;
+	margin: 0;
+	color: #333;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+	background-color: #E5E5E5!important;
+	height: 100%;
+	margin-bottom: 30px;
+}
+
+
+#outerwrap { 
+	width: 1000px;
+	margin: 0px auto 0px auto;
+	border: 3px solid #dfdede ;
+  	border-top: none;
+	background-color: #fff;
+
+}
+
+
+

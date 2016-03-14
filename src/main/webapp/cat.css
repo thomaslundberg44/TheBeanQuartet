@@ -1,0 +1,24 @@
+#mainnav {
+	float: left;
+}
+#mainnav ul.mainnavcategories {
+	float: left;
+}
+#mainnav ul.mainnavcategories li {
+	float: left;      
+}
+#mainnav ul.mainnavcategories li a span.linkinner {
+	float: left;
+	_height: 20px;
+	min-height: 20px;
+}
+
+
+
+
+
+
+
+
+
+

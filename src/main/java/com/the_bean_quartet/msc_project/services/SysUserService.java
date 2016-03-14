@@ -11,9 +11,9 @@ public interface SysUserService {
 
 	public Collection<SysUser> getUsers();
 
-	public void addUser(SysUser user);
+	public String addUser(SysUser user);
 
-	public boolean verifyUser(SysUser user);
+	public String verifyUser(SysUser user);
 
 	public Collection<SysUser> getUsersBy(String viewBy);
 
