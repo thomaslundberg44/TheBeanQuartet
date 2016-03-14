@@ -22,7 +22,7 @@ public class ErrorData implements Serializable {
 	@Column(name="Id")
 	private int id;
 
-	@Column(name="Date_Time")private Date date;
+	@Column(name="Date_Time")private String date;
 	@Column(name="Event_Id")private Integer eventId;
 	@Column(name="Failure_Class")private Integer failureClass;
 	@Column(name="UE_Type")private Integer ueType;
@@ -44,7 +44,7 @@ public class ErrorData implements Serializable {
 	
 	public ErrorData() {}
 	
-	public ErrorData(Date date, Integer eventId, Integer failureClass, Integer ueType, 
+	public ErrorData(String date, Integer eventId, Integer failureClass, Integer ueType, 
 			Integer market, Integer operator, Integer cellId, Integer duration, Integer causeCode,
 			String neVersion, Long imsi, Long heir3Id, Long heir32Id, Long heir321Id) {
 		this.date = date;
@@ -71,11 +71,11 @@ public class ErrorData implements Serializable {
 		this.id = id;
 	}
 
-	public Date getDate() {
+	public String getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 
