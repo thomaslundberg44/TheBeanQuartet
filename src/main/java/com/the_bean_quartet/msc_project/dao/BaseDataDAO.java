@@ -14,4 +14,17 @@ public interface BaseDataDAO {
     Collection<BaseData> getAllModelData();
 	//Collection<BaseData> getAllModelSearchData(String model);
 	Collection<BaseData> getAllModelSearchData(String model, String startTime, String finishTime);
+
+	Collection<BaseData> getAllIMSIData();
+	/*
+	 *As Customer Service Rep. I want to display, for a given affected IMSI, 
+	 *the Event ID and Cause Code for any / all failures affecting that IMSI
+	 *@return a collection of failure and event cause on basis of imsi
+ 	 * */
+	Collection<BaseData> getAllIMSIRelatedData(String imsiVal);
+	/*
+	 * As a Support Engineer I want to see a list of all IMSIs with 
+	 * call failures during a given time period
+	 * @return a collection of values of failure table 
+	 * */
 }

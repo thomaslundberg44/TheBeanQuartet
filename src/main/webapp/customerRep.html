@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="initial-scale=1.0, maximum-scale=2.0">
+	
+	<title>The Bean Quartet - Base Data Table</title>
+	<link rel="stylesheet" href="../jqwidgets/styles/jqx.base.css" type="text/css" />
+<link rel="stylesheet" href="../jqwidgets/styles/jqx.classic.css" type="text/css" />
+<script type="text/javascript" src="../scripts/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="../jqwidgets/jqxcore.js"></script>
+<script type="text/javascript" src="../jqwidgets/jqxbuttons.js"></script>
+<script type="text/javascript" src="../jqwidgets/jqxscrollbar.js"></script>
+<script type="text/javascript" src="../jqwidgets/jqxdata.js"></script>
+<script type="text/javascript" src="../jqwidgets/jqxlistbox.js"></script>
+<script type="text/javascript" src="../jqwidgets/jqxdropdownlist.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+
+</head>
+<title>Insert title here</title>
+</head>
+<body>
+
+
+
+<div class="dropdown">
+<h1>Select IMSI: <select class="form-control" id="op1"></select>
+<form role="form" id="submitImsi">
+			<input type="submit" name="imsiVal" class="imsi-submit" onClick="GetSelectedItem(imageTable)" value="SUBMIT IMSI">
+</form></h1> <br>
+          <a href="http://localhost:8080/TheBeanQuartet/rest/basedata/imsi" class="list-group-item">Link to imsi data JSON</a>
+           <a href="http://localhost:8080/TheBeanQuartet/rest/basedata/imsirelation" class="list-group-item">Link to imsi related data JSON</a>
+	         
+</div>
+<div id="tableContainer">
+<table align="center" id="imageTable" border="3"></table>
+
+</div>
+<div id=response></div>
+
+
+<script>
+//get a reference to the select element
+var $select = $('#op1');
+var $tbSelect=$('#imageTable');
+
+
+
+
+
+//request the JSON data and parse into the select element
+$.ajax({
+  url: 'http://localhost:8080/TheBeanQuartet/rest/basedata/imsi',
+  dataType:'JSON',
+  success:function(data){
+    //clear the current content of the select
+    $select.html('');
+    //iterate over the data and append a select option
+    $.each(data.baseDataCollection, function(i,val){
+      $select.append('<option>' + val + '</option>');
+      console.log(val);
+    })
+  }
+});	
+
+$("#submitImsi").submit(
+		function getImsiData() {
+			var checkImsi = document.getElementById("op1").value;
+
+			alert(checkImsi);
+			
+			$.ajax({
+				async:false,
+				type : 'POST',
+				url : 'rest/basedata/imsirelation',
+				data : JSON.stringify(checkImsi),
+				success : function islogin(data) {
+		//			alert(JSON.stringify(data));
+		//		},
+				var items = [];
+		          $.each(data, function(key, val) {
+		            items.push('<li id="' + key + '">' + val + '</li>');    
+			        });
+			        $('<ul/>', {
+			            'class': 'interest-list',
+			            html: items.join('')
+			          }).appendTo('body');
+			          
+			      },			
+				contentType : 'application/json'
+			});
+					return false;	
+		});
+
+
+</script>
+
+</body>
+</html>

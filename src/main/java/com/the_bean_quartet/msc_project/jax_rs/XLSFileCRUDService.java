@@ -30,8 +30,9 @@ import com.the_bean_quartet.msc_project.utilities.ProcessXLSFile;
 @Path("/xls_crud")
 public class XLSFileCRUDService {
 	
+	//private static final String UPLOADED_FILE_PATH = "D:\\Project\\jboss-as-7.1.1.Final\\bin\\";
 	private static final String UPLOADED_FILE_PATH = "/home/tommy/software/wildfly-8.2.1.Final/bin/";
-	
+
 	@Inject private BaseDataService baseDataService;
 	@Inject private ErrorDataService errorService;
 	@Inject private FailureDataService failureClassService;

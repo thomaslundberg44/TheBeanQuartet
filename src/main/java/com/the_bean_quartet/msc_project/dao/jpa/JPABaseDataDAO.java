@@ -91,4 +91,27 @@ public class JPABaseDataDAO implements BaseDataDAO {
 		List<BaseData> UEData1 = query1.getResultList(); 
 		return UEData1;
 	}
+	
+	//getting individual imsi out of base data table
+	public Collection<BaseData> getAllIMSIData() {	
+			Query query = em.createQuery("select DISTINCT(c.imsi) from BaseData c");
+			List<BaseData> bimsiData = query.getResultList(); 
+			return bimsiData;
+	}
+	
+	//user story 4...................................//
+	public Collection<BaseData> getAllIMSIRelatedData(String imsi) {
+		Long longImsi=Long.valueOf(imsi);
+		System.out.println("111111111111111111111111111   "+longImsi);
+
+		Query query  = em.createQuery("select bd.eventCause.id.eventId, bd.eventCause.id.causeCode, bd.eventCause.description,"
+				+ "bd.failureClass.failureClass, bd.failureClass.description "
+				+ "from BaseData bd "
+				+ "where bd.imsi =:imsi");
+			
+			System.out.println("222222222222222222"+longImsi);
+			query.setParameter("imsi", longImsi);
+			List<BaseData> allImsiData = query.getResultList(); 
+			return allImsiData;
+	}
 }

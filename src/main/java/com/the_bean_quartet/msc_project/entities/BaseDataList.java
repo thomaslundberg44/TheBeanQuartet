@@ -24,5 +24,9 @@ public class BaseDataList implements Serializable {
 		this.data=modelData;
 		
 	}
+	public void setBaseDataIMSICollection(Collection<BaseData> imsiData) {
+	this.data=imsiData;
+	
+	}
 	
 }

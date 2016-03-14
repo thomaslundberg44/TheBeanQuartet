@@ -46,4 +46,14 @@ public class BaseDataServiceEJB implements BaseDataService {
 	public Collection<BaseData> getSelectedModelBaseData(String model,String startTime, String finishTime) {
 		return baseDAO.getAllModelSearchData(model, startTime, finishTime);
 	}
+	
+	public Collection<BaseData> getIMSIData() {
+		return baseDAO.getAllIMSIData();
+	}
+	
+	public Collection<BaseData>getSelectedBaseData(String imsiVal)
+	{
+		return baseDAO.getAllIMSIRelatedData(imsiVal);
+		
+	}
 }

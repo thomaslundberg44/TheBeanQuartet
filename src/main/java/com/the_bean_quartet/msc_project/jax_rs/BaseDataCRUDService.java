@@ -38,13 +38,15 @@ public class BaseDataCRUDService {
 		System.out.println("adding base data object");
 		data.setId(0); // make sure the ID is not set
 		service.addToDataset(data);
-	}	@Path("/modelType")
+	}	
+	
+	@Path("/modelType")
 	@GET
     @Produces(MediaType.APPLICATION_JSON)
-    public BaseDataList getIMSIBaseData() {
-        BaseDataList dataIMSI = new BaseDataList();
-        dataIMSI.setBaseDataModelCollection(service.getModelData());
-        return dataIMSI;
+    public BaseDataList getModelBaseData() {
+        BaseDataList dataModel = new BaseDataList();
+        dataModel.setBaseDataModelCollection(service.getModelData());
+        return dataModel;
     }
 //	@POST
 //	@Produces(MediaType.APPLICATION_JSON)
@@ -86,6 +88,28 @@ public class BaseDataCRUDService {
       	return allDataModel;
         
 	}
+	@Path("/imsi")
+	@GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public BaseDataList getIMSIBaseData() {
+        BaseDataList dataIMSI = new BaseDataList();
+        dataIMSI.setBaseDataCollection(service.getIMSIData());
+        
+        return dataIMSI;
+    }
 	
+	@POST
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Path("/imsirelation")
+	public BaseDataList getIMSIRelatedBaseData(String imsiVal) throws JsonParseException, JsonMappingException, IOException{
+		ObjectMapper mp = new ObjectMapper();
+		String imsiValue = mp.readValue(imsiVal, String.class);
+		System.out.println(imsiValue);
+		BaseDataList allDataIMSI = new BaseDataList();
+		allDataIMSI.setBaseDataCollection(service.getSelectedBaseData(imsiValue));
+      	return allDataIMSI;
+        
+	}
 	
 }
