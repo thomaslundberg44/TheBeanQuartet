@@ -95,7 +95,8 @@ $("#submit").submit(
 				url : 'rest/basedata/modelSearch',
 				data : JSON.stringify(obj1),
 				success : function message(data) {
-					alert(JSON.stringify(data));
+					var count = data.baseDataCollection[0];
+					alert("Number of failures = "+count);
 				},
 				contentType : 'application/json'
 			});
