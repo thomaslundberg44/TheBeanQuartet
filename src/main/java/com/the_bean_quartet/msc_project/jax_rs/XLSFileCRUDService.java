@@ -82,8 +82,14 @@ public class XLSFileCRUDService {
 			}
 		}
 
-		return Response.status(200)
-				.entity("Failed to upload file name : " + fileName).build();
+		String redirectScript = "<script type='text/javascript'>"
+				+ "window.alert('No file selected or invalid file');"
+				+ "window.location.assign('http://localhost:8080/TheBeanQuartet/uploadXLS.html');"
+				+ "</script>";
+		
+		ResponseBuilder response = Response.ok(redirectScript);
+		response.type("text/html");
+		return response.build();
 
 	}
 
