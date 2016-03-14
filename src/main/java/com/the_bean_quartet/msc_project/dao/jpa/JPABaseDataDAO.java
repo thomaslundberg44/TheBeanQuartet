@@ -61,4 +61,20 @@ public class JPABaseDataDAO implements BaseDataDAO {
 		List<BaseData> bData = query.getResultList(); 
 		return bData;
 	}
+	public Collection<BaseData> getAllModelData() {	
+		Query query = em.createQuery("select DISTINCT(c.ueTable.marketingName) from BaseData c");
+		List<BaseData> marketingNameData = query.getResultList(); 
+		return marketingNameData;
+	}
+	public Collection<BaseData> getAllModelSearchData(String model) {
+		Query query = em.createQuery("select bd.ueTable.tac from BaseData bd where bd.ueTable.marketingName =:uetypes");
+		query.setParameter("uetypes", model);
+		int UEData = (Integer) query.getResultList().get(0);
+	
+		Query query1 = em.createQuery("select count(bd.failureClass) from BaseData bd where bd.ueTable.tac =:hello");
+		query1.setParameter("hello", UEData);
+
+		List<BaseData> UEData1 = query1.getResultList(); 
+		return UEData1;
+	}
 }

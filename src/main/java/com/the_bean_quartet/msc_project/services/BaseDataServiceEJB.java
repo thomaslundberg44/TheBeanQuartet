@@ -35,4 +35,11 @@ public class BaseDataServiceEJB implements BaseDataService {
 	public void addCollectionToDataset(Collection<BaseData> data) {
 		baseDAO.addCollectionData(data);
 	}
+	public Collection<BaseData> getModelData() {
+		return baseDAO.getAllModelData();
+	}
+
+	public Collection<BaseData> getSelectedModelBaseData(String model) {
+		return baseDAO.getAllModelSearchData(model);
+	}
 }

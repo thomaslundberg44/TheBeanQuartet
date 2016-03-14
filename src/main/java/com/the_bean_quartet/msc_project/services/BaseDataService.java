@@ -15,5 +15,8 @@ public interface BaseDataService {
 	public void addToDataset(BaseData bData);
 	
 	public void addCollectionToDataset(Collection<BaseData> data);
-
+	
+	public Collection<BaseData> getModelData();
+	
+	public Collection<BaseData> getSelectedModelBaseData(String model);
 }

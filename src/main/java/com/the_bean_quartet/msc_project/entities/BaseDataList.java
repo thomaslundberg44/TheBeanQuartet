@@ -20,5 +20,9 @@ public class BaseDataList implements Serializable {
 	public void setBaseDataCollection(Collection<BaseData> data) {
 		this.data = data;
 	}
+	public void setBaseDataModelCollection(Collection<BaseData> modelData) {
+		this.data=modelData;
+		
+	}
 	
 }
