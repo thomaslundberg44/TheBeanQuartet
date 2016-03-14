@@ -56,4 +56,9 @@ public class BaseDataServiceEJB implements BaseDataService {
 		return baseDAO.getAllIMSIRelatedData(imsiVal);
 		
 	}
+	public Collection<BaseData> getEachImsiBaseData(String startTime, String finishTime){
+		
+		return baseDAO.getEachImsiSearchData(startTime, finishTime);
+	}
+
 }

@@ -28,5 +28,9 @@ public class BaseDataList implements Serializable {
 	this.data=imsiData;
 	
 	}
+	public void setBaseDataEachImsiSearchCollection(Collection<BaseData> eachImsiData) {
+	this.data=eachImsiData;
+	
+	}
 	
 }
