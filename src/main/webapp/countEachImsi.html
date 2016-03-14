@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="initial-scale=1.0, maximum-scale=2.0">
+	
+	<title>The Bean Quartet - Base Data Table</title>
+	<link rel="stylesheet" href="../jqwidgets/styles/jqx.base.css" type="text/css" />
+<link rel="stylesheet" href="../jqwidgets/styles/jqx.classic.css" type="text/css" />
+<script type="text/javascript" src="../scripts/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="../jqwidgets/jqxcore.js"></script>
+<script type="text/javascript" src="../jqwidgets/jqxbuttons.js"></script>
+<script type="text/javascript" src="../jqwidgets/jqxscrollbar.js"></script>
+<script type="text/javascript" src="../jqwidgets/jqxdata.js"></script>
+<script type="text/javascript" src="../jqwidgets/jqxlistbox.js"></script>
+<script type="text/javascript" src="../jqwidgets/jqxdropdownlist.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+
+</head>
+<title>Insert title here</title>
+</head>
+<body>
+
+
+
+	<div class="dropdown">
+		<h1>
+			<form role="form" id="submit">
+				<input type="text" name="startTime" placeholder="Start Time"  id="startTime"> 
+				<input type="text" name="finishTime" placeholder="Finish Time" id="finishTime"> 
+				<input
+					type="submit" name="Val" class="ubmit"
+				 value="SUBMIT">
+			</form>
+		</h1>
+		<br> 
+		<!-- <a
+			href="http://localhost:8080/TheBeanQuartet/rest/basedata/countEachImsi"
+			class="list-group-item">Link to Model type data JSON</a>
+		        <a href="http://localhost:8080/TheBeanQuartet/rest/basedata/modelSearch" class="list-group-item">Link to model search data JSON</a>
+	   -->
+	</div>
+	<div id="tableContainer">
+		<table align="center" id="imageTable" border="3"></table>
+
+	</div>
+
+
+	<script>
+	/*
+
+//get a reference to the select element
+<var $select = $('#model');
+var $tbSelect=$('#imageTable');
+ 
+//request the JSON data and parse into the select element
+$.ajax({
+  url: 'http://localhost:8080/TheBeanQuartet/rest/basedata/modelType',
+  dataType:'JSON',
+  success:function(data){
+    //clear the current content of the select
+    $select.html('');
+    //iterate over the data and append a select option
+    $.each(data.baseDataCollection, function(i,val){
+      $select.append('<option>' + val + '</option>');
+    })
+  }
+});	
+
+*/
+function obj(option1, option2, option3, option4) {
+	this.option1 = option1;
+	this.option2 = option2;
+	this.option3 = option3;
+	this.option4 = option4;
+}
+
+$("#submit").submit(
+		
+		function search() {
+			
+			var obj1 = new obj(
+					document.getElementById("startTime").value,
+					document.getElementById("finishTime").value,
+					"",
+					""
+			);
+
+			$.ajax({
+				async:false,
+				type : 'POST',
+				url : 'rest/basedata/countEachImsi',
+				data : JSON.stringify(obj1),
+				success : function message(data) {
+					alert(JSON.stringify(data));
+					//var count = data.baseDataCollection[0];
+					//alert("Number of count = "+count);
+				},
+				contentType : 'application/json'
+			});
+						
+		});
+
+
+
+</script>
+
+</body>
+</html>

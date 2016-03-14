@@ -67,18 +67,10 @@ public class BaseDataCRUDService {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("/modelSearch")
 	public BaseDataList getModelRelatedBaseData(Options obj) throws JsonParseException, JsonMappingException, IOException{
-	
-	//	ObjectMapper mp = new ObjectMapper();
-	//	String modelValue = mp.readValue(obj.getOption1(), O.class);
+
 		System.out.println(obj.getOption1());
 		System.out.println(obj.getOption2());
 		System.out.println(obj.getOption3());
-		
-		//String modelValue1 = mp.readValue(obj.getOption2(), String.class);
-	//	System.out.println(modelValue1);
-
-		//String modelValue2 = mp.readValue(obj.getOption3(), String.class);
-		//System.out.println(modelValue2);
 		
 		String modelValue1 = obj.getOption1().toString();
 		String modelValue2 = obj.getOption2().toString();
@@ -111,5 +103,23 @@ public class BaseDataCRUDService {
       	return allDataIMSI;
         
 	}
+	
+	@POST
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Path("/countEachImsi")
+	public BaseDataList getCountEachImsiBaseData(Options obj) throws JsonParseException, JsonMappingException, IOException{
+		String modelValue1 = obj.getOption1().toString();
+		String modelValue2 = obj.getOption2().toString();
+		
+		System.out.println(obj.getOption1());
+		System.out.println(obj.getOption2());
+		
+		BaseDataList eachImsiSearch = new BaseDataList();
+		eachImsiSearch.setBaseDataEachImsiSearchCollection(service.getEachImsiBaseData(modelValue1, modelValue2));
+      	return eachImsiSearch;
+        
+	}
+	
 	
 }

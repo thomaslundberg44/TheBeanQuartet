@@ -114,4 +114,17 @@ public class JPABaseDataDAO implements BaseDataDAO {
 			List<BaseData> allImsiData = query.getResultList(); 
 			return allImsiData;
 	}
+	
+	public Collection<BaseData> getEachImsiSearchData(String startTime, String finishTime){
+//		Query query = em.createQuery("select count(bd.failureClass), count(bd.duration)from BaseData bd "
+//				+ "where bd.date >=:dateStart and bd.date <:dateEnd group by DISTINCT(bd.imsi)");
+		Query query = em.createQuery("select count(bd.failureClass), count(bd.duration)*1000 from BaseData bd "
+				+ "where bd.date >=:dateStart and bd.date <:dateEnd group by bd.imsi");
+		query.setParameter("dateStart", startTime);
+		query.setParameter("dateEnd", finishTime);
+		
+		List<BaseData> UEData1 = query.getResultList(); 
+		return UEData1;
+	}
+
 }
