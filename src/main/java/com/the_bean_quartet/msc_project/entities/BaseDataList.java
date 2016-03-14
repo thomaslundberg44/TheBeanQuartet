@@ -26,6 +26,16 @@ public class BaseDataList implements Serializable {
 		this.data=imsiData;
 		
 	}
+
+	public Collection<BaseData> getData() {
+		return data;
+	}
+
+	public void setData(Collection<BaseData> data) {
+		this.data = data;
+	}
+	
+	
 	
 	
 }

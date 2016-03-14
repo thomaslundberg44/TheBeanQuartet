@@ -12,36 +12,26 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
-//@NamedQueries(
-//		{
-//		@NamedQuery(name = "mccdata.getAll",
-//				query = "select data from MccData data where data.mcc like :Mcc"), 
-//		@NamedQuery(name = "mccdata.getAllMnc",
-//		query = "select data from MccData data where data.mnc like :Mnc") 
-//		})
-
 @Entity
 @Table(name="mcc_mnc")
+@XmlRootElement
+@IdClass(MccDataId.class)
 public class MccData implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
-//	@Id
-//	@GeneratedValue(strategy = GenerationType.IDENTITY)
-//	@Column(name="Mcc")	private int mcc;
-//	
-//	@Column(name="Mnc")	private int mnc;
-	
-	@EmbeddedId private MccDataId id;
-	
+	@Id @Column(name="Mcc") private int Mcc ;
+	@Id @Column(name="Mnc") private int Mnc;
 	@Column(name="Country")private String country;
 	@Column(name="Operator")private String operator;
 	
@@ -53,35 +43,26 @@ public class MccData implements Serializable{
 	public MccData(){}
 	
 	public MccData(Integer mcc, Integer mnc, String country, String operator){
-		MccDataId id = new MccDataId();
-		id.mcc=mcc;
-		id.mnc=mnc;
+		this.Mcc=mcc;
+		this.Mnc=mnc;
 		this.country=country;
 		this.operator=operator;
 	}
 
 	public int getMcc() {
-		return id.mcc;
+		return Mcc;
 	}
 
 	public void setMcc(int mcc) {
-		id.mcc = mcc;
+		Mcc = mcc;
 	}
 
 	public int getMnc() {
-		return id.mnc;
+		return Mnc;
 	}
 
 	public void setMnc(int mnc) {
-		id.mnc = mnc;
-	}
-
-	public MccDataId getId() {
-		return id;
-	}
-
-	public void setId(MccDataId id) {
-		this.id = id;
+		Mnc = mnc;
 	}
 
 	public String getCountry() {
@@ -99,4 +80,14 @@ public class MccData implements Serializable{
 	public void setOperator(String operator) {
 		this.operator = operator;
 	}
+
+	public Collection<BaseData> getData() {
+		return data;
+	}
+
+	public void setData(Collection<BaseData> data) {
+		this.data = data;
+	}
+
+	
 }

@@ -49,17 +49,7 @@ public class JPABaseDataDAO implements BaseDataDAO {
 			return bimsiData;
 	}
 	
-	//getting data out of base data on basis of value of imsi
-//	public Collection<BaseData> getAllIMSIRelatedData() {
-//		Query query  = em.createQuery("select bd.eventCause.eventId,bd.eventCause.causeCode,bd.eventCause.description,bd.failureClass.failureClass,bd.failureClass.description "
-//						+ "from BaseData bd "
-//						+ "where bd.imsi = :imsi");
-//		query.setParameter("imsi", imsi);
-//		List<BaseData> allImsiData = query.getResultList(); 
-//		return allImsiData;
-//	}
-
-
+	//user story 4...................................//
 	public Collection<BaseData> getAllIMSIRelatedData(String imsi) {
 		Query query  = em.createQuery("select bd.eventCause.eventId,bd.eventCause.causeCode,bd.eventCause.description,bd.failureClass.failureClass,bd.failureClass.description "
 				+ "from BaseData bd "
@@ -69,6 +59,20 @@ public class JPABaseDataDAO implements BaseDataDAO {
 			return allImsiData;
 	}
 	
+	//user story 7....................//
+	public Collection<BaseData> getImsiList() {
+		String date1="";
+		String date2="";
+		Query query = em.createQuery(""
+		+"select bd.id, bd.imsi, bd.dateTime, bd.cellId, bd.neVersion "
+		+"from BaseData bd "
+		+"where bd.dateTime >=:date1 and bd.dateTime <:date2 "
+		+"group by bd.imsi");
+		query.setParameter("date1", date1);
+		query.setParameter("date2", date2);
+		List<BaseData> alldatebase = query.getResultList();
+		return alldatebase;
+	}	
 	
 	
 	

@@ -1,7 +1,6 @@
-package dao_testing;
+package services_testing;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -19,8 +18,8 @@ import com.the_bean_quartet.msc_project.entities.MccData;
 import com.the_bean_quartet.msc_project.entities.UETypeClass;
 import com.the_bean_quartet.msc_project.services.BaseDataServiceEJB;
 
+public class BaseDataServiceTest {
 
-public class BaseDataServiceEJBTest {
 
 	private BaseDataServiceEJB baseDataEJB;
 	private BaseDataServiceEJB baseDataEJB1;
@@ -45,23 +44,14 @@ public class BaseDataServiceEJBTest {
 		baseDataEJB.setDao(mockedDAOALl);
 		
 	}
-		
 	@Test
-	public void test() {
-		ArrayList<BaseData> results = (ArrayList<BaseData>) baseDataEJB.getDataset();
-		BaseData resultEvent = results.get(0);
-		assertTrue(results.size() == 2);
-		assertEquals("1",resultEvent.getDate());
-		assertEquals(1,resultEvent.getFailureClass().getFailureClass().intValue());
-		assertEquals(1,resultEvent.getMccData().getMcc());
-		assertEquals(2,resultEvent.getMccData().getMnc());
-		assertEquals("1",resultEvent.getMccData().getCountry());
-		assertEquals("2",resultEvent.getMccData().getOperator());
-		assertEquals("a",resultEvent.getEventCause().getDescription());
-		assertEquals(7L,resultEvent.getHeir3Id().longValue());
-		assertEquals(8L,resultEvent.getHeir32Id().longValue());
-		assertEquals(2L,resultEvent.getHeir321Id().longValue());	
+	public void getTest(){
 		
+		Collection<BaseData> baseData= baseDataEJB.getIMSIData();
+		Collection<BaseData> baseData11= baseDataEJB.getSelectedBaseData("1");
+		Collection<BaseData> baseData12= baseDataEJB.getIMSIData();
+		assertEquals(baseData1,baseData.iterator().next());
+		assertEquals(baseData1,baseData11.iterator().next());
+		assertEquals(baseData1,baseData12.iterator().next());
 	}
-	
 }

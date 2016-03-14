@@ -28,7 +28,7 @@ public class BaseData implements Serializable {
 	@Column(name = "Base_Data_Id")
 	private int id;
 
-	@Column(name = "Date_Time") private Date date;
+	@Column(name = "Date_Time") private String date;
 	@Column(name = "Cell_Id") private Integer cellId;
 	@Column(name = "Duration") private Integer duration;
 	@Column(name = "NE_Version") private String neVersion;
@@ -61,11 +61,7 @@ public class BaseData implements Serializable {
 
 	public BaseData() {}
 	
-	public BaseData(String imsi){
-		this.imsi=imsi;
-	}
-
-	public BaseData(Date date, FailureClass failureClass, MccData mccData, Integer cellId, Integer duration,
+	public BaseData(String date, FailureClass failureClass, MccData mccData, Integer cellId, Integer duration,
 			String neVersion, String imsi, Long heir3Id, Long heir32Id, Long heir321Id, EventCause eventCause,
 			UETypeClass ueTable) {
 		this.date = date;
@@ -90,11 +86,11 @@ public class BaseData implements Serializable {
 		this.id = id;
 	}
 
-	public Date getDate() {
+	public String getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 

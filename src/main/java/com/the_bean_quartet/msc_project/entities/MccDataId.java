@@ -6,37 +6,56 @@ import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
-@Embeddable
+
 public class MccDataId implements Serializable {
 
 	// auto generated serial id
 	private static final long serialVersionUID = 7007673299604521440L;
 	
-	@Column(name="Mcc")Integer mcc;
-	@Column(name="Mnc")Integer mnc;
-	public Integer getMcc() {
-		return mcc;
-	}
-	public void setMcc(Integer mcc) {
-		this.mcc = mcc;
-	}
-	public Integer getMnc() {
-		return mnc;
-	}
-	public void setMnc(Integer mnc) {
-		this.mnc = mnc;
-	}
+	private int Mcc;
+	private int Mnc;
+	
 	@Override
 	public int hashCode() {
-		return Objects.hashCode(mcc+mnc);
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + Mcc;
+		result = prime * result + Mnc;
+		
+		return result;
 	}
+	
 	@Override
 	public boolean equals(Object obj) {
-		if(!(obj instanceof MccDataId))
+		if (this == obj)
+			return true;
+		if (obj == null)
 			return false;
-		MccDataId other = (MccDataId)obj;
-		return (other.mcc.equals(this.mcc) 
-				&& other.mnc.equals(this.mnc));
+		if (getClass() != obj.getClass())
+			return false;
+		MccDataId other = (MccDataId) obj;
+		if (Mcc != other.Mcc)
+			return false;
+		if(Mnc != other.Mnc)
+			return false;
+		return true;
 	}
+
+	public int getMcc() {
+		return Mcc;
+	}
+
+	public void setMcc(int mcc) {
+		Mcc = mcc;
+	}
+
+	public int getMnc() {
+		return Mnc;
+	}
+
+	public void setMnc(int mnc) {
+		Mnc = mnc;
+	}
+	
 
 }

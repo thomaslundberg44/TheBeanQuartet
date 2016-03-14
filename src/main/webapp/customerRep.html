@@ -36,13 +36,18 @@
 <table align="center" id="imageTable" border="3"></table>
 
 </div>
+<div id=response></div>
 
 
 <script>
 //get a reference to the select element
 var $select = $('#op1');
 var $tbSelect=$('#imageTable');
- 
+
+
+
+
+
 //request the JSON data and parse into the select element
 $.ajax({
   url: 'http://localhost:8080/TheBeanQuartet/rest/basedata/imsi',
@@ -53,6 +58,7 @@ $.ajax({
     //iterate over the data and append a select option
     $.each(data.baseDataCollection, function(i,val){
       $select.append('<option>' + val + '</option>');
+      console.log(val);
     })
   }
 });	
@@ -69,14 +75,22 @@ $("#submitImsi").submit(
 				url : 'rest/basedata/imsirelation',
 				data : JSON.stringify(checkImsi),
 				success : function islogin(data) {
-					alert(JSON.stringify(data));
-					
-				},
+//					alert(JSON.stringify(data));
+//				},
+					var items = [];
+			          $.each(data, function(key, val) {
+			            items.push('<li id="' + key + '">' + val + '</li>');    
+			          });
+			          $('<ul/>', {
+			             'class': 'interest-list',
+			             html: items.join('')
+			          }).appendTo('body');
+			          
+			       },			
 				contentType : 'application/json'
 			});
-						
+					return false;	
 		});
-
 
 
 </script>
