@@ -23,24 +23,34 @@
 
 
 
-<div class="dropdown">
-<h1>Select phone model: <select class="form-control" id="model"></select>
-<form role="form" id="submit">
-			<input type="submit" name="Val" class="ubmit" onClick="GetSelectedItem(imageTable)" value="SUBMIT">
-</form></h1> <br>
-          <a href="http://localhost:8080/TheBeanQuartet/rest/basedata/modelType" class="list-group-item">Link to Model type data JSON</a>
-    <!--         <a href="http://localhost:8080/TheBeanQuartet/rest/basedata/modelSearch" class="list-group-item">Link to model search data JSON</a>
-	   -->      
-</div>
-<div id="tableContainer">
-<table align="center" id="imageTable" border="3"></table>
+	<div class="dropdown">
+		<h1>
+			Select phone model: <select class="form-control" id="model"></select>
+			<form role="form" id="submit">
+				<input type="text" name="startTime" placeholder="Start Time"
+					id="startTime"> 
+				<input type="text" name="finishTime" placeholder="Finish Time" id="finishTime"> 
+				<input
+					type="submit" name="Val" class="ubmit"
+				 value="SUBMIT">
+			</form>
+		</h1>
+		<br> <a
+			href="http://localhost:8080/TheBeanQuartet/rest/basedata/modelType"
+			class="list-group-item">Link to Model type data JSON</a>
+		<!--         <a href="http://localhost:8080/TheBeanQuartet/rest/basedata/modelSearch" class="list-group-item">Link to model search data JSON</a>
+	   -->
+	</div>
+	<div id="tableContainer">
+		<table align="center" id="imageTable" border="3"></table>
 
-</div>
+	</div>
 
 
-<script>
+	<script>
 //get a reference to the select element
 var $select = $('#model');
+var $tbSelect=$('#imageTable');
  
 //request the JSON data and parse into the select element
 $.ajax({
@@ -56,20 +66,35 @@ $.ajax({
   }
 });	
 
-$("#submit").submit(
-		function search() {
-			var checkModel = document.getElementById("model").value;
+function obj(option1, option2, option3, option4) {
+	this.option1 = option1;
+	this.option2 = option2;
+	this.option3 = option3;
+	this.option4 = option4;
+}
 
-			alert("The model selected is: "+checkModel);
+$("#submit").submit(
+		
+		function search() {
 			
+			var obj1 = new obj(
+					document.getElementById("model").value,
+					document.getElementById("startTime").value,
+					document.getElementById("finishTime").value,
+					""
+			);
+			
+		//	alert("The model selected is: "+checkModel);
+		//	alert("The model selected is: "+checkModel1);
+		//	alert("The model selected is: "+checkModel2);
+
 			$.ajax({
 				async:false,
 				type : 'POST',
 				url : 'rest/basedata/modelSearch',
-				data : JSON.stringify(checkModel),
+				data : JSON.stringify(obj1),
 				success : function message(data) {
 					alert(JSON.stringify(data));
-					
 				},
 				contentType : 'application/json'
 			});

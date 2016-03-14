@@ -12,5 +12,6 @@ public interface BaseDataDAO {
 	void addCollectionData(Collection<BaseData> data);
     Collection<BaseData> getAllData();
     Collection<BaseData> getAllModelData();
-	Collection<BaseData> getAllModelSearchData(String model);
+	//Collection<BaseData> getAllModelSearchData(String model);
+	Collection<BaseData> getAllModelSearchData(String model, String startTime, String finishTime);
 }

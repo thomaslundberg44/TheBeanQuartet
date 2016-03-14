@@ -66,14 +66,28 @@ public class JPABaseDataDAO implements BaseDataDAO {
 		List<BaseData> marketingNameData = query.getResultList(); 
 		return marketingNameData;
 	}
-	public Collection<BaseData> getAllModelSearchData(String model) {
+//	public Collection<BaseData> getAllModelSearchData(String model) {
+//		Query query = em.createQuery("select bd.ueTable.tac from BaseData bd where bd.ueTable.marketingName =:uetypes");
+//		query.setParameter("uetypes", model);
+//		int UEData = (Integer) query.getResultList().get(0);
+//	
+//		Query query1 = em.createQuery("select count(bd.failureClass) from BaseData bd where bd.ueTable.tac =:hello");
+//		query1.setParameter("hello", UEData);
+//
+//		List<BaseData> UEData1 = query1.getResultList(); 
+//		return UEData1;
+//	}
+	public Collection<BaseData> getAllModelSearchData(String model, String startTime, String finishTime) {
 		Query query = em.createQuery("select bd.ueTable.tac from BaseData bd where bd.ueTable.marketingName =:uetypes");
 		query.setParameter("uetypes", model);
 		int UEData = (Integer) query.getResultList().get(0);
-	
-		Query query1 = em.createQuery("select count(bd.failureClass) from BaseData bd where bd.ueTable.tac =:hello");
+		System.out.println("Parameters retrieved: start = "+startTime+", finish = "+finishTime );
+		Query query1 = em.createQuery("select count(bd.failureClass) from BaseData bd where bd.ueTable.tac =:hello "
+				+ "and bd.date >=:dateStart and bd.date <:dateEnd ");
 		query1.setParameter("hello", UEData);
-
+		query1.setParameter("dateStart", startTime);
+		query1.setParameter("dateEnd", finishTime);
+		
 		List<BaseData> UEData1 = query1.getResultList(); 
 		return UEData1;
 	}

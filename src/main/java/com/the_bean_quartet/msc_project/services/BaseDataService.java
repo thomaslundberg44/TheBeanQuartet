@@ -18,5 +18,6 @@ public interface BaseDataService {
 	
 	public Collection<BaseData> getModelData();
 	
-	public Collection<BaseData> getSelectedModelBaseData(String model);
+	//public Collection<BaseData> getSelectedModelBaseData(String model);
+	public Collection<BaseData> getSelectedModelBaseData(String model, String startTime, String finishTime);
 }
