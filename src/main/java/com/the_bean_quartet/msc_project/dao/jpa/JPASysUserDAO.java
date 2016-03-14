@@ -34,13 +34,12 @@ public class JPASysUserDAO implements SysUserDAO{
 	
 
 	
-	public void addUser(SysUser user) {
+	public String addUser(SysUser user) {
 		if(userExist(user)){
-			System.out.println("Userexists");
-			return;
+			return "Username already Exists";
 		}
-		System.out.println("New User created");
 		em.persist(user);
+		return "User Added Successfully";
 	}
 	public boolean userExist(SysUser user){
 		Query query = em.createQuery("from SysUser");
@@ -53,6 +52,7 @@ public class JPASysUserDAO implements SysUserDAO{
 		return false;
 	}
 
+	
 
 	public Collection<SysUser> getAllUsers() {
 		Query query = em.createQuery("from SysUser");
@@ -60,17 +60,17 @@ public class JPASysUserDAO implements SysUserDAO{
 		return users;
 		
 	}
-	public boolean verify_user(SysUser user) {
+	public String verify_user(SysUser user) {
 		Query query = em.createQuery("from SysUser");
 		List<SysUser> users = query.getResultList(); 
 		for(int i=0; i<users.size(); i++){
 			if(users.get(i).getUserName().equals(user.getUserName())){
 				if(users.get(i).getUserPassword().equals(user.getUserPassword())){
-					return true;
+					return users.get(i).getUserType();
 				}
 			}
 		}
-		return false;
+		return "false";
 	}
 	public Collection<SysUser> getAllUsersBy(String UserType) {
 		Query query  = em.createQuery("from SysUser su where su.UserType = :UserType");

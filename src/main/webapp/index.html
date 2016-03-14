@@ -2,62 +2,82 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Login</title>
 
 <script type="text/javascript" language="javascript"
 	src="media/js/jquery.js"></script>
 <script type="text/javascript" language="javascript" class="init"></script>
-       <link rel="stylesheet" href="css/style.css">
+
+<link rel="stylesheet" href="css/style.css">
 
 </head>
-<body>
+<body class='indexPage'>
+	
+	<br>
+	<br>
+	<br>
+
 	<div class="login-card">
-	<h2 align="center">User Login</h2>
+		<div align="center">
+			<img id='img' src="Ericsson_logo.png" alt="EricssonLogo"
+				style="width: 155px; height: 140px;">
+		</div>
+
 		<form role="form" id="login">
+		
+			<div style="color: red;"id="msgbox"></div>
+			<br>
+			<div id="details">
 			<input type="text" name="user" placeholder="Username" id="username">
-			<input type="password" name="pass" placeholder="Password"id="password"> 
+			<input type="password" name="pass" placeholder="Password" id="password">
+			</div> 
+			<input type="submit" name="Login" class="login login-submit" value="Login">
 			
-			<input type="submit" name="login" class="login login-submit" value="login">
 		</form>
 	</div>
 
 	<script>
-		//constructor function
+	
+	    $("#details").click(function(){
+	        $("#msgbox").fadeOut(function(){
+	        		$(this).text('').fadeIn();
+	        });
+	    });
+	    
+
+	    
 		function SysUser(userName, userPassword, userType) {
 			this.userName = userName;
 			this.userPassword = userPassword;
 			this.userType = userType;
 		}
-		$("#login").submit(
-			function Login() {
-			//	window.open('','UserLogin').location.href = 'http://localhost:8080/TheBeanQuartet/main.html';
-				var checkUser = new SysUser(
-					document.getElementById("username").value,
-					document.getElementById("password").value,
-					"x"
-				);
-				var success = false;  
-				$.ajax({
-					async:false,
-					type : 'POST',
-					url : 'rest/user/verify',
-					data : JSON.stringify(checkUser),
-					success : function islogin(data) {
-						if (data) {
-							alert("login success");
-							success = true;  
-						} else {
-							alert("login fail");
-						}
-					},
-					contentType : 'application/json'
-				});
-				
-				if (success) { //AND THIS CHANGED
-					window.open('','UserLogin').location.href = 'http://localhost:8080/TheBeanQuartet/main.html';
-				}
+		$("#login").submit(function Login(){
+			
+			var checkUser = new SysUser(
+				document.getElementById("username").value,
+				document.getElementById("password").value,
+				"x"
+			);
+			$.ajax({
+				async : false,
+				type : 'POST',
+				url : 'rest/user/verify',
+				data : JSON.stringify(checkUser),
+				success : function islogin(data) {
+					if (data != "false") {
+						document.location='loginsession.jsp?user='+document.getElementById("username").value+'&type='+data;
+					}
+					if (data=="false")
+				        $("#msgbox").fadeOut(function(){
+			        		$(this).text('Sorry, your username and password are incorrect. Please try again.').fadeIn();
+			    		});
+				},
+				contentType : 'application/json'
 			});
+			return false;
+		});
+				
 	</script>
 </body>
 

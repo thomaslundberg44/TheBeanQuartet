@@ -8,8 +8,8 @@ import com.the_bean_quartet.msc_project.entities.SysUser;
 
 @Local
 public interface SysUserDAO {
-	void addUser(SysUser user);
+	String addUser(SysUser user);
     Collection<SysUser> getAllUsers();
-	boolean verify_user(SysUser user);
+	String verify_user(SysUser user);
 	Collection<SysUser> getAllUsersBy(String viewBy);
 }
