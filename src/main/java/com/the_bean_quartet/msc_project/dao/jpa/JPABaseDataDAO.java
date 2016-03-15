@@ -45,9 +45,18 @@ public class JPABaseDataDAO implements BaseDataDAO {
 	//getting individual imsi out of base data table
 	public Collection<BaseData> getAllIMSIData() {	
 			Query query = em.createQuery("select DISTINCT(c.imsi) from BaseData c");
+			//Query query = em.createQuery("select DISTINCT(c.date) from BaseData c");
 			List<BaseData> bimsiData = query.getResultList(); 
 			return bimsiData;
 	}
+	
+	
+	//getting individual date and time out of base data table
+		public Collection<BaseData> getDateData() {
+			Query query = em.createQuery("select DISTINCT(c.date) from BaseData c");
+			List<BaseData> bimsiData = query.getResultList(); 
+			return bimsiData;
+		}	
 	
 	//user story 4...................................//
 	public Collection<BaseData> getAllIMSIRelatedData(String imsi) {
@@ -60,19 +69,19 @@ public class JPABaseDataDAO implements BaseDataDAO {
 	}
 	
 	//user story 7....................//
-	public Collection<BaseData> getImsiList() {
-		String date1="";
-		String date2="";
+	public Collection<BaseData> getImsiList(String date1,String date2) {
 		Query query = em.createQuery(""
-		+"select bd.id, bd.imsi, bd.dateTime, bd.cellId, bd.neVersion "
+		+"select bd.id, bd.imsi, bd.failureClass.description,bd.failureClass.failureClass"
 		+"from BaseData bd "
-		+"where bd.dateTime >=:date1 and bd.dateTime <:date2 "
+		+"where bd.date >=:date1 and bd.date <:date2 "
 		+"group by bd.imsi");
 		query.setParameter("date1", date1);
 		query.setParameter("date2", date2);
 		List<BaseData> alldatebase = query.getResultList();
 		return alldatebase;
-	}	
+	}
+
+	
 	
 	
 	

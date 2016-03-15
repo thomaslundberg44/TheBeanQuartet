@@ -50,4 +50,10 @@ public class BaseDataServiceEJB implements BaseDataService {
 		
 	}
 
+	public Collection<BaseData> getDateData(String date1,String date2) {
+	return baseDAO.getImsiList(date1, date2);	
+	}
+
+	
+
 }

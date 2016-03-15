@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../jqwidgets/styles/jqx.base.css" type="text/css" />
+<link rel="stylesheet" href="../jqwidgets/styles/jqx.classic.css" type="text/css" />
+<script type="text/javascript" src="../scripts/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="../jqwidgets/jqxcore.js"></script>
+<script type="text/javascript" src="../jqwidgets/jqxbuttons.js"></script>
+<script type="text/javascript" src="../jqwidgets/jqxscrollbar.js"></script>
+<script type="text/javascript" src="../jqwidgets/jqxdata.js"></script>
+<script type="text/javascript" src="../jqwidgets/jqxlistbox.js"></script>
+<script type="text/javascript" src="../jqwidgets/jqxdropdownlist.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+
+
+</head>
+<body>
+	<div class="dropdown">
+		<h1>
+			<form role="form" id="submit">
+				<input type="text" name="startTime" placeholder="Start Time"
+					id="startTime"> 
+				<input type="text" name="finishTime" placeholder="Finish Time" id="finishTime"> 
+				<input
+					type="submit" name="Val" class="submit" id="submit"
+				 value="SUBMIT">
+			</form>
+		</h1>
+		<br> <a
+			href="http://localhost:8080/TheBeanQuartet/rest/basedata/modelType"
+			class="list-group-item">Link to Model type data JSON</a>
+		<!--         <a href="http://localhost:8080/TheBeanQuartet/rest/basedata/modelSearch" class="list-group-item">Link to model search data JSON</a>
+	   -->
+	</div>
+
+<script>
+
+function obj(option1, option2) {
+	this.option1 = option1;
+	this.option2 = option2;
+}
+$("#submit").submit(		
+		function search() {
+			var obj1 = new obj(
+					document.getElementById("startTime").value,
+					document.getElementById("finishTime").value,
+					""
+			);
+			$.ajax({
+				async:false,
+				type : 'POST',
+				url : 'rest/basedata/dateAndTime',
+				data : JSON.stringify(obj1),
+				success : function message(data) {
+					alert(JSON.stringify(data));
+				},
+				contentType : 'application/json'
+			});
+						
+		});	
+</script>
+</body>
+</html>

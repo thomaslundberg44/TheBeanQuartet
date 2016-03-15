@@ -22,6 +22,11 @@ public interface BaseDataDAO {
      * */
 	Collection<BaseData> getAllIMSIData();
 	/*
+     * Queries the Base data table to select all the distinct dates inside table
+     * @return a collection of distinct values of date data
+     * */
+	Collection<BaseData> getDateData();
+	/*
 	 *As Customer Service Rep. I want to display, for a given affected IMSI, 
 	 *the Event ID and Cause Code for any / all failures affecting that IMSI
 	 *@return a collection of failure and event cause on basis of imsi
@@ -32,6 +37,6 @@ public interface BaseDataDAO {
 	 * call failures during a given time period
 	 * @return a collection of values of failure table 
 	 * */
-	Collection<BaseData> getImsiList();
+	Collection<BaseData> getImsiList(String date1, String date2);
 	
 }

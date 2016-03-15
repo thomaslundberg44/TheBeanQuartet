@@ -36,7 +36,17 @@
 <table align="center" id="imageTable" border="3"></table>
 
 </div>
-<div id=response></div>
+<div id=response>
+<table id="myData">
+<tr>
+<th>eventid</th>
+<th>causeCode</th>
+<th>event-description</th>
+<th>failure-id</th>
+<th>failure description</th>
+</tr>
+</table>
+</div>
 
 
 <script>
@@ -84,8 +94,7 @@ $("#submitImsi").submit(
 			          $('<ul/>', {
 			             'class': 'interest-list',
 			             html: items.join('')
-			          }).appendTo('body');
-			          
+			          }).appendTo('body');   
 			       },			
 				contentType : 'application/json'
 			});

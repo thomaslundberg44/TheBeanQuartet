@@ -15,6 +15,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.the_bean_quartet.msc_project.entities.BaseData;
 import com.the_bean_quartet.msc_project.entities.BaseDataList;
+import com.the_bean_quartet.msc_project.entities.Options;
 import com.the_bean_quartet.msc_project.entities.SysUserList;
 import com.the_bean_quartet.msc_project.services.BaseDataService;
 
@@ -39,9 +40,24 @@ public class BaseDataCRUDService {
     public BaseDataList getIMSIBaseData() {
         BaseDataList dataIMSI = new BaseDataList();
         dataIMSI.setBaseDataCollection(service.getIMSIData());
-        
         return dataIMSI;
     }
+	
+	@Path("/dateAndTime")
+	@GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public BaseDataList getDateAndTimeBaseData(Options obj) {
+		String date1 = obj.getOption1().toString();
+		String date2 = obj.getOption2().toString();
+		System.out.println(date1);
+		System.out.println(date2);
+		BaseDataList dataIMSI = new BaseDataList();
+        dataIMSI.setBaseDataCollection(service.getDateData(date1,date2));
+        return dataIMSI;
+    }
+	
+	
+	
 	
 //	@Path("/imsirelation")
 //	@GET

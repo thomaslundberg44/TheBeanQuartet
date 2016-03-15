@@ -17,6 +17,8 @@ public interface BaseDataService {
 
 	public Collection<BaseData> getIMSIData();
 	
+	public Collection<BaseData> getDateData(String date1, String date2);
+	
 	public Collection<BaseData> getSelectedBaseData(String imsiValue);
 
 
