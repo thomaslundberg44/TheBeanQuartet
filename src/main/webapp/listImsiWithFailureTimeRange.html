@@ -26,20 +26,19 @@
 
 	<div class="dropdown">
 		<h1>
-			Select phone model: <select class="form-control" id="model"></select>
 			<form role="form" id="submit">
-				<input type="text" name="startTime" placeholder="Start Time"
-					id="startTime"> 
+				<input type="text" name="startTime" placeholder="Start Time"  id="startTime"> 
 				<input type="text" name="finishTime" placeholder="Finish Time" id="finishTime"> 
 				<input
 					type="submit" name="Val" class="submit"
 				 value="SUBMIT">
 			</form>
 		</h1>
-		<br> <a
-			href="http://localhost:8080/TheBeanQuartet/rest/basedata/modelType"
+		<br> 
+		<!-- <a
+			href="http://localhost:8080/TheBeanQuartet/rest/basedata/countEachImsi"
 			class="list-group-item">Link to Model type data JSON</a>
-		<!--         <a href="http://localhost:8080/TheBeanQuartet/rest/basedata/modelSearch" class="list-group-item">Link to model search data JSON</a>
+		        <a href="http://localhost:8080/TheBeanQuartet/rest/basedata/modelSearch" class="list-group-item">Link to model search data JSON</a>
 	   -->
 	</div>
 	<div id="tableContainer">
@@ -49,8 +48,10 @@
 
 
 	<script>
+	/*
+
 //get a reference to the select element
-var $select = $('#model');
+<var $select = $('#model');
 var $tbSelect=$('#imageTable');
  
 //request the JSON data and parse into the select element
@@ -67,6 +68,7 @@ $.ajax({
   }
 });	
 
+*/
 function obj(option1, option2, option3, option4) {
 	this.option1 = option1;
 	this.option2 = option2;
@@ -79,24 +81,21 @@ $("#submit").submit(
 		function search() {
 			
 			var obj1 = new obj(
-					document.getElementById("model").value,
 					document.getElementById("startTime").value,
 					document.getElementById("finishTime").value,
+					"",
 					""
 			);
-			
-		//	alert("The model selected is: "+checkModel);
-		//	alert("The model selected is: "+checkModel1);
-		//	alert("The model selected is: "+checkModel2);
 
 			$.ajax({
 				async:false,
 				type : 'POST',
-				url : 'rest/basedata/modelSearch',
+				url : 'rest/basedata/listImsiWithFailureDateRange',
 				data : JSON.stringify(obj1),
 				success : function message(data) {
-					var count = data.baseDataCollection[0];
-					alert("Number of failures = "+count);
+					alert(JSON.stringify(data));
+					//var count = data.baseDataCollection[0];
+					//alert("Number of count = "+count);
 				},
 				contentType : 'application/json'
 			});

@@ -126,5 +126,17 @@ public class JPABaseDataDAO implements BaseDataDAO {
 		List<BaseData> UEData1 = query.getResultList(); 
 		return UEData1;
 	}
+	
+	public Collection<BaseData> getListImsiWithFailureTimeRange(String startTime, String finishTime){
+
+		Query query = em.createQuery("select DISTINCT(bd.imsi), count(bd.failureClass) from BaseData bd "
+				+ "where bd.date >=:dateStart and bd.date <:dateEnd group by bd.imsi");
+		query.setParameter("dateStart", startTime);
+		query.setParameter("dateEnd", finishTime);
+		List<BaseData> ListImsiWithFailureTimeRange = query.getResultList();
+		return ListImsiWithFailureTimeRange;
+	
+	}
+
 
 }

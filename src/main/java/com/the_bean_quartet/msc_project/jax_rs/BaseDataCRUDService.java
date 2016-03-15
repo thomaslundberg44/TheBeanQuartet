@@ -121,5 +121,23 @@ public class BaseDataCRUDService {
         
 	}
 	
+	@POST
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Path("/listImsiWithFailureDateRange")
+	public BaseDataList getlistImsiWithFailureDateRange(Options obj) throws JsonParseException, JsonMappingException, IOException{
+		String modelValue1 = obj.getOption1().toString();
+		String modelValue2 = obj.getOption2().toString();
+		
+		System.out.println(obj.getOption1());
+		System.out.println(obj.getOption2());
+		
+		BaseDataList listImsiWithFailureDateRangeSearch = new BaseDataList();
+		listImsiWithFailureDateRangeSearch.setBaseDataListImsiWithFailureCollection(service.
+				getListImsiWithFailureTimeRange(modelValue1, modelValue2));
+      	return listImsiWithFailureDateRangeSearch;
+        
+	}
+	
 	
 }

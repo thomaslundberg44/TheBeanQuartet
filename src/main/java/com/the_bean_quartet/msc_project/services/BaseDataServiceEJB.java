@@ -60,5 +60,8 @@ public class BaseDataServiceEJB implements BaseDataService {
 		
 		return baseDAO.getEachImsiSearchData(startTime, finishTime);
 	}
+	public Collection<BaseData> getListImsiWithFailureTimeRange(String startTime, String finishTime){
+		return baseDAO.getListImsiWithFailureTimeRange(startTime, finishTime);
+	}
 
 }

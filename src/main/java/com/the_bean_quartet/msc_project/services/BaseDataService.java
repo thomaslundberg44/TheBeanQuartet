@@ -22,6 +22,8 @@ public interface BaseDataService {
 	public Collection<BaseData> getSelectedModelBaseData(String model, String startTime, String finishTime);
 
 	public Collection<BaseData> getEachImsiBaseData(String startTime, String finishTime);
+	
+	public Collection<BaseData> getListImsiWithFailureTimeRange(String startTime, String finishTime);
 
 	public Collection<BaseData> getIMSIData();
 	

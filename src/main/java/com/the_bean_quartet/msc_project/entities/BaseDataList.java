@@ -32,5 +32,9 @@ public class BaseDataList implements Serializable {
 	this.data=eachImsiData;
 	
 	}
+	public void setBaseDataListImsiWithFailureCollection(Collection<BaseData> listImsiData) {
+	this.data=listImsiData;
+	
+	}
 	
 }

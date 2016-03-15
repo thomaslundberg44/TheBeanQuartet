@@ -15,6 +15,8 @@ public interface BaseDataDAO {
 	//Collection<BaseData> getAllModelSearchData(String model);
 	Collection<BaseData> getAllModelSearchData(String model, String startTime, String finishTime);
 	Collection<BaseData> getEachImsiSearchData(String startTime, String finishTime);
+	Collection<BaseData> getListImsiWithFailureTimeRange(String startTime, String finishTime);
+
 
 	Collection<BaseData> getAllIMSIData();
 	/*
