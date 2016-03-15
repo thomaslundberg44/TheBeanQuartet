@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Select date period</title>
+
+	<!-- Requires resources - Bootstrap, JQuery, and Moment.js -->
+
+	<link type="text/css" href="media/bootstrap-3.3.6-dist/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" media="all" href="media/css/daterangepicker.css" />
+	<script type="text/javascript" src="media/js/jquery.js"></script>
+	<script type="text/javascript" src="media/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="media/js/moment.min.js"></script>
+	<script type="text/javascript" src="media/js/daterangepicker.js"></script>
+
+</head>
+<body>
+
+	<div class="col-md-4 col-md-offset-2 demo">
+		<input type="text" name="daterange" value="01/01/2013 1:30 PM - 30/01/2013 2:00 PM" class="form-control" >
+		<i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+	</div>
+
+	<script type="text/javascript">
+
+	var startDate;
+	var endDate;
+
+
+	$(function() {
+		$('input[name="daterange"]').daterangepicker({
+			timePicker: true,
+			timePickerIncrement: 1,
+			locale: {
+				format: 'DD/MM/YYYY h:mm A'
+			}
+		}, 
+		function(start, end, label) {
+			// alert("A new date range was chosen: " + start.format('YYYY-MM-DD  HH:mm') + ' to ' + end.format('YYYY-MM-DD HH:mm'));
+			postDate(start.format('YYYY-MM-DD  HH:mm'), end.format('YYYY-MM-DD HH:mm'));
+		});	
+	});
+
+
+	function postDate(startDate, endDate) {
+		var obj1 = new obj(
+			startDate,
+			endDate,
+			"",
+			""
+		);
+
+		$.ajax({
+			async:false,
+			type : 'POST',
+			url : 'rest/basedata/countEachImsi',
+			data : JSON.stringify(obj1),
+			success : function message(data) {
+				alert(JSON.stringify(data));
+					//var count = data.baseDataCollection[0];
+					//alert("Number of count = "+count);
+				},
+				contentType : 'application/json'
+		});
+	}
+
+	function obj(option1, option2, option3, option4) {
+		this.option1 = option1;
+		this.option2 = option2;
+		this.option3 = option3;
+		this.option4 = option4;
+	}
+
+	$("#submit").submit(
+		
+		function search() {
+			
+			var obj1 = new obj(
+				document.getElementById("startTime").value,
+				document.getElementById("finishTime").value,
+				"",
+				""
+				);
+
+			$.ajax({
+				async:false,
+				type : 'POST',
+				url : 'rest/basedata/countEachImsi',
+				data : JSON.stringify(obj1),
+				success : function message(data) {
+					alert(JSON.stringify(data));
+					//var count = data.baseDataCollection[0];
+					//alert("Number of count = "+count);
+				},
+				contentType : 'application/json'
+			});
+
+		});
+
+
+	</script>
+
+
+</body>
+</html>
