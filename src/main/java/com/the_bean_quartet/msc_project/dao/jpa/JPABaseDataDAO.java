@@ -70,11 +70,20 @@ public class JPABaseDataDAO implements BaseDataDAO {
 	
 	//user story 7....................//
 	public Collection<BaseData> getImsiList(String date1,String date2) {
+//		Query query = em.createQuery(""
+//		+"select bd.id, bd.imsi, bd.failureClass.description,bd.failureClass.failureClass"
+//		+"from BaseData bd "
+//		+"where bd.date >=:date1 and bd.date <:date2 "
+//		+"group by bd.imsi");
 		Query query = em.createQuery(""
-		+"select bd.id, bd.imsi, bd.failureClass.description,bd.failureClass.failureClass"
-		+"from BaseData bd "
-		+"where bd.date >=:date1 and bd.date <:date2 "
-		+"group by bd.imsi");
+	+"select IMSI, SUM(IF(bd.Failure_Class = '0', Failure_Class, 0)) AS 'Total of Failure-0',"
+    +"SUM(IF(bd.Failure_Class = '1', Failure_Class, 0)) AS 'Total of Failure-1',"
+    +"SUM(IF(bd.Failure_Class = '2', Failure_Class, 0)) AS 'Total of Failure-2',"
+    +"SUM(IF(bd.Failure_Class = '3', Failure_Class, 0)) AS 'Total of Failure-3',"
+    +"SUM(IF(bd.Failure_Class = '4', Failure_Class, 0)) AS 'Total of Failure-4'"
+    +"from base_data bd "
+    +"where Date_Time >=:date1 and bd.date<:date2 "
+    +"GROUP BY IMSI");
 		query.setParameter("date1", date1);
 		query.setParameter("date2", date2);
 		List<BaseData> alldatebase = query.getResultList();

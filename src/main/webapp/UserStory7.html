@@ -24,8 +24,7 @@
 					id="startTime"> 
 				<input type="text" name="finishTime" placeholder="Finish Time" id="finishTime"> 
 				<input
-					type="submit" name="Val" class="submit" id="submit"
-				 value="SUBMIT">
+					type="submit" name="Val" class="submit" value="SUBMIT">
 			</form>
 		</h1>
 		<br> <a
@@ -37,17 +36,22 @@
 
 <script>
 
-function obj(option1, option2) {
+function obj(option1, option2,option3, option4) {
 	this.option1 = option1;
 	this.option2 = option2;
+	this.option3 = option3;
+	this.option4 = option4;
+	
 }
 $("#submit").submit(		
 		function search() {
 			var obj1 = new obj(
 					document.getElementById("startTime").value,
 					document.getElementById("finishTime").value,
-					""
+					"",
+					"",
 			);
+			alert("hello");
 			$.ajax({
 				async:false,
 				type : 'POST',

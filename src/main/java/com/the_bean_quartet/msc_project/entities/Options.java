@@ -22,11 +22,11 @@ public class Options {
 		
 	}
 	
-	public Options(String option1, String option2){
-		this.option1=option1;
-		this.option2=option2;
-		
-	}
+//	public Options(String option1, String option2){
+//		this.option1=option1;
+//		this.option2=option2;
+//		
+//	}
 	public Options(){}
 	
 	public String getOption3() {

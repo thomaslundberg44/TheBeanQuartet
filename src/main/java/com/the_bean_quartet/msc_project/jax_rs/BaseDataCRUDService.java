@@ -45,6 +45,7 @@ public class BaseDataCRUDService {
 	
 	@Path("/dateAndTime")
 	@GET
+	@Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public BaseDataList getDateAndTimeBaseData(Options obj) {
 		String date1 = obj.getOption1().toString();
