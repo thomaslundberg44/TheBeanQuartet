@@ -94,7 +94,7 @@ public class JPABaseDataDAO implements BaseDataDAO {
 	
 	//getting individual imsi out of base data table
 	public Collection<BaseData> getAllIMSIData() {	
-			Query query = em.createQuery("select DISTINCT(c.imsi) from BaseData c");
+			Query query = em.createQuery("select DISTINCT(bd.imsi) from BaseData bd");
 			List<BaseData> bimsiData = query.getResultList(); 
 			return bimsiData;
 	}
@@ -118,7 +118,7 @@ public class JPABaseDataDAO implements BaseDataDAO {
 	public Collection<BaseData> getEachImsiSearchData(String startTime, String finishTime){
 //		Query query = em.createQuery("select count(bd.failureClass), count(bd.duration)from BaseData bd "
 //				+ "where bd.date >=:dateStart and bd.date <:dateEnd group by DISTINCT(bd.imsi)");
-		Query query = em.createQuery("select count(bd.failureClass), count(bd.duration)*1000 from BaseData bd "
+		Query query = em.createQuery("select DISTINCT(bd.imsi), count(bd.failureClass), sum(bd.duration) from BaseData bd "
 				+ "where bd.date >=:dateStart and bd.date <:dateEnd group by bd.imsi");
 		query.setParameter("dateStart", startTime);
 		query.setParameter("dateEnd", finishTime);
@@ -129,7 +129,7 @@ public class JPABaseDataDAO implements BaseDataDAO {
 	
 	public Collection<BaseData> getListImsiWithFailureTimeRange(String startTime, String finishTime){
 
-		Query query = em.createQuery("select DISTINCT(bd.imsi), count(bd.failureClass) from BaseData bd "
+		Query query = em.createQuery("select DISTINCT(bd.imsi), bd.failureClass from BaseData bd "
 				+ "where bd.date >=:dateStart and bd.date <:dateEnd group by bd.imsi");
 		query.setParameter("dateStart", startTime);
 		query.setParameter("dateEnd", finishTime);
