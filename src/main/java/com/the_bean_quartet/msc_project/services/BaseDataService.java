@@ -9,6 +9,7 @@ import com.the_bean_quartet.msc_project.entities.BaseData;
 
 @Local
 public interface BaseDataService {
+	
 
 	public Collection<BaseData> getDataset();
 
@@ -18,7 +19,6 @@ public interface BaseDataService {
 	
 	public Collection<BaseData> getModelData();
 	
-	//public Collection<BaseData> getSelectedModelBaseData(String model);
 	public Collection<BaseData> getSelectedModelBaseData(String model, String startTime, String finishTime);
 
 	public Collection<BaseData> getEachImsiBaseData(String startTime, String finishTime);
