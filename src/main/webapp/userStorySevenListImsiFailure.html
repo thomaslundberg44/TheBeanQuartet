@@ -13,19 +13,29 @@
 	<script type="text/javascript" src="media/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="media/js/moment.min.js"></script>
 	<script type="text/javascript" src="media/js/daterangepicker.js"></script>
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/style1.css">
 
 </head>
-<body>
+<body class='indexPage'>
 <br>
 <br>
+<!--  
 	<p>
 User story #7 - As a Support Engineer I want to see a list of all IMSIs with call failures during a given time period
 	</p>
-	<div class="col-md-4 col-md-offset-2 demo">
-		<input type="text" name="daterange" value="01/01/2013 1:30 PM - 30/01/2013 2:00 PM" class="form-control" >
-		<i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+	-->
+	
+	<div class="login-card">
+		<form role="form" id="details">
+			<div>
+				<label><i class="glyphicon glyphicon-calendar fa fa-calendar"></i> Enter Time Period:</label> 
+				<input type="text" name="daterange" value="01/01/2013 1:30 PM - 30/01/2013 2:00 PM" class="form-control">
+			</div>
+			<input type="submit" class="login login-submit" value="Submit">
+		</form>
+		<a onclick="Help()" href="#">help</a>
 	</div>
-
 	<script type="text/javascript">
 
 	var startDate;
@@ -41,20 +51,19 @@ User story #7 - As a Support Engineer I want to see a list of all IMSIs with cal
 			}
 		}, 
 		function(start, end, label) {
-			// alert("A new date range was chosen: " + start.format('YYYY-MM-DD  HH:mm') + ' to ' + end.format('YYYY-MM-DD HH:mm'));
-			postDate(start.format('YYYY-MM-DD  HH:mm'), end.format('YYYY-MM-DD HH:mm'));
+			startDate = start.format('YYYY-MM-DD HH:mm');
+			endDate = end.format('YYYY-MM-DD HH:mm');
 		});	
 	});
 
-
-	function postDate(startDate, endDate) {
+	$("#details").submit(
+	function postDate() {
 		var obj1 = new obj(
 			startDate,
 			endDate,
 			"",
 			""
 		);
-
 		$.ajax({
 			async:false,
 			type : 'POST',
@@ -67,7 +76,7 @@ User story #7 - As a Support Engineer I want to see a list of all IMSIs with cal
 				},
 				contentType : 'application/json'
 		});
-	}
+	});
 
 	function obj(option1, option2, option3, option4) {
 		this.option1 = option1;
@@ -75,6 +84,10 @@ User story #7 - As a Support Engineer I want to see a list of all IMSIs with cal
 		this.option3 = option3;
 		this.option4 = option4;
 	}
+	function Help(){
+		alert(help);
+	}
+	var help="Submit to list all IMSIs with call failures during the given time period.";
 
 
 
