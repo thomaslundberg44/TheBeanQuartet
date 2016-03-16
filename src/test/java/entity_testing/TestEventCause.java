@@ -2,10 +2,14 @@ package entity_testing;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 import org.junit.Test;
 
 import com.the_bean_quartet.msc_project.entities.EventCause;
 import com.the_bean_quartet.msc_project.entities.EventCauseId;
+import com.the_bean_quartet.msc_project.entities.EventCauseList;
 
 public class TestEventCause {
 
@@ -55,6 +59,27 @@ public class TestEventCause {
 		id2.setCauseCode(4321);
 		id2.setEventId(4321);
 		assertFalse(id.equals(id2));
+		
+	}
+	
+	@Test
+	public void testEquals(){
+		EventCause eCause=new EventCause(0, 1,"objOne");
+		EventCause eCause2=new EventCause(0, 1,"objOne");
+		EventCause eCause3=new EventCause(69,1,"objThree");
+		EventCause eCause4=new EventCause(1,69,"objFour");
+		assertFalse(eCause.equals(null));
+		assertTrue(eCause.equals(eCause));
+		assertFalse(eCause.equals(new String()));
+		assertFalse(eCause.equals(eCause3));
+		assertFalse(eCause.equals(eCause4));
+		
+		Collection<EventCause> eventList = new ArrayList<EventCause>();
+		
+		EventCauseList list = new EventCauseList();
+		list.setEventCauseCollection(eventList);
+		
+		assertEquals(eventList, list.getEventCauseCollection());
 		
 	}
 
