@@ -2,22 +2,25 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Base Data Example</title>
+<title>Create User</title>
 
-<script type="text/javascript" language="javascript"
-	src="media/js/jquery.js"></script>
+<script type="text/javascript" language="javascript" src="/media/js/jquery.js"></script>
 <script type="text/javascript" language="javascript" class="init"></script>
-<link rel="stylesheet" href="css/style.css">
-
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+ 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/style1.css">
+
 </head>
-<body>
+<body class='indexPage'>
+
+	<br>
+	<br>
+	<br>
 
 	<div class="login-card">
-		<h1>Create New User</h1>
 		<form role="form" id="userDetails">
 
 			<div class="form-group">
@@ -32,8 +35,6 @@
 				<label>Re-Type Password:</label> <br> <input type="password"
 					class="form-control bfh-text" placeholder="Retype Password" id="userPassword_retyped">
 			</div>
-			
-			
 
 			<div class="dropdown">
 				<label>User Type:</label> 
@@ -49,10 +50,29 @@
 			<input type="submit" class="login login-submit"
 				value="Create User">
 		</form>
+		<br>
+		<a onclick="createUserHelp()" href="#">help</a>
 	</div>
 
 
 	<script>
+	
+	var help=
+"Username:\n\
+	-no special characters\n\
+	-must not start with a number\n\
+	-contain more than 3 characters\n\
+	-cannot be blank\n\
+\n\
+Password:\n\
+	-no special characters\n\
+	-contain more than 3 characters\n\
+	-cannot be blank\n\
+";
+	
+		function createUserHelp(){
+			alert(help);
+		}
 
 		//constructor function
 		function SysUser(userName, userPassword, userType) {
@@ -62,6 +82,7 @@
 		}
 		$("#userDetails").submit(
 				function createUser() {
+					alert("f");
 					var user1 = new SysUser(
 							document.getElementById("userName").value, 
 							document.getElementById("userPassword").value, 
@@ -69,9 +90,13 @@
 							);
 					if(document.getElementById("userPassword").value == document.getElementById("userPassword_retyped").value){
 						$.ajax({
+							async: false,
 							type : 'POST',
 							url : 'rest/user',
 							data:JSON.stringify(user1),
+							success : function message(data) {
+								alert(JSON.stringify(data));
+							},
 							contentType : 'application/json'
 						});
 					}
