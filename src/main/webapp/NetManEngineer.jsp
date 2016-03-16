@@ -2,9 +2,9 @@
 <%@page session="true"%>
 <%
 	if (session.getAttribute("type") == null) {
-		response.sendRedirect("index.html");
+	//	response.sendRedirect("index.html");
 	} else if (!session.getAttribute("type").equals("NetEng")) {
-		response.sendRedirect("index.html");
+	//	response.sendRedirect("index.html");
 	}
 %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -18,6 +18,8 @@
 <link rel="stylesheet" href="css/style1.css">
 <link rel="stylesheet" href="css/style.css">
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<script type="text/javascript" language="javascript"
+	src="media/js/jquery.js"></script>
 
 </head>
 
@@ -53,11 +55,13 @@
 	</div>
 
 	<div id="wrapper">
-
+		<div id="header2">
+		<br>
+		<div align="center" style="color: white;"id="msgbox"></div>
+		</div>
 		<div id="frame">
 			<h1 align="center">Welcome</h1>
 		</div>
-
 	</div>
 
 
@@ -66,6 +70,11 @@
 
 	<script>
 		function callFailAndDurationByEMSI() {
+	        $("#msgbox").fadeOut(function(){
+        		$(this).text(
+        				'Counts, for each IMSI, the number of call failures and their total duration during a given time period.'
+        				).fadeIn();
+    		});
 			frame = document.getElementById("frame");
 			frame.innerHTML = '';
 		}
