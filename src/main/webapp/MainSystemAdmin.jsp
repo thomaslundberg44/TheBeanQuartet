@@ -1,10 +1,10 @@
 <%@page session="true"%>
 <%
 	if (session.getAttribute("type")==null) {
-	//	response.sendRedirect("index.html");
+		response.sendRedirect("index.html");
 	}
 	else if(!session.getAttribute("type").equals("Admin")) {
-	//	response.sendRedirect("index.html");
+		response.sendRedirect("index.html");
 	}
 %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -19,8 +19,6 @@
 <link rel="stylesheet" href="css/style1.css">
 <link rel="stylesheet" href="css/style.css">
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<script type="text/javascript" language="javascript"
-	src="media/js/jquery.js"></script>
 
 </head>
 
@@ -57,12 +55,13 @@
 	</div>
 
 	<div id="wrapper">
-		<div id="header2">
-		<br>
-		<div align="center" style="color: white;"id="msgbox"></div>
-		</div>
+		<div id="header2"></div>
 		<div id="frame">
-			<h1 align="center">Welcome</h1>
+			<h1 align="center">
+				Welcome
+				<%=session.getAttribute("type")%>
+
+			</h1>
 		</div>
 	</div>
 	<footer id="footer">
@@ -74,29 +73,14 @@
 
 	<script>
 		function viewTables() {
-	        $("#msgbox").fadeOut(function(){
-        		$(this).text(
-        				'Navigate the tabs below to view all tabes in the database'
-        				).fadeIn();
-    		});
 			frame = document.getElementById("frame");
 			frame.innerHTML = '<iframe src="tables/baseDataTable.html" width="100%" height="1000"></iframe>';
 		}
 		function viewUsers() {
-	        $("#msgbox").fadeOut(function(){
-        		$(this).text(
-        				'Below shows the system users in JSON format.'
-        				).fadeIn();
-    		});
 			frame = document.getElementById("frame");
 			frame.innerHTML = '<iframe src="http://localhost:8080/TheBeanQuartet/rest/user" width="100%" height="1000"></iframe>';
 		}
 		function createUser() {
-	        $("#msgbox").fadeOut(function(){
-        		$(this).text(
-        				'Assign an Id and password to each User type. ie Create User'
-        				).fadeIn();
-    		});
 			frame = document.getElementById("frame");
 			frame.innerHTML = '<iframe src="createUser.html" width="100%" height="1000"></iframe>';
 		}

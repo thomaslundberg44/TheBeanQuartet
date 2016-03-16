@@ -2,9 +2,9 @@
 <%@page session="true"%>
 <%
 	if (session.getAttribute("type") == null) {
-	//	response.sendRedirect("index.html");
+		response.sendRedirect("index.html");
 	} else if (!session.getAttribute("type").equals("SupEng")) {
-	//	response.sendRedirect("index.html");
+		response.sendRedirect("index.html");
 	}
 %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -18,9 +18,6 @@
 <link rel="stylesheet" href="css/style1.css">
 <link rel="stylesheet" href="css/style.css">
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-<script type="text/javascript" language="javascript"
-	src="media/js/jquery.js"></script>
 
 </head>
 
@@ -39,7 +36,7 @@
 			<ul class="nav nav-pills nav-justified">
 				<li><a onclick="callFailbyEMSI()" href="#">Call Failures by
 						EMSI</a></li>
-				<li><a onclick="callFailbyTimePeriodUsingPhoneModel()" href="#">Call Failures by
+				<li><a onclick="callFailbyTime()" href="#">Call Failures by
 						time</a></li>
 			</ul>
 		</div>
@@ -56,34 +53,23 @@
 	</div>
 
 	<div id="wrapper">
-		<div id="header2">
-		<br>
-		<div align="center" style="color: white;"id="msgbox"></div>
-		</div>
+
+
+		<div id="header2"></div>
 		<div id="frame">
 			<h1 align="center">Welcome</h1>
 		</div>
+
 	</div>
 
 	<script>
 		function callFailbyEMSI() {
-	        $("#msgbox").fadeOut(function(){
-        		$(this).text(
-        				'Counts, for each IMSI, \n\
-        				the number of call failures and their total duration during a given time period'
-        				).fadeIn();
-    		});
 			frame = document.getElementById("frame");
-			frame.innerHTML = '<iframe src="selectDatePeriods.html" width="100%" height="1000"></iframe>';
+			frame.innerHTML = '';
 		}
-		function callFailbyTimePeriodUsingPhoneModel() {
-	        $("#msgbox").fadeOut(function(){
-        		$(this).text(
-        				'Counts, for a given model of phone, the number of call failures it has had during a given time period.'
-        				).fadeIn();
-    		});
+		function callFailbyTime() {
 			frame = document.getElementById("frame");
-			frame.innerHTML = '<iframe src="phoneModel.html" width="100%" height="1000"></iframe>';
+			frame.innerHTML = '';
 		}
 	</script>
 
