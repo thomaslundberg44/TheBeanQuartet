@@ -30,11 +30,11 @@ for a given affected IMSI, the Event ID and Cause Code for any / all failures af
 	<br>
 
 	<div class="login-card">
-	<form role="form" id="details">
+	<form role="form" id="details">		
 		<div class="dropdown">
-			<label>Select available IMSI values:</label> 
+			<label>Select available IMSI values:</label>  
 			<br>
-			<select id = "width100" class="form-control" id="model"></select>
+			<select class="form-control" id="imsi"></select>
 		</div>
 		<br>
 		
@@ -81,7 +81,7 @@ for a given affected IMSI, the Event ID and Cause Code for any / all failures af
 
 	<script>
 		//get a reference to the select element
-		var $select = $('#op1');
+		var $select = $('#imsi');
 		var $tbSelect = $('#imageTable');
 
 		//request the JSON data and parse into the select element
@@ -99,8 +99,8 @@ for a given affected IMSI, the Event ID and Cause Code for any / all failures af
 			}
 		});
 
-		$("#submitImsi").submit(function getImsiData() {
-			var checkImsi = document.getElementById("op1").value;
+		$("#details").submit(function getImsiData() {
+			var checkImsi = document.getElementById("imsi").value;
 
 			alert(checkImsi);
 
