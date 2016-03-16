@@ -67,11 +67,11 @@
 		function EvenID_CauseCodeByEMSI() {
 	        $("#msgbox").fadeOut(function(){
         		$(this).text(
-        				'Counts, for a given model of phone, the number of call failures it has had during a given time period.'
+        				'Display, for a given affected IMSI, the Event ID and Cause Code for any / all failures affecting that IMSI.'
         				).fadeIn();
     		});
 			frame = document.getElementById("frame");
-			frame.innerHTML = '';
+			frame.innerHTML = '<iframe src="userStoryFourDisplayUsingImsi.html" width="100%" height="1000"></iframe>';
 		}
 	</script>
 

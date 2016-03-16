@@ -76,7 +76,7 @@
         				).fadeIn();
     		});
 			frame = document.getElementById("frame");
-			frame.innerHTML = '';
+			frame.innerHTML = '<iframe src="userStoryNineCountEachImsi.html" width="100%" height="1000"></iframe>';
 		}
 	</script>
 

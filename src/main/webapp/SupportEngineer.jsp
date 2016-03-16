@@ -69,12 +69,11 @@
 		function callFailbyEMSI() {
 	        $("#msgbox").fadeOut(function(){
         		$(this).text(
-        				'Counts, for each IMSI, \n\
-        				the number of call failures and their total duration during a given time period'
+        				'List of all IMSIs with call failures during a given time period'
         				).fadeIn();
     		});
 			frame = document.getElementById("frame");
-			frame.innerHTML = '<iframe src="selectDatePeriods.html" width="100%" height="1000"></iframe>';
+			frame.innerHTML = '<iframe src="userStorySevenListImsiFailure.html" width="100%" height="1000"></iframe>';
 		}
 		function callFailbyTimePeriodUsingPhoneModel() {
 	        $("#msgbox").fadeOut(function(){
@@ -83,7 +82,7 @@
         				).fadeIn();
     		});
 			frame = document.getElementById("frame");
-			frame.innerHTML = '<iframe src="phoneModel.html" width="100%" height="1000"></iframe>';
+			frame.innerHTML = '<iframe src="userStoryEightSearchByPhoneModel.html" width="100%" height="1000"></iframe>';
 		}
 	</script>
 
