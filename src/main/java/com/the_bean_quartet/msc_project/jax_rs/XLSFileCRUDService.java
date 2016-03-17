@@ -31,7 +31,7 @@ import com.the_bean_quartet.msc_project.utilities.ProcessXLSFile;
 public class XLSFileCRUDService {
 	
 	//private static final String UPLOADED_FILE_PATH = "D:\\Project\\jboss-as-7.1.1.Final\\bin\\";
-	private static final String UPLOADED_FILE_PATH = "/home/tommy/software/wildfly-8.2.1.Final/bin/";
+//	private static final String UPLOADED_FILE_PATH = "home/tommy/software/wildfly-8.2.1.Final/bin/";
 
 	@Inject private BaseDataService baseDataService;
 	@Inject private ErrorDataService errorService;
@@ -119,7 +119,7 @@ public class XLSFileCRUDService {
 				String[] name = filename.split("=");
 				
 				String finalFileName = name[1].trim().replaceAll("\"", "");
-				return UPLOADED_FILE_PATH + finalFileName;
+				return finalFileName;
 			}
 		}
 		return "unknown";
