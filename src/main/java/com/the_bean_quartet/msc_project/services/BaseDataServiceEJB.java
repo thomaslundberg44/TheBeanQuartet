@@ -39,10 +39,6 @@ public class BaseDataServiceEJB implements BaseDataService {
 		return baseDAO.getAllModelData();
 	}
 
-//	public Collection<BaseData> getSelectedModelBaseData(String model) {
-//		return baseDAO.getAllModelSearchData(model);
-//	}
-	
 	public Collection<BaseData> getSelectedModelBaseData(String model,String startTime, String finishTime) {
 		return baseDAO.getAllModelSearchData(model, startTime, finishTime);
 	}
