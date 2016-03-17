@@ -2,9 +2,9 @@
 <%@page session="true"%>
 <%
 	if (session.getAttribute("type") == null) {
-	//	response.sendRedirect("index.html");
+		response.sendRedirect("index.html");
 	} else if (!session.getAttribute("type").equals("NetEng")) {
-	//	response.sendRedirect("index.html");
+		response.sendRedirect("index.html");
 	}
 %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -59,7 +59,7 @@
 		<br>
 		<div align="center" style="color: white;"id="msgbox"></div>
 		</div>
-		<div id="frame">
+		<div id="frame" align="center">
 			<h1 align="center">Welcome</h1>
 		</div>
 	</div>
@@ -76,7 +76,7 @@
         				).fadeIn();
     		});
 			frame = document.getElementById("frame");
-			frame.innerHTML = '<iframe src="userStoryNineCountEachImsi.html" width="100%" height="1000"></iframe>';
+			frame.innerHTML = '<iframe src="userStoryNineCountEachImsi.html" width="98%" height="100%"></iframe>';
 		}
 	</script>
 

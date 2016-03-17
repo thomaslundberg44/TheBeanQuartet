@@ -137,7 +137,27 @@
 #width100{
 	width: 100%;
 }
-
+#theme-table{
+	background-color: #FFFF;
+}
+th {
+    background-color: #000000;
+    color: white;
+} 
+#header1 {
+	background: #000000;
+	height: 100px;
+}
+#header2 {
+	background: #000000;
+	height: 50px;
+}
+html {
+  height: 100%;
+}
+body {
+  min-height: 100%;
+}
 
 
 

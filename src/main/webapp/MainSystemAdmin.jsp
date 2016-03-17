@@ -1,10 +1,10 @@
 <%@page session="true"%>
 <%
 	if (session.getAttribute("type")==null) {
-	//	response.sendRedirect("index.html");
+		response.sendRedirect("index.html");
 	}
 	else if(!session.getAttribute("type").equals("Admin")) {
-	//	response.sendRedirect("index.html");
+		response.sendRedirect("index.html");
 	}
 %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -21,6 +21,20 @@
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <script type="text/javascript" language="javascript"
 	src="media/js/jquery.js"></script>
+	
+	<style> 
+#panel, #flip {
+    padding: 5px;
+    text-align: center;
+    background-color: #e5eecc;
+    border: solid 1px #c3c3c3;
+}
+
+#panel {
+    padding: 50px;
+    display: none;
+}
+</style>
 
 </head>
 
@@ -39,7 +53,7 @@
 	<div class="row border">
 		<div class="col-md-6">
 			<ul class="nav nav-pills nav-justified">
-				<li><a onclick="viewTables()" href="#">View Tables</a></li>
+				<li><a id="hide-show" onclick="viewTables()" href="#">View Tables</a></li>
 				<li><a onclick="viewUsers()" href="#">View Users</a></li>
 				<li><a onclick="createUser()" href="#">Create User</a></li>
 			</ul>
@@ -55,33 +69,48 @@
 			</ul>
 		</div>
 	</div>
+	
+
 
 	<div id="wrapper">
 		<div id="header2">
 		<br>
 		<div align="center" style="color: white;"id="msgbox"></div>
 		</div>
-		<div id="frame">
-			<h1 align="center">Welcome</h1>
+		<div id="frame" align="center">
+		<h1 align="center">Welcome</h1>
 		</div>
 	</div>
-	<footer id="footer">
-		<div class="innertube">
-			<p>Footer...</p>
-		</div>
-	</footer>
+	
+
+<!--  
+<footer id="footer">
+	<div class="innertube">
+		<p>Footer...</p>
+	</div>
+</footer>
+-->
 
 
 	<script>
+	/*
+		$("#hide-show").click(function(){
+	        $("#tables-tab").Toggle();
+	        frame = document.getElementById("frame");
+			frame.innerHTML = '';
+		});
+	*/
+	
 		function viewTables() {
 	        $("#msgbox").fadeOut(function(){
         		$(this).text(
-        				'Navigate the tabs below to view all tabes in the database'
+        				'Navigate the tabs below to view all tables in the database'
         				).fadeIn();
     		});
 			frame = document.getElementById("frame");
-			frame.innerHTML = '<iframe src="tables/baseDataTable.html" width="100%" height="1000"></iframe>';
+			frame.innerHTML = '<iframe src="baseDataTable.html" width="98%" height="1000"></iframe>';
 		}
+	
 		function viewUsers() {
 	        $("#msgbox").fadeOut(function(){
         		$(this).text(

@@ -15,77 +15,62 @@
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/style1.css">
 
+
 </head>
 <title>User Story Four</title>
 </head>
-<body class='indexPage'>
-<!-- 
-<p>User story #4 - As Customer Service Rep. 
-I want to display, 
-for a given affected IMSI, the Event ID and Cause Code for any / all failures affecting that IMSI
-</p>
- -->
-
-	<br>
-	<br>
-
-	<div class="login-card">
-	<form role="form" id="details">		
-		<div class="dropdown">
-			<label>Select available IMSI values:</label>  
-			<br>
-			<select class="form-control" id="imsi"></select>
+<body>
+	<div class='indexPage'>
+		<div>
+			<a style="color: white;" id="hide-show">Hide/Show: Search box</a>
 		</div>
-		<br>
-		
-		<input type="submit" class="login login-submit" value="Submit">
-		</form>
-		<a onclick="Help()" href="#">help</a>
+		<div id="search">
+			<br> <br>
+			<div class="login-card">
+				<form role="form" id="details">
+					<div class="dropdown">
+						<label>Select available IMSI values:</label> <br> <select
+							class="form-control" id="imsi"></select>
+					</div>
+					<br> <input type="submit" class="login login-submit"
+						value="Submit">
+				</form>
+				<a onclick="Help()" href="#">help</a>
+			</div>
+			<br> <br>
+		</div>
 	</div>
 
-<!--  
 
-	<div class="login-card">
-	
-		<div class="dropdown">
-			<label>Select Phone Model:</label> 
-			<br>
-			<select class="form-control" id="model"></select>
-		</div>
-
-		<div class="dropdown">
-		<select class="form-control" id="model"></select>
-		</div>
-		
-			<input type="submit" name="imsiVal" class="imsi-submit"
-				onClick="GetSelectedItem(imageTable)" value="SUBMIT IMSI">
-		
-		<div id="tableContainer">
-			<table align="center" id="imageTable" border="3"></table>
-		</div>
-		<div id=response></div>
+	<div align="center">
+		<table id="myTable" class="table table-striped table-bordered" style="width: 100%">
+			<thead>
+				<tr>
+					<th>Event-Id</th>
+					<th>Cause-Code</th>
+					<th>Event-Cause-Description</th>
+					<th>Failure-Class</th>
+					<th>failureClass-Description</th>
+				</tr>
+			</thead>
+			<tbody id="TableCont">
+			</tbody>
+		</table>
 	</div>
-	
-	-->
-
-	<!--  
-<a
-	href="http://localhost:8080/TheBeanQuartet/rest/basedata/imsi"
-	class="list-group-item">Link to imsi data JSON
-</a> 
-<a
-	href="http://localhost:8080/TheBeanQuartet/rest/basedata/imsirelation"
-	class="list-group-item">Link to imsi related data JSON
-</a>
--->
 
 	<script>
+	
+		$("#hide-show").click(function(){
+	        $("#search").toggle();
+		});
+		
 		//get a reference to the select element
 		var $select = $('#imsi');
 		var $tbSelect = $('#imageTable');
 
 		//request the JSON data and parse into the select element
 		$.ajax({
+			async : false,
 			url : 'http://localhost:8080/TheBeanQuartet/rest/basedata/imsi',
 			dataType : 'JSON',
 			success : function(data) {
@@ -101,24 +86,25 @@ for a given affected IMSI, the Event ID and Cause Code for any / all failures af
 
 		$("#details").submit(function getImsiData() {
 			var checkImsi = document.getElementById("imsi").value;
-
-			alert(checkImsi);
-
 			$.ajax({
 				async : false,
 				type : 'POST',
 				url : 'rest/basedata/imsirelation',
 				data : JSON.stringify(checkImsi),
-				success : function islogin(data) {
-					var items = [];
-					$.each(data, function(key, val) {
-						items.push('<li id="' + key + '">' + val + '</li>');
-					});
-					$('<ul/>', {
-						'class' : 'interest-list',
-						html : items.join('')
-					}).appendTo('body');
-
+				success : function output(jdata) {
+					var htmltext=" ";
+					   $.each(jdata, function (index, value) {
+					       var TableRow = "<tr>";
+					       $.each(value, function (key, val) {
+					           TableRow += "<td>" + val[0] + "</td>";
+					           TableRow += "<td>" + val[1] + "</td>";
+					           TableRow += "<td>" + val[2] + "</td>";
+					           TableRow += "<td>" + val[3] + "</td>";
+					           TableRow += "<td>" + val[4] + "</td>"+"</tr>";
+					       });
+					      htmltext+=TableRow;
+					   });
+					 $("#TableCont").html(htmltext);
 				},
 				contentType : 'application/json'
 			});
