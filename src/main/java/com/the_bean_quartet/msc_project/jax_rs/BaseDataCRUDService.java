@@ -76,7 +76,7 @@ public class BaseDataCRUDService {
 		String modelValue2 = obj.getOption2().toString();
 		String modelValue3 = obj.getOption3().toString();
 		BaseDataList allDataModel = new BaseDataList();
-		allDataModel.setBaseDataModelCollection(service.getSelectedModelBaseData(modelValue1,modelValue2,modelValue3));
+		allDataModel.setBaseDataModelCollection(service.getSelectedModelBaseData(obj.getOption1().toString(),obj.getOption2().toString(),obj.getOption3().toString()));
       	return allDataModel;
         
 	}
