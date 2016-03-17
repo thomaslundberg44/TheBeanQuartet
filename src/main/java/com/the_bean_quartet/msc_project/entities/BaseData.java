@@ -25,9 +25,7 @@ public class BaseData implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "Base_Data_Id")
-	private int id;
-
+	@Column(name = "Base_Data_Id") private int id;
 	@Column(name = "Date_Time") private String date;
 	@Column(name = "Cell_Id") private Integer cellId;
 	@Column(name = "Duration") private Integer duration;
