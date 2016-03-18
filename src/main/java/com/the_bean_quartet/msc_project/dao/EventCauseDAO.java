@@ -9,6 +9,7 @@ import com.the_bean_quartet.msc_project.entities.EventCause;
 @Local
 public interface EventCauseDAO {
 	void addEvents(EventCause events);
+	void deleteAllEntries();
     Collection<EventCause> getAllEvents();
     void addListEvents(Collection<EventCause> eventList);
 }

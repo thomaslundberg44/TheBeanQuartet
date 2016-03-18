@@ -26,6 +26,11 @@ public class JPAUETypeClassDAO implements UETypeClassDAO {
 		if (!ueList.contains(UEType))
 			em.persist(UEType);
 	}
+	
+	public void deleteAllEntries() {
+		Query query = em.createQuery("DELETE from UETypeClass");
+		query.executeUpdate();
+	}
 
 	public Collection<UETypeClass> getAllUEType() {
 		Query query = em.createQuery("from UETypeClass");

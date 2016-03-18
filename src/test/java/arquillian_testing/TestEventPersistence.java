@@ -63,24 +63,7 @@ public class TestEventPersistence {
 	        .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
 	        .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
 	  }
-	
-	@Test @InSequence(0)
-	public void TestEmpty(){
-		List<BaseData> baseData = (List<BaseData>) baseDataDAO.getAllData();
-		List<FailureClass> failureClass = (List<FailureClass>) failureClassDAO.getAllFailures();
-		List<EventCause> eventCause = (List<EventCause>) eventDAO.getAllEvents();
-		List<UETypeClass>ueType = (List<UETypeClass>) ueTypeDAO.getAllUEType();
-		List<SysUser>sysUser = (List<SysUser>) sysUserDAO.getAllUsers();
-		List<MccData> mccData = (List<MccData>) mccMncDataDAO.getAllMccData();
-		
-		assertEquals(baseData.size(),0);
-		assertEquals(failureClass.size(),0);
-		assertEquals(eventCause.size(),0);
-		assertEquals(ueType.size(),0);
-		assertEquals(sysUser.size(),0);
-		assertEquals(mccData.size(),0);
-		
-	}
+
 
 	@Test @InSequence(1)
 	public void loadAllTablesData(){
@@ -104,7 +87,7 @@ public class TestEventPersistence {
 		
 	}
 	
-	
+
 	@Test @InSequence(2)
 	public void baseDataTableTesting() throws ParseException, IOException {
 		List<BaseData> baseData = (List<BaseData>) baseDataDAO.getAllData();
@@ -146,12 +129,11 @@ public class TestEventPersistence {
 	@Test @InSequence(6)
 	public void sysUserTableTesting(){
 		List<SysUser>sysUser = (List<SysUser>) sysUserDAO.getAllUsers();
-		assertEquals(sysUser.get(0).getId(),1);
 		assertEquals(sysUser.get(0).getUserName(),"navi");
 		assertEquals(sysUser.get(0).getUserPassword(),"123");
 		assertEquals(sysUser.get(0).getUserType(),"developer");
 	}
-	
+
 	@Test @InSequence(7)
 	public void mccMncTesting(){		
 		List<MccData> mccData = (List<MccData>) mccMncDataDAO.getAllMccData();
@@ -160,5 +142,7 @@ public class TestEventPersistence {
 		assertEquals(mccData.get(0).getCountry(),"Denmark");
 		assertEquals(mccData.get(0).getOperator(),"TDC-DK");
 	}
+	
+	
 	
 }

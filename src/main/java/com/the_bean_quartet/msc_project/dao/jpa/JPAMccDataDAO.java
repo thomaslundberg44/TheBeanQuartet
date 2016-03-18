@@ -27,6 +27,11 @@ public class JPAMccDataDAO implements MccMncDataDAO{
 		if (!data.contains(mccData))
 			em.persist(mccData);	
 	}
+	
+	public void deleteAllEntries() {
+		Query query = em.createQuery("DELETE from MccData");
+		query.executeUpdate();
+	}
 
 	public Collection<MccData> getAllMccData() {
 		
