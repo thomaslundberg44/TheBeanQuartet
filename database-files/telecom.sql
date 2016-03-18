@@ -233,7 +233,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'Thomas','1234','Admin'),(2,'Ivan','1234','NetEng'),(3,'Paul','1234','NetEng'),(4,'Mark','1234','SupEng'),(5,'Brian','1234','SupEng'),(6,'Suzzane','1234','CSR'),(7,'Ciaran','1234','CSR'),(8,'Navi','1234','NetEng'),(9,'Kang','1234','SupEng'),(10,'Marco','1234','Admin'),(11,'x','x','Admin'),(14,'Emer','x','Admin'),(15,'tommy','1234','Admin'),(17,'Fred','1234','Admin'),(18,'Bill','4321','Admin'),(19,'bob','1234','CSR');
+INSERT INTO `user` VALUES (1,'Thomas','1234','Admin'),(2,'Ivan','1234','NetEng'),(3,'Paul','1234','NetEng'),(4,'Mark','1234','SupEng'),(5,'Brian','1234','SupEng'),(6,'Suzzane','1234','CSR'),(7,'Ciaran','1234','CSR'),(8,'Navi','1234','CSR'),(9,'Kang','1234','SupEng'),(10,'Marco','1234','Admin'),(11,'x','x','Admin'),(14,'Emer','x','Admin'),(15,'tommy','1234','Admin'),(17,'Fred','1234','Admin'),(18,'Bill','4321','Admin'),(19,'bob','1234','CSR');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
