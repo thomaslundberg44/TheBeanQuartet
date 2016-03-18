@@ -7,20 +7,21 @@
 	<packaging>war</packaging>
 	<name>TheBeanQuartet</name>
 
-	<build>
+	
+	<!-- comment/uncomment to skip or include tests -->
+	<!-- <build>
 		<plugins>
 			<plugin>
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>2.19.1</version>
 				<configuration>
 
-					<!-- comment/uncomment to skip or include tests -->
 					<skipTests>true</skipTests>
 
 				</configuration>
 			</plugin>
 		</plugins>
-	</build>
+	</build> -->
 
 	<profiles>
 
