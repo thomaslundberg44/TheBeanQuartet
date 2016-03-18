@@ -25,6 +25,11 @@ public class JPAErrorDataDAO implements ErrorDataDAO {
 		if (!data.contains(eData))
 			em.persist(eData);
 	}
+	
+	public void deleteAllEntries() {
+		Query query = em.createQuery("DELETE from ErrorData");
+		query.executeUpdate();
+	}
 
 	public Collection<ErrorData> getAllData() {
 		Query query = em.createQuery("from ErrorData");

@@ -10,4 +10,5 @@ import com.the_bean_quartet.msc_project.entities.UserData;
 public interface UserDataDAO {
 	void addData(UserData uData);
     Collection<UserData> getAllUserData();
+    void deleteAllEntries();
 }

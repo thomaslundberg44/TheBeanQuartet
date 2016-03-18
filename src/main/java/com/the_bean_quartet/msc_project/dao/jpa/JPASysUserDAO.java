@@ -41,6 +41,12 @@ public class JPASysUserDAO implements SysUserDAO{
 		em.persist(user);
 		return "User Added Successfully";
 	}
+	
+	public void deleteAllEntries() {
+		Query query = em.createQuery("DELETE from SysUser");
+		query.executeUpdate();
+	}
+	
 	public boolean userExist(SysUser user){
 		Query query = em.createQuery("from SysUser");
 		List<SysUser> users = query.getResultList();

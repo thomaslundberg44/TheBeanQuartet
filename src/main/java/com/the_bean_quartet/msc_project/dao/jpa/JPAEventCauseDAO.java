@@ -25,6 +25,11 @@ public class JPAEventCauseDAO implements EventCauseDAO {
 		if (!events.contains(event))
 			em.persist(event);
 	}
+	
+	public void deleteAllEntries() {
+		Query query = em.createQuery("DELETE from EventCause");
+		query.executeUpdate();
+	}
 
 	public Collection<EventCause> getAllEvents() {
 		Query query = em.createQuery("from EventCause");
