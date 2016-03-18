@@ -6,8 +6,24 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<name>TheBeanQuartet</name>
-		
-<profiles>
+
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.19.1</version>
+				<configuration>
+
+					<!-- comment/uncomment to skip or include tests -->
+					<skipTests>true</skipTests>
+
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<profiles>
+
 		<profile>
 			<id>arquillian-jbossas-remote</id>
 			<dependencies>
@@ -49,10 +65,15 @@
 				<plugins>
 					<plugin>
 						<artifactId>maven-surefire-plugin</artifactId>
+						<version>2.19.1</version>
 						<configuration>
 							<systemPropertyVariables>
 								<arquillian.launch>jbossas-remote</arquillian.launch>
 							</systemPropertyVariables>
+
+							<!-- comment/uncomment to skip or include tests -->
+							<skipTests>true</skipTests>
+
 						</configuration>
 					</plugin>
 				</plugins>
@@ -61,9 +82,9 @@
 		</profile>
 
 	</profiles>
-		
-		
-		<dependencies>
+
+
+	<dependencies>
 		<!-- JEE Dependencies -->
 		<dependency>
 			<groupId>org.jboss.spec</groupId>
@@ -72,14 +93,14 @@
 			<type>pom</type>
 			<scope>provided</scope>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.jboss.arquillian.junit</groupId>
 			<artifactId>arquillian-junit-container</artifactId>
 			<version>1.0.3.Final</version>
 			<scope>test</scope>
 		</dependency>
-		
+
 
 		<dependency>
 			<groupId>junit</groupId>
@@ -110,9 +131,9 @@
 			<artifactId>poi</artifactId>
 			<version>3.8</version>
 		</dependency>
-		
-		
-		
+
+
+
 		<dependency>
 			<groupId>org.jboss.resteasy</groupId>
 			<artifactId>resteasy-jaxrs</artifactId>
@@ -131,25 +152,22 @@
 			<version>3.0.6.Final</version>
 			<scope>provided</scope>
 		</dependency>
-		<!-- <dependency>
-			<groupId>org.jboss.resteasy</groupId>
-			<artifactId>jaxrs-api</artifactId>
-			<scope>provided</scope>
-		</dependency> -->
+		<!-- <dependency> <groupId>org.jboss.resteasy</groupId> <artifactId>jaxrs-api</artifactId> 
+			<scope>provided</scope> </dependency> -->
 		<dependency>
 			<groupId>org.jboss.resteasy</groupId>
 			<artifactId>resteasy-multipart-provider</artifactId>
 			<version>3.0.6.Final</version>
 		</dependency>
-		
-		
+
+
 		<dependency>
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
 			<version>2.4</version>
 		</dependency>
-		
-		
+
+
 		<dependency>
 			<groupId>com.jayway.restassured</groupId>
 			<artifactId>rest-assured</artifactId>
