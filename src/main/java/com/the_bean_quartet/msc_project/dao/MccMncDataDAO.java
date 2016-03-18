@@ -9,6 +9,7 @@ import com.the_bean_quartet.msc_project.entities.MccData;
 public interface MccMncDataDAO {
 	
 	void addData(MccData uData);
+	void deleteAllEntries();
     Collection<MccData> getAllMccData();
     void addListData(Collection<MccData> dataList);
 }

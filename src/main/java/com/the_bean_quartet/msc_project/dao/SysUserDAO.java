@@ -12,4 +12,5 @@ public interface SysUserDAO {
     Collection<SysUser> getAllUsers();
 	String verify_user(SysUser user);
 	Collection<SysUser> getAllUsersBy(String viewBy);
+	void deleteAllEntries();
 }

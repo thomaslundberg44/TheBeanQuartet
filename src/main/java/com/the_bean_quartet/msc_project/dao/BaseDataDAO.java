@@ -9,6 +9,7 @@ import com.the_bean_quartet.msc_project.entities.BaseData;
 @Local
 public interface BaseDataDAO {
 	void addData(BaseData bData);
+	void deleteAllEntries();
 	void addCollectionData(Collection<BaseData> data);
     Collection<BaseData> getAllData();
     Collection<BaseData> getAllModelData();
@@ -26,8 +27,7 @@ public interface BaseDataDAO {
  	 * */
 	Collection<BaseData> getAllIMSIRelatedData(String imsiVal);
 	/*
-	 * As a Support Engineer I want to see a list of all IMSIs with 
-	 * call failures during a given time period
-	 * @return a collection of values of failure table 
+	 * used to remove the entries out of baseData
 	 * */
+	
 }

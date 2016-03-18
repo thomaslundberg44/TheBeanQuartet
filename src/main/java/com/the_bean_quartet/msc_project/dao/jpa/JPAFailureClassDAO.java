@@ -32,6 +32,11 @@ public class JPAFailureClassDAO implements FailureClassDAO {
 		return failureClasses;
 	}
 	
+	public void deleteAllEntries() {
+		Query query = em.createQuery("DELETE from FailureClass");
+		query.executeUpdate();
+	}
+	
 	public Collection<FailureClass> getFailuresBaseData() {
 		Query query = em.createQuery("from FailureClass LEFT JOIN BaseData");
 		List<FailureClass> failures = query.getResultList();

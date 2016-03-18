@@ -27,6 +27,15 @@ public class JPABaseDataDAO implements BaseDataDAO {
 		if (!data.contains(disc))
 			em.persist(disc);	
 	}
+	
+	public void deleteAllEntries() {
+		Query query = em.createQuery("DELETE from BaseData");
+		query.executeUpdate();
+	}
+	
+	public void clearAllEntries() {
+	}
+
 
 	public void addCollectionData(Collection<BaseData> data) {
 		Query query = em.createQuery("from BaseData");
@@ -135,6 +144,4 @@ public class JPABaseDataDAO implements BaseDataDAO {
 		return ListImsiWithFailureTimeRange;
 	
 	}
-
-
 }

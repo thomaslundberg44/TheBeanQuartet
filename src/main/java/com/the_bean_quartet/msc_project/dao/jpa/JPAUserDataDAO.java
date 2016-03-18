@@ -29,6 +29,11 @@ public class JPAUserDataDAO implements UserDataDAO{
 			em.persist(uData);	
 		
 	}
+	
+	public void deleteAllEntries() {
+		Query query = em.createQuery("DELETE from UserData");
+		query.executeUpdate();
+	}
 
 	public Collection<UserData> getAllUserData() {
 		Query query = em.createQuery("from UserData");
