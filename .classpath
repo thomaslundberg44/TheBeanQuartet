@@ -34,5 +34,15 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/Navdeep/.m2/repository/org/jboss/arquillian/extension/arquillian-persistence-api/1.0.0.Alpha6/arquillian-persistence-api-1.0.0.Alpha6.jar">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
+			<attribute name="maven.groupId" value="org.jboss.arquillian.extension"/>
+			<attribute name="maven.artifactId" value="arquillian-persistence-api"/>
+			<attribute name="maven.version" value="1.0.0.Alpha6"/>
+			<attribute name="maven.scope" value="test"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

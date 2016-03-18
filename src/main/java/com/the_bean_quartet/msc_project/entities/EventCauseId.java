@@ -14,7 +14,7 @@ public class EventCauseId implements Serializable {
 
 	@Column(name="Cause_Code")Integer causeCode;
 	@Column(name="Event_Id")Integer eventId;
-
+	
 	public Integer getCauseCode() {
 		return causeCode;
 	}
