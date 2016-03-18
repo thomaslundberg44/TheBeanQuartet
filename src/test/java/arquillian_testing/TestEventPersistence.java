@@ -146,7 +146,7 @@ public class TestEventPersistence {
 	@Test @InSequence(6)
 	public void sysUserTableTesting(){
 		List<SysUser>sysUser = (List<SysUser>) sysUserDAO.getAllUsers();
-		assertEquals(sysUser.get(0).getId(),2);
+		assertEquals(sysUser.get(0).getId(),1);
 		assertEquals(sysUser.get(0).getUserName(),"navi");
 		assertEquals(sysUser.get(0).getUserPassword(),"123");
 		assertEquals(sysUser.get(0).getUserType(),"developer");
