@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>User Experience Data</title>
+    <title>Event Data</title>
     <!-- link datatables css -->
     <link rel="stylesheet" type="text/css" href="../media/css/jquery.dataTables.css">
     <link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap.min.css">
@@ -17,33 +17,39 @@
 		<li><a href="failureEventData.html"><span 
 				class="glyphicon glyphicon-screenshot"></span>Failure Data Table</a></li>
 
-		<li class="active"><a href="#"><span class="glyphicon glyphicon-flag"></span>
+		<li><a href="ueData.html"><span class="glyphicon glyphicon-flag"></span>
 				UE Data Table</a></li>
 
 		<li><a href="mccmncData.html"><span class="glyphicon glyphicon-signal"></span>
 				MCC - MNC Data</a></li>
-		
-		<li><a href="errorData.html"><span
+				
+		<li class="active"><a href="#"><span
 				class="glyphicon glyphicon-tasks"></span>Error Data Table</a></li>
 	</ul>
 	
-	<h4 align="center">User Experience Events</h4>
-	
+	<h4 align="center">Error Data</h4>
+
     <table id="empTable" class="display" width="100%" cellspacing="0">
         <thead>
             <tr>
+            	<th>Id</th>
                 <th>Date</th>
                 <th>IMSI</th>
-                <th>Marketing Name</th>
-                <th>Manufacturer</th>
+                <th>Event Id</th>
+                <th>Cause Code</th>
+                <th>Mobile Country Code</th>
+                <th>Mobile Network Code</th>
             </tr>
         </thead>
         <tfoot>
             <tr>
+                <th>Id</th>
                 <th>Date</th>
                 <th>IMSI</th>
-                <th>Marketing Name</th>
-                <th>Manufacturer</th>
+                <th>Event Id</th>
+                <th>Cause Code</th>
+                <th>Mobile Country Code</th>
+                <th>Mobile Network Code</th>
             </tr>
         </tfoot>
     </table>
@@ -56,12 +62,15 @@
     <script type="text/javascript">
     $(document).ready(function() {
         $('#empTable').dataTable({
-            "ajax": { "url":"../rest/basedata", "dataSrc":"baseDataCollection"} ,
+            "ajax": { "url":"../rest/errordata", "dataSrc":"errorDataCollection"} ,
             "columns": [
+				{"data": "id"},
                 {"data": "date"},
                 {"data": "imsi"},
-                {"data": "ueTable.marketingName"},
-                {"data": "ueTable.manufacturer"}
+                {"data": "eventId"},
+                {"data": "causeCode"},
+                {"data": "market"},
+                {"data": "operator"}
             ]
         });   
     });
