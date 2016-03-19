@@ -114,11 +114,11 @@
 		function viewUsers() {
 	        $("#msgbox").fadeOut(function(){
         		$(this).text(
-        				'Below shows the system users in JSON format.'
+        				'Below shows the system users table.'
         				).fadeIn();
     		});
 			frame = document.getElementById("frame");
-			frame.innerHTML = '<iframe src="http://localhost:8080/TheBeanQuartet/rest/user" width="100%" height="1000"></iframe>';
+			frame.innerHTML = '<iframe src="UserTable.html" width="100%" height="1000"></iframe>';
 		}
 		function createUser() {
 	        $("#msgbox").fadeOut(function(){
