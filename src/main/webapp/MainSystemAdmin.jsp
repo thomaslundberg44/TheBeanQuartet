@@ -118,7 +118,7 @@
         				).fadeIn();
     		});
 			frame = document.getElementById("frame");
-			frame.innerHTML = '<iframe src="UserTable.html" width="100%" height="1000"></iframe>';
+			frame.innerHTML = '<iframe src="viewUser.html" width="100%" height="1000"></iframe>';
 		}
 		function createUser() {
 	        $("#msgbox").fadeOut(function(){
