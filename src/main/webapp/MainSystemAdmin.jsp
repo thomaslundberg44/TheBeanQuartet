@@ -108,7 +108,7 @@
         				).fadeIn();
     		});
 			frame = document.getElementById("frame");
-			frame.innerHTML = '<iframe src="baseDataTable.html" width="98%" height="1000"></iframe>';
+			frame.innerHTML = '<iframe src="dataTables/eventDataTable.html" width="98%" height="1000"></iframe>';
 		}
 	
 		function viewUsers() {
