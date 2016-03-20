@@ -57,6 +57,7 @@
 				<li><a onclick="viewUsers()" href="#">View Users</a></li>
 				<li><a onclick="editUser()" href="#">Edit User</a></li>
 				<li><a onclick="createUser()" href="#">Create User</a></li>
+				<li><a onclick="uploadFile()" href="#">Upload File</a></li>
 			</ul>
 		</div>
 
@@ -138,6 +139,16 @@
     		});
 			frame = document.getElementById("frame");
 			frame.innerHTML = '<iframe src="edit_user.html" width="100%" height="1000"></iframe>';
+		}
+		
+		function uploadFile() {
+			$("#msgbox").fadeOut(function() {
+				$(this).text(
+					'Browse files from your local system and press the upload button to submit'	
+				).fadeIn();
+			});
+			frame = document.getElementById("frame");
+			frame.innerHTML = "<iframe src='uploadXLS.html' width='100%' height='1000'></iframe>";
 		}
 	</script>
 
