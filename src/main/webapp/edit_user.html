@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Edit User</title>
+
+<script type="text/javascript" src="media/js/jquery.js"></script>
+<script type="text/javascript" src="media/js/bootstrap.min.js"></script>
+<link type="text/css" href="bootstrap/css/bootstrap.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/style1.css">
+</head>
+<body class='indexPage'>
+
+	<br>
+	<br>
+	<br>
+	
+	
+	<div class="login-card">
+			<div class="dropdown">
+				<label>Select User id:</label> 
+				<br> 
+				<select class="form-control" id="userId">
+					<option></option>
+				</select>
+			</div>
+			<br>
+			<div class="dropdown">
+				<label>Select Option:</label> 
+				<br> 
+				
+				<select id="userOption" class="form-control" onchange="changeOption(this);">
+					<option value="name">Change user name</option>
+					<option value="password">Change user password</option>
+					<option value="type">Change user type</option>
+					<option value="delete">Delete user</option>
+				</select>
+			</div>
+	</div>
+	
+
+	<div class="login-card">
+		<form role="form" id="userDetails">
+
+			<div id="Uname" class="form-group">
+				<label>New User Name:</label> <br> 
+				<input type="text" class="form-control bfh-text" placeholder="Username" id="userName">
+			</div>
+			<div style="display: none;" id="Pwd">
+				<div class="form-group">
+					<label>New User Password:</label> <br> <input type="password"
+						class="form-control bfh-text" placeholder="User Password" id="userPassword">
+				</div>
+			</div>
+
+			<div style="display: none;" id="Utype" class="dropdown">
+				<label>New User Type:</label> 
+				<br> 
+				<select class="form-control" id="userSelect">
+					<option value="Admin">Administrator</option>
+					<option value="SupEng">Support Engineer</option>
+					<option value="NetEng">Network Management Engineer</option>
+					<option value="CSR">Customer Service Representative</option>
+				</select>
+			</div>
+			<br> 
+			<input type="submit" class="login login-submit"
+				value="Update User">
+		</form>
+		<br>
+		<!--  <a onclick="Help()" href="#">help</a>  -->
+	</div>
+
+
+
+
+	<script>
+	
+	var optionAnswer="name";
+	function changeOption(opt){
+		if(opt.value == "delete"){
+	        $("#Uname").hide("slow");
+	        $("#Pwd").hide("slow");
+	        $("#Utype").hide("slow");
+	        optionAnswer = "delete";
+		}
+		if(opt.value == "name"){
+	        $("#Uname").show("slow");
+	        $("#Pwd").hide("slow");
+	        $("#Utype").hide("slow");
+	        optionAnswer = "name";
+		}
+		if(opt.value == "password"){
+	        $("#Uname").hide("slow");
+	        $("#Pwd").show("slow");
+	        $("#Utype").hide("slow");
+	        optionAnswer = "password";
+		}
+		if(opt.value == "type"){
+	        $("#Uname").hide("slow");
+	        $("#Pwd").hide("slow");
+	        $("#Utype").show("slow");
+	        optionAnswer = "type";
+		}
+	}
+	function obj(option1, option2, option3, option4) {
+		this.option1 = option1;
+		this.option2 = option2;
+		this.option3 = option3;
+		this.option4 = option4;
+	}
+	var $select = $('#userId');
+	
+	$.ajax({
+		async: false,
+		url : 'http://localhost:8080/TheBeanQuartet/rest/user',
+		dataType : 'JSON',
+		success : function(data) {
+			$select.html('');
+			$.each(data.sysUserCollection, function (index, value) {
+		    	   $select.append('<option>' + value.id + '</option>');
+		   });
+		}
+	});
+	
+	$("#userDetails").submit(
+			function updateUser() {
+				
+				if(optionAnswer == "name"){
+					optionAnswer = document.getElementById("userName").value;
+				}
+				if(optionAnswer == "password"){
+					optionAnswer = document.getElementById("userPassword").value;
+				}
+				if(optionAnswer == "type"){
+					optionAnswer = document.getElementById("userSelect").value;
+				}
+				
+				
+				var obj1 = new obj(
+						document.getElementById("userId").value, 
+						document.getElementById("userOption").value, 
+						optionAnswer,
+						""
+						);
+					$.ajax({
+						async: false,
+						type : 'POST',
+						url : 'rest/user/update',
+						contentType : 'application/json',
+						data:JSON.stringify(obj1),
+						success : function message(data) {
+							alert(JSON.stringify(data));
+						},
+					});
+	});
+	
+	var help="";
+			
+	function Help(){
+		alert(help);
+	}
+	</script>
+</body>
+</html>

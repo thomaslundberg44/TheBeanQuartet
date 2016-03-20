@@ -9,6 +9,7 @@ import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.enterprise.inject.Default;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
@@ -21,16 +22,15 @@ import com.the_bean_quartet.msc_project.entities.SysUser;
 
 
 
-@Default
 @Stateless
 @Local
-@TransactionAttribute (TransactionAttributeType.REQUIRED)
 public class JPASysUserDAO implements SysUserDAO{
 	
 	
 	
 	@PersistenceContext
 	private EntityManager em;
+	private EntityTransaction tx;
 	
 
 	
@@ -83,6 +83,35 @@ public class JPASysUserDAO implements SysUserDAO{
 		query.setParameter("UserType", UserType);
 		List<SysUser> users = query.getResultList(); 
 		return users;
+	}
+
+
+	public String changeUsername(String User_Id, String UserName) {
+		int id = Integer.parseInt(User_Id);
+		SysUser user = em.find(SysUser.class, id);
+		user.setUserName(UserName);
+		em.merge(user);
+		return "Username has been modified!";
+	}
+	public String changeUserPassword(String User_Id, String password) {
+		int id = Integer.parseInt(User_Id);
+		SysUser user = em.find(SysUser.class, id);
+		user.setUserPassword(password);
+		em.merge(user);
+		return "User Password has been modified!";
+	}
+	public String changeUserType(String User_Id, String type) {
+		int id = Integer.parseInt(User_Id);
+		SysUser user = em.find(SysUser.class, id);
+		user.setUserType(type);
+		em.merge(user);
+		return "User Type has been modified!";
+	}
+	public String deleteUser(String User_Id) {
+		int id = Integer.parseInt(User_Id);
+		SysUser user = em.find(SysUser.class, id);
+		em.remove(user);
+		return "User has been deleted!";
 	}
 
 
