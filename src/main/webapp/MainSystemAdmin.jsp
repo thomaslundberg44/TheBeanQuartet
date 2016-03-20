@@ -134,7 +134,7 @@
 		function editUser() {
 	        $("#msgbox").fadeOut(function(){
         		$(this).text(
-        				'To Delete a user selelct their id, and submit desired option'
+        				'Edit a user by selecting their user id. Press "Update User" to submit changes'
         				).fadeIn();
     		});
 			frame = document.getElementById("frame");
