@@ -55,6 +55,7 @@
 			<ul class="nav nav-pills nav-justified">
 				<li><a id="hide-show" onclick="viewTables()" href="#">View Tables</a></li>
 				<li><a onclick="viewUsers()" href="#">View Users</a></li>
+				<li><a onclick="editUser()" href="#">Edit User</a></li>
 				<li><a onclick="createUser()" href="#">Create User</a></li>
 			</ul>
 		</div>
@@ -114,7 +115,7 @@
 		function viewUsers() {
 	        $("#msgbox").fadeOut(function(){
         		$(this).text(
-        				'Below shows the system users table.'
+        				'Below shows the system users.'
         				).fadeIn();
     		});
 			frame = document.getElementById("frame");
@@ -128,6 +129,15 @@
     		});
 			frame = document.getElementById("frame");
 			frame.innerHTML = '<iframe src="createUser.html" width="100%" height="1000"></iframe>';
+		}
+		function editUser() {
+	        $("#msgbox").fadeOut(function(){
+        		$(this).text(
+        				'To Delete a user selelct their id, and submit desired option'
+        				).fadeIn();
+    		});
+			frame = document.getElementById("frame");
+			frame.innerHTML = '<iframe src="edit_user.html" width="100%" height="1000"></iframe>';
 		}
 	</script>
 
