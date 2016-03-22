@@ -43,6 +43,23 @@ public class BaseDataConsistencyCheck {
 		if(!eventIdCauseCodeValid(data.getEventCause().getEventId(), data.getEventCause().getCauseCode()))
 			return false;
 		
+		return checkForNulls();
+	}
+	
+	/**
+	 * check if any fields have not been set
+	 * @return false if any fields contain null
+	 */
+	private boolean checkForNulls() {
+		if(data.getFailureClass().getFailureClass() == null)
+			return false;
+		if(data.getUeTable().getUeType() == null)
+			return false;
+		if(data.getEventCause().getCauseCode() == null)
+			return false;
+		if(data.getMccData().getId().getMcc() == null)
+			return false;
+		
 		return true;
 	}
 
