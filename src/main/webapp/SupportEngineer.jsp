@@ -38,7 +38,7 @@
 		<div class="col-md-6">
 			<ul class="nav nav-pills nav-justified">
 				<li><a onclick="callFailbyEMSI()" href="#">Call Failures by
-						EMSI</a></li>
+						IMSI</a></li>
 				<li><a onclick="callFailbyTimePeriodUsingPhoneModel()" href="#">Call Failures by
 						time</a></li>
 			</ul>

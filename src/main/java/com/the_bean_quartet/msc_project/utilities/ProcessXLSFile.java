@@ -23,11 +23,17 @@ import com.the_bean_quartet.msc_project.entities.MccData;
 import com.the_bean_quartet.msc_project.entities.MccDataId;
 import com.the_bean_quartet.msc_project.entities.UETypeClass;
 import com.the_bean_quartet.msc_project.services.BaseDataService;
+import com.the_bean_quartet.msc_project.services.BaseDataServiceEJB;
 import com.the_bean_quartet.msc_project.services.ErrorDataService;
+import com.the_bean_quartet.msc_project.services.ErrorDataServiceEJB;
 import com.the_bean_quartet.msc_project.services.EventCauseService;
+import com.the_bean_quartet.msc_project.services.EventCauseServiceEJB;
 import com.the_bean_quartet.msc_project.services.FailureDataService;
+import com.the_bean_quartet.msc_project.services.FailureDataServiceEJB;
 import com.the_bean_quartet.msc_project.services.MccDataService;
+import com.the_bean_quartet.msc_project.services.MccDataServiceEJB;
 import com.the_bean_quartet.msc_project.services.UETypeService;
+import com.the_bean_quartet.msc_project.services.UETypeServiceJEJB;
 
 public class ProcessXLSFile {
 	
@@ -55,6 +61,9 @@ public class ProcessXLSFile {
 		this.ueDataService = ueDataService;
 		this.mccDataService = mccDataService;
 	}
+	
+	// dummy default constructor for testing
+	public ProcessXLSFile() { }
 
 	/**
 	 * 
@@ -89,7 +98,8 @@ public class ProcessXLSFile {
 			if(row.getRowNum() > 0) // first row contains headings/null values
 				processEventCauseDataCells(row);
 		}
-		eventCauseService.addListEventCauseDataset(eventList);
+		if(eventCauseService != null)
+			eventCauseService.addListEventCauseDataset(eventList);
 	}
 
 	private void processEventCauseDataCells(Row row) {
@@ -108,7 +118,8 @@ public class ProcessXLSFile {
 			if(row.getRowNum() > 0) // first row contains headings/null values
 				processFailureDataCells(row);
 		}
-		failureClassService.addListFailureDataset(failureClassList);
+		if(failureClassService != null)
+			failureClassService.addListFailureDataset(failureClassList);
 	}
 	
 	private void processFailureDataCells(Row row) {
@@ -125,7 +136,8 @@ public class ProcessXLSFile {
 			if(row.getRowNum() > 0) // first row contains headings/null values
 				processUETypeCells(row);
 		}
-		ueDataService.addListUEDataset(ueList);
+		if(ueDataService != null)
+			ueDataService.addListUEDataset(ueList);
 	}
 
 	private void processUETypeCells(Row row) {
@@ -155,7 +167,8 @@ public class ProcessXLSFile {
 			if(row.getRowNum() > 0) // first row contains headings/null values
 				processMccDataCells(row);
 		}
-		mccDataService.addListToDataset(mccList);
+		if(mccDataService != null)
+			mccDataService.addListToDataset(mccList);
 	}
 
 	private void processMccDataCells(Row row) {
@@ -176,8 +189,10 @@ public class ProcessXLSFile {
 			if(row.getRowNum() > 0) // first row contains headings/null values
 				processBaseDataCells(row);
 		}
-		baseDataService.addCollectionToDataset(baseList);
-		errorService.addListErrorData(errorList);
+		if(baseDataService != null)
+			baseDataService.addCollectionToDataset(baseList);
+		if(errorService != null)
+			errorService.addListErrorData(errorList);
 	}
 	
 	private void processBaseDataCells(Row row) {

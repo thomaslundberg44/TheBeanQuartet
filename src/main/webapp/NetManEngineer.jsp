@@ -39,7 +39,7 @@
 		<div class="col-md-6">
 			<ul class="nav nav-pills nav-justified">
 				<li><a onclick="callFailAndDurationByEMSI()" href="#">Call
-						Failures and Call Duration by EMSI</a></li>
+						Failures and Call Duration by IMSI</a></li>
 			</ul>
 		</div>
 
