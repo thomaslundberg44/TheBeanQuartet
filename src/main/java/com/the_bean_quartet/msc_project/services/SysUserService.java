@@ -17,4 +17,12 @@ public interface SysUserService {
 
 	public Collection<SysUser> getUsersBy(String viewBy);
 
+	public String changeUsername(String id, String variable);
+
+	public String deleteUser(String id);
+
+	public String changeUserType(String id, String variable);
+
+	public String changeUserPassword(String id, String variable);
+
 }

@@ -13,4 +13,8 @@ public interface SysUserDAO {
 	String verify_user(SysUser user);
 	Collection<SysUser> getAllUsersBy(String viewBy);
 	void deleteAllEntries();
+	String changeUsername(String id, String variable);
+	String deleteUser(String id);
+	String changeUserType(String id, String variable);
+	String changeUserPassword(String id, String variable);
 }

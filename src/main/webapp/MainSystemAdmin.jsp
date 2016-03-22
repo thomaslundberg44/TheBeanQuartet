@@ -55,7 +55,9 @@
 			<ul class="nav nav-pills nav-justified">
 				<li><a id="hide-show" onclick="viewTables()" href="#">View Tables</a></li>
 				<li><a onclick="viewUsers()" href="#">View Users</a></li>
+				<li><a onclick="editUser()" href="#">Edit User</a></li>
 				<li><a onclick="createUser()" href="#">Create User</a></li>
+				<li><a onclick="uploadFile()" href="#">Upload File</a></li>
 			</ul>
 		</div>
 
@@ -108,17 +110,25 @@
         				).fadeIn();
     		});
 			frame = document.getElementById("frame");
-			frame.innerHTML = '<iframe src="baseDataTable.html" width="98%" height="1000"></iframe>';
+			frame.innerHTML = '<iframe src="dataTables/eventDataTable.html" width="100%" height="1000"></iframe>';
 		}
 	
 		function viewUsers() {
 	        $("#msgbox").fadeOut(function(){
         		$(this).text(
+<<<<<<< HEAD
         				'Below shows the system users'
         				).fadeIn();
     		});
 			frame = document.getElementById("frame");
 			frame.innerHTML = '<iframe src="viewUser.html" width="98%" height="1000"></iframe>';
+=======
+        				'Below shows the system users.'
+        				).fadeIn();
+    		});
+			frame = document.getElementById("frame");
+			frame.innerHTML = '<iframe src="viewUser.html" width="100%" height="1000"></iframe>';
+>>>>>>> d396130872619da9aee706674259504de07d1466
 		}
 		function createUser() {
 	        $("#msgbox").fadeOut(function(){
@@ -128,6 +138,25 @@
     		});
 			frame = document.getElementById("frame");
 			frame.innerHTML = '<iframe src="createUser.html" width="100%" height="1000"></iframe>';
+		}
+		function editUser() {
+	        $("#msgbox").fadeOut(function(){
+        		$(this).text(
+        				'Edit a user by selecting their user id. Press "Update User" to submit changes'
+        				).fadeIn();
+    		});
+			frame = document.getElementById("frame");
+			frame.innerHTML = '<iframe src="edit_user.html" width="100%" height="1000"></iframe>';
+		}
+		
+		function uploadFile() {
+			$("#msgbox").fadeOut(function() {
+				$(this).text(
+					'Browse files from your local system and press the upload button to submit'	
+				).fadeIn();
+			});
+			frame = document.getElementById("frame");
+			frame.innerHTML = "<iframe src='uploadXLS.html' width='100%' height='1000'></iframe>";
 		}
 	</script>
 

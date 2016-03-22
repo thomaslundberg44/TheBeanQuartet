@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Experience Data</title>
+    <!-- link datatables css -->
+    <link rel="stylesheet" type="text/css" href="../media/css/jquery.dataTables.css">
+    <link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap.min.css">
+</head>
+<body>
+
+	<!-- Navigation links to other tables -->
+	<ul class="nav nav-pills nav-justified">
+	
+		<li><a href="eventDataTable.html"><span
+				class="glyphicon glyphicon-tasks"></span>Event Data Table</a></li>
+		
+		<li><a href="failureEventData.html"><span 
+				class="glyphicon glyphicon-screenshot"></span>Failure Data Table</a></li>
+
+		<li class="active"><a href="#"><span class="glyphicon glyphicon-flag"></span>
+				UE Data Table</a></li>
+
+		<li><a href="mccmncData.html"><span class="glyphicon glyphicon-signal"></span>
+				MCC - MNC Data</a></li>
+		
+		<li><a href="errorData.html"><span
+				class="glyphicon glyphicon-tasks"></span>Error Data Table</a></li>
+	</ul>
+	
+	<h4 align="center">User Experience Events</h4>
+	
+    <table id="empTable" class="display" width="100%" cellspacing="0">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>IMSI</th>
+                <th>Marketing Name</th>
+                <th>Manufacturer</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>Date</th>
+                <th>IMSI</th>
+                <th>Marketing Name</th>
+                <th>Manufacturer</th>
+            </tr>
+        </tfoot>
+    </table>
+    
+    <!-- load jquery -->
+    <script type="text/javascript" src="../media/js/jquery.js"></script>
+    <!-- load datatables js library -->
+    <script type="text/javascript" src="../media/js/jquery.dataTables.js"></script>
+    
+    <script type="text/javascript">
+    $(document).ready(function() {
+        $('#empTable').dataTable({
+            "ajax": { "url":"../rest/basedata", "dataSrc":"baseDataCollection"} ,
+            "columns": [
+                {"data": "date"},
+                {"data": "imsi"},
+                {"data": "ueTable.marketingName"},
+                {"data": "ueTable.manufacturer"}
+            ]
+        });   
+    });
+    </script>
+</body>
+</html>

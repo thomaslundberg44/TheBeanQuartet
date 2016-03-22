@@ -17,6 +17,7 @@ import javax.ws.rs.core.MediaType;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.the_bean_quartet.msc_project.entities.Options;
 import com.the_bean_quartet.msc_project.entities.SysUser;
 import com.the_bean_quartet.msc_project.entities.SysUserList;
 import com.the_bean_quartet.msc_project.services.SysUserService;
@@ -37,6 +38,43 @@ public class SysUserCRUDService {
 		users.setSysUserCollection(service.getUsers());
         return users;
     }
+	
+	@POST
+	@Produces(MediaType.TEXT_PLAIN)
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Path("/update")
+	public String update(Options option){
+
+		String id = option.getOption1();
+		String task = option.getOption2();
+		String variable = option.getOption3();
+		
+		String rule = "";
+		
+		if(task.equals("name")){
+			rule=verifyUsernameRule(variable);
+			if(!rule.equals("valid")){
+				return rule;
+			}
+			return service.changeUsername(id, variable);
+		}
+		if(task.equals("password")){
+			rule=verifyPasswordRule(variable);
+			if(!rule.equals("valid")){
+				return rule;
+			}
+			return service.changeUserPassword(id, variable);
+		}
+		if(task.equals("type")){
+			return service.changeUserType(id, variable);
+		}
+		if(task.equals("delete")){
+			return service.deleteUser(id);
+		}
+		
+		
+        return "updated";
+	}
 	
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)

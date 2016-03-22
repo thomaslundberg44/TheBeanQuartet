@@ -38,4 +38,20 @@ public class SysUserServiceEJB implements SysUserService{
 	public Collection<SysUser> getUsersBy(String viewBy) {
 		return dao.getAllUsersBy(viewBy);
 	}
+	public String changeUsername(String id, String variable) {
+		// TODO Auto-generated method stub
+		return dao.changeUsername(id, variable);
+	}
+	public String deleteUser(String id) {
+		// TODO Auto-generated method stub
+		return dao.deleteUser(id);
+	}
+	public String changeUserType(String id, String variable) {
+		// TODO Auto-generated method stub
+		return dao.changeUserType(id, variable);
+	}
+	public String changeUserPassword(String id, String variable) {
+		// TODO Auto-generated method stub
+		return dao.changeUserPassword(id, variable) ;
+	}
 }

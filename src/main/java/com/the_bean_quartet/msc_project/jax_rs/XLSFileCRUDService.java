@@ -70,7 +70,7 @@ public class XLSFileCRUDService {
 				
 				String redirectScript = "<script type='text/javascript'>"
 						+ "window.alert('File upload complete. Time taken: "+duration+" seconds');"
-						+ "window.location.assign('http://localhost:8080/TheBeanQuartet/uploadSuccess.html');"
+						+ "window.location.assign('http://localhost:8080/TheBeanQuartet/MainSystemAdmin.jsp');"
 						+ "</script>";
 				
 				ResponseBuilder response = Response.ok(redirectScript);
