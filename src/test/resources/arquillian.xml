@@ -8,4 +8,7 @@
             <property name="jbossHome">c:/jboss-as-7.1.1.Final</property>
         </configuration>
     </container>
+    <extension qualifier="jacoco">
+    	<property name="includes">com.the_bean_quartet.msc_project.*</property>
+    </extension>
 </arquillian>

@@ -40,6 +40,10 @@
 			<ul class="nav nav-pills nav-justified">
 				<li><a onclick="callFailAndDurationByEMSI()" href="#">Call
 						Failures and Call Duration by IMSI</a></li>
+				<li><a onclick="TopTenImsiWithCallFailure()" href="#">Top 10
+						IMSI By Call Failure</a></li>	
+				<li><a onclick="UniqueDetailAboutModelOfPhone()" href="#">Unique
+						Failure, EventId & Cause Code For Given Model</a></li>
 			</ul>
 		</div>
 
@@ -78,6 +82,27 @@
 			frame = document.getElementById("frame");
 			frame.innerHTML = '<iframe src="userStoryNineCountEachImsi.html" width="98%" height="100%"></iframe>';
 		}
+		
+		function TopTenImsiWithCallFailure() {
+	        $("#msgbox").fadeOut(function(){
+        		$(this).text(
+        				'Show Top 10 IMSI, that had call failures during a time period.'
+        				).fadeIn();
+    		});
+			frame = document.getElementById("frame");
+			frame.innerHTML = '<iframe src="UserStoryTwelve.html" width="98%" height="100%"></iframe>';
+		}
+		
+		function UniqueDetailAboutModelOfPhone(){
+	        $("#msgbox").fadeOut(function(){
+        		$(this).text(
+        				'Display For A Given Model Unique Failure, EventId and Cause Code Combination And Number Of Occurences.'
+        				).fadeIn();
+    		});
+			frame = document.getElementById("frame");
+			frame.innerHTML = '<iframe src="UserStoryTen.html" width="98%" height="100%"></iframe>';
+		}
+		
 	</script>
 
 </body>

@@ -8,6 +8,7 @@ import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
 
+import javax.ejb.EJB;
 import javax.inject.Inject;
 
 import org.jboss.arquillian.container.test.api.Deployment;
@@ -23,6 +24,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import com.the_bean_quartet.msc_project.entities.*;
+import com.the_bean_quartet.msc_project.services.BaseDataService;
 import com.the_bean_quartet.msc_project.services.BaseDataServiceEJB;
 import com.the_bean_quartet.msc_project.dao.*;
 import com.the_bean_quartet.msc_project.dao.jpa.*;
@@ -31,6 +33,9 @@ import com.the_bean_quartet.msc_project.dao.jpa.*;
 
 @RunWith(Arquillian.class)
 public class TestEventPersistence {
+	
+	@EJB
+	BaseDataService baseDataService;
 
 	@Inject
 	EventCauseDAO eventDAO;
@@ -67,8 +72,6 @@ public class TestEventPersistence {
 
 	@Test @InSequence(1)
 	public void loadAllTablesData(){
-		//BaseData baseData = new BaseData("11/01/2013 17:15",new FailureClass(1,"1"),new MccData(238,1,"Denmark","TDC-DK"),3,4,"5",6L,7L,8L,2L,new EventCause(1,4097,"RRC CONN SETUP-SUCCESS"),new UETypeClass(100100,"G410","Mitsubishi","GSM 1800", "GSM 900","G410","null","null","null"));
-		//baseDataDAO.addData(baseData);
 
 		UETypeClass ueType = new UETypeClass(100100,"G410","Mitsubishi","GSM 1800", "GSM 900","G410","null","null","null");
 		ueTypeDAO.addUE(ueType);
@@ -141,8 +144,5 @@ public class TestEventPersistence {
 		assertEquals(mccData.get(0).getMnc(),1);
 		assertEquals(mccData.get(0).getCountry(),"Denmark");
 		assertEquals(mccData.get(0).getOperator(),"TDC-DK");
-	}
-	
-	
-	
+	}	
 }

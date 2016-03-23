@@ -28,4 +28,8 @@ public interface BaseDataService {
 	public Collection<BaseData> getIMSIData();
 	
 	public Collection<BaseData> getSelectedBaseData(String imsiValue);
+	
+	public Collection<BaseData> getTop10ImsiBaseData(String startTime, String finishTime);
+	
+	public Collection<BaseData> getImsiFailureCount(String imsiValue,String startTime, String finishTime);
 }

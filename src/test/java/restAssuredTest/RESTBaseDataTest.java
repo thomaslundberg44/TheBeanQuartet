@@ -73,7 +73,7 @@ public class RESTBaseDataTest {
         	queryParam( " ", " ").
         when().
         get("http://localhost:8080/TheBeanQuartet/rest/basedata/modelType").
-	    then().
+        then().
 	    statusCode(200).
 	    contentType(ContentType.JSON).
 	    body("baseDataCollection.", hasItems("VEA3"));

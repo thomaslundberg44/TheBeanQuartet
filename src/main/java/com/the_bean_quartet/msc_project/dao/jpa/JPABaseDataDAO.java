@@ -125,11 +125,10 @@ public class JPABaseDataDAO implements BaseDataDAO {
 	}
 	
 	public Collection<BaseData> getEachImsiSearchData(String startTime, String finishTime){
-		Query query = em.createQuery("select DISTINCT(bd.imsi), count(bd.failureClass), sum(bd.duration) from BaseData bd "
+		Query query = em.createQuery("select DISTINCT (bd.imsi),count(bd.failureClass), sum(bd.duration) from BaseData bd "
 				+ "where bd.date >=:dateStart and bd.date <:dateEnd group by bd.imsi");
 		query.setParameter("dateStart", startTime);
 		query.setParameter("dateEnd", finishTime);
-		
 		List<BaseData> UEData1 = query.getResultList(); 
 		return UEData1;
 	}
@@ -144,4 +143,32 @@ public class JPABaseDataDAO implements BaseDataDAO {
 		return ListImsiWithFailureTimeRange;
 	
 	}
+
+	public Collection<BaseData> getTop10ImsiSearchData(String startTime, String finishTime) {
+		Query query = em.createQuery("select DISTINCT (bd.imsi),count(bd.failureClass) from BaseData bd "
+				+ "where bd.date >=:dateStart and bd.date <:dateEnd group by bd.imsi order by bd.failureClass");
+		query.setParameter("dateStart", startTime);
+		query.setParameter("dateEnd", finishTime);
+		query.setMaxResults(3);
+		List<BaseData> UEData1 = query.getResultList();
+		//System.out.println(UEData1.get(1).getFailureClass());
+		return UEData1;
+	}
+
+	public Collection<BaseData> getImsiFailureCount(String imsiValue,String startTime, String finishTime) {
+		Long longImsi=Long.valueOf(imsiValue);
+		System.out.println("111111111111111111111111111   "+longImsi);
+		Query query = em.createQuery("select bd.imsi, count(bd.failureClass) from BaseData bd "
+				+ "where bd.date >=:dateStart and bd.date <:dateEnd and bd.imsi=:imsi");
+		query.setParameter("dateStart", startTime);
+		query.setParameter("dateEnd", finishTime);
+		query.setParameter("imsi", longImsi);
+		List<BaseData> UEData1 = query.getResultList(); 
+		return UEData1;
+	}
+	
+	
+
+	
+	
 }
