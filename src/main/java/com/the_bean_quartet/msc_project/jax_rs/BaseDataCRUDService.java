@@ -107,6 +107,23 @@ public class BaseDataCRUDService {
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
+	@Path("/imsiFailureCount")
+	public BaseDataList getIMSIFailureCount(Options obj) throws JsonParseException, JsonMappingException, IOException{
+		String modelValue1=obj.getOption1().toString();
+		String modelValue2=obj.getOption2().toString();
+		String modelValue3=obj.getOption3().toString();
+		
+		System.out.println(modelValue1+"  "+modelValue2+"  "+modelValue3);
+		
+		BaseDataList allDataIMSI = new BaseDataList();
+		allDataIMSI.setBaseDataCollection(service.getImsiFailureCount(modelValue1, modelValue2, modelValue3));
+      	return allDataIMSI;
+        
+	}
+	
+	@POST
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("/countEachImsi")
 	public BaseDataList getCountEachImsiBaseData(Options obj) throws JsonParseException, JsonMappingException, IOException{
 		String modelValue1 = obj.getOption1().toString();
@@ -120,6 +137,7 @@ public class BaseDataCRUDService {
       	return eachImsiSearch;
         
 	}
+	
 	
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
@@ -139,5 +157,20 @@ public class BaseDataCRUDService {
         
 	}
 	
-	
+	@POST
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Path("/top10Imsi")
+	public BaseDataList getTopTenImsiBaseData(Options obj) throws JsonParseException, JsonMappingException, IOException{
+		String modelValue1 = obj.getOption1().toString();
+		String modelValue2 = obj.getOption2().toString();
+		
+		System.out.println(obj.getOption1());
+		System.out.println(obj.getOption2());
+		
+		BaseDataList eachImsiSearch = new BaseDataList();
+		eachImsiSearch.setBaseDataEachImsiSearchCollection(service.getTop10ImsiBaseData(modelValue1, modelValue2));
+      	return eachImsiSearch;
+        
+	}
 }

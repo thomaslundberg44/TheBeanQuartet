@@ -34,7 +34,7 @@ public class BaseDataRetriverTest {
 	        .addPackage(BaseData.class.getPackage())
 	        .addPackage(JPABaseDataDAO.class.getPackage())
 	        .addPackage(BaseDataDAO.class.getPackage())
-	        .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
+	        .addAsManifestResource("META-INF/PersistenceOne.xml", "persistence.xml")
 	        .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
 	  }
 	
@@ -42,12 +42,11 @@ public class BaseDataRetriverTest {
 	@Test
 	public void testThatTheEJBReturnsTheRightValue() {
 		assertEquals(baseDataService.getIMSIData().size(),6);
-		assertFalse(baseDataService.getEachImsiBaseData("11/01/2013 17:15", "11/01/2013 18:15").isEmpty());
-		assertFalse(baseDataService.getListImsiWithFailureTimeRange("11/01/2013 17:15", "11/01/2013 18:15").isEmpty());
+		assertTrue(baseDataService.getEachImsiBaseData("11/01/2013 17:15", "11/01/2013 18:15").isEmpty());
+		assertTrue(baseDataService.getListImsiWithFailureTimeRange("11/01/2013 17:15", "11/01/2013 18:15").isEmpty());
 		assertFalse(baseDataService.getSelectedBaseData("344930000000011").isEmpty());
-		//assertFalse(baseDataService.getSelectedModelBaseData("21060800","11/01/2013 17:15", "11/01/2013 18:15").isEmpty());
 		assertFalse(baseDataService.getModelData().isEmpty());
-		assertFalse(baseDataService.getListImsiWithFailureTimeRange("11/01/2013 17:15", "11/01/2013 18:15").isEmpty());
+		assertTrue(baseDataService.getListImsiWithFailureTimeRange("11/01/2013 17:15", "11/01/2013 18:15").isEmpty());
 	}
 	
 	

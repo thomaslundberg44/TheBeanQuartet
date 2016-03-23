@@ -20,14 +20,17 @@ public interface BaseDataDAO {
 
 
 	Collection<BaseData> getAllIMSIData();
+	
 	/*
-	 *As Customer Service Rep. I want to display, for a given affected IMSI, 
-	 *the Event ID and Cause Code for any / all failures affecting that IMSI
-	 *@return a collection of failure and event cause on basis of imsi
+	 *user story 12
  	 * */
+	Collection<BaseData> getTop10ImsiSearchData(String startTime,String finishTime);
+	
 	Collection<BaseData> getAllIMSIRelatedData(String imsiVal);
 	/*
-	 * used to remove the entries out of baseData
+	 * user story 5
 	 * */
+	Collection<BaseData> getImsiFailureCount(String imsiValue,String startTime, String finishTime);
+	
 	
 }
