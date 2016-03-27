@@ -107,6 +107,20 @@ public class BaseDataCRUDService {
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
+	@Path("/causeCodeWithCallFailure")
+	public BaseDataList getCauseCodeWithCallFailureForAnImsi(String imsi) throws JsonParseException, JsonMappingException, IOException{
+		ObjectMapper mp = new ObjectMapper();
+		String imsiValue = mp.readValue(imsi, String.class);
+		System.out.println(imsiValue);
+		BaseDataList CauseCodeWithCallFailure = new BaseDataList();
+		CauseCodeWithCallFailure.setBaseDataCollection(service.getCauseCodeWithCallFailureForAnImsi(imsiValue));
+      	return CauseCodeWithCallFailure;
+        
+	}
+	
+	@POST
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("/imsiFailureCount")
 	public BaseDataList getIMSIFailureCount(Options obj) throws JsonParseException, JsonMappingException, IOException{
 		String modelValue1=obj.getOption1().toString();

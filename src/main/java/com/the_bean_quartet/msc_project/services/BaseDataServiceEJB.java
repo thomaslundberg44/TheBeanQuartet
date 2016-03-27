@@ -50,6 +50,11 @@ public class BaseDataServiceEJB implements BaseDataService {
 	public Collection<BaseData>getSelectedBaseData(String imsiVal)
 	{
 		return baseDAO.getAllIMSIRelatedData(imsiVal);
+	}
+	
+	public Collection<BaseData>getCauseCodeWithCallFailureForAnImsi(String imsi)
+	{
+		return baseDAO.getCauseCodeWithCallFailureForAnImsi(imsi);
 		
 	}
 	public Collection<BaseData> getEachImsiBaseData(String startTime, String finishTime){

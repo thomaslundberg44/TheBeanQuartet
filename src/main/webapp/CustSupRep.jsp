@@ -38,6 +38,8 @@
 			<ul class="nav nav-pills nav-justified">
 				<li><a onclick="EvenID_CauseCodeByEMSI()" href="#">Event ID
 						and Cause Code by EMSI with call failures</a></li>
+				<li><a onclick="CauseCodeWithCallFailureForAnImsi()" href="#">Unique 
+				Cause Codes associated with its call failures</a></li>						
 				<li><a onclick="NumberOf_FailureInImsi()" href="#">Number Of
 						failures by given IMSI</a></li>
 			</ul>
@@ -75,7 +77,15 @@
 			frame = document.getElementById("frame");
 			frame.innerHTML = '<iframe src="userStoryFourDisplayUsingImsi.html" width="98%" height="100%"></iframe>';
 		}
-		
+		function CauseCodeWithCallFailureForAnImsi() {
+	        $("#msgbox").fadeOut(function(){
+        		$(this).text(
+        				'Select an IMSI to display all the unique Cause Codes associated with its call failures.'
+        				).fadeIn();
+    		});
+			frame = document.getElementById("frame");
+			frame.innerHTML = '<iframe src="userStorySixGetCauseCodeAndFailureForAnImsi.html" width="98%" height="100%"></iframe>';
+		}
 		function NumberOf_FailureInImsi(){
 			$("#msgbox").fadeOut(function(){
         		$(this).text(
