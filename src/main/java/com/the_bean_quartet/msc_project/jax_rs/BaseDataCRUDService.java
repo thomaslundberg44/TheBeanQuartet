@@ -111,7 +111,7 @@ public class BaseDataCRUDService {
 	public BaseDataList getCauseCodeWithCallFailureForAnImsi(String imsi) throws JsonParseException, JsonMappingException, IOException{
 		ObjectMapper mp = new ObjectMapper();
 		String imsiValue = mp.readValue(imsi, String.class);
-		System.out.println(imsiValue);
+		System.out.println(imsiValue+"111111111111111111111111111111111");
 		BaseDataList CauseCodeWithCallFailure = new BaseDataList();
 		CauseCodeWithCallFailure.setBaseDataCollection(service.getCauseCodeWithCallFailureForAnImsi(imsiValue));
       	return CauseCodeWithCallFailure;
@@ -131,6 +131,7 @@ public class BaseDataCRUDService {
 		
 		BaseDataList allDataIMSI = new BaseDataList();
 		allDataIMSI.setBaseDataCollection(service.getImsiFailureCount(modelValue1, modelValue2, modelValue3));
+		System.out.println(allDataIMSI);
       	return allDataIMSI;
         
 	}

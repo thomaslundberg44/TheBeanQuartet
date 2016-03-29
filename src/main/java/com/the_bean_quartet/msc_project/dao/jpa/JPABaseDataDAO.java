@@ -171,12 +171,11 @@ public class JPABaseDataDAO implements BaseDataDAO {
 	public Collection<BaseData> getCauseCodeWithCallFailureForAnImsi(String imsi){
 		Long longImsi=Long.valueOf(imsi);
 		System.out.println("111111111111111111111111111   "+longImsi);
-
 		Query query  = em.createQuery("select DISTINCT(bd.eventCause.id.causeCode),"
-				+ "bd.failureClass.failureClass"
+				+ "bd.failureClass.failureClass "
 				+ "from BaseData bd "
 				+ "where bd.imsi =:imsi");
-			
+
 			System.out.println("222222222222222222"+longImsi);
 			query.setParameter("imsi", longImsi);
 			List<BaseData> CauseCodeWithCallFailureForAnImsi = query.getResultList(); 

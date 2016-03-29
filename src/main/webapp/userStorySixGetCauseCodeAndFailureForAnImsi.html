@@ -46,8 +46,9 @@
 		<table id="myTable" class="table table-striped table-bordered" style="width: 100%">
 			<thead>
 				<tr>
+					<th>Event-Id</th>
 					<th>Cause-Code</th>
-					<th>Failure-Class</th>
+
 				</tr>
 			</thead>
 			<tbody id="TableCont">
@@ -89,20 +90,17 @@
 				url : 'rest/basedata/causeCodeWithCallFailure',
 				data : JSON.stringify(checkImsi),
 				success : function output(jdata) {
-					alert(JSON.stringify(data));
-					// var htmltext=" ";
-					//    $.each(jdata, function (index, value) {
-					//        var TableRow = "<tr>";
-					//        $.each(value, function (key, val) {
-					//            TableRow += "<td>" + val[0] + "</td>";
-					//            TableRow += "<td>" + val[1] + "</td>";
-					//            TableRow += "<td>" + val[2] + "</td>";
-					//            TableRow += "<td>" + val[3] + "</td>";
-					//            TableRow += "<td>" + val[4] + "</td>"+"</tr>";
-					//        });
-					//       htmltext+=TableRow;
-					//    });
-					//  $("#TableCont").html(htmltext);
+					//alert(JSON.stringify(data));
+					var htmltext=" ";
+					   $.each(jdata, function (index, value) {
+					       var TableRow = "<tr>";
+					       $.each(value, function (key, val) {
+					           TableRow += "<td>" + val[0] + "</td>";
+					           TableRow += "<td>" + val[1] + "</td>"+"</tr>";
+					       });
+					      htmltext+=TableRow;
+					   });
+					 $("#TableCont").html(htmltext);
 				},
 				contentType : 'application/json'
 			});
