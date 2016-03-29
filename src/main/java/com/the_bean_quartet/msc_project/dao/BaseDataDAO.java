@@ -20,8 +20,9 @@ public interface BaseDataDAO {
 	Collection<BaseData> getCauseCodeWithCallFailureForAnImsi(String imsi);
 	Collection<BaseData> getAllFailureCauseClass();
 	Collection<BaseData> getImsiForAnFailureCauseClass(String failureCauseClass);
+	Collection<BaseData> getTopTenMarketOperatorCell_ID(String failureCauseClass, String startTime, String finishTime);
 
-
+	 
 
 	Collection<BaseData> getAllIMSIData();
 	

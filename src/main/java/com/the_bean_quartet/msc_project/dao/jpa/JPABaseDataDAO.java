@@ -212,4 +212,24 @@ public class JPABaseDataDAO implements BaseDataDAO {
 		return ImsiForAnFailureCauseClass;
 	}
 	
+	public Collection<BaseData> getTopTenMarketOperatorCell_ID(String failureCauseClass, String startTime, String finishTime){
+		Integer intFailureCauseClass= Integer.valueOf(failureCauseClass);		
+
+		
+		Query query = em.createQuery("select DISTINCT(bd.ueTable.marketingName), bd.mccData.operator, bd.cellId "
+				+ "from BaseData bd "
+				+ "where bd.date >=:dateStart and bd.date <:dateEnd "
+				+ "and bd.failureClass.failureClass =:failureCauseClass");
+		
+		query.setParameter("failureCauseClass", intFailureCauseClass);
+		query.setParameter("dateStart", startTime);
+		query.setParameter("dateEnd", finishTime);
+		query.setMaxResults(10);
+		List<BaseData> TopTenMarketOperatorCell_ID = query.getResultList();
+		return TopTenMarketOperatorCell_ID;
+	}
+
+
+
+	
 }

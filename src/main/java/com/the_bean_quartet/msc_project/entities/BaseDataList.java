@@ -39,6 +39,10 @@ public class BaseDataList implements Serializable {
 	}
 	public void setBaseDataListImsiForAnFailureCauseClass(Collection<BaseData> failureCauseClass) {
 	this.data=failureCauseClass;
+	}
+	
+	public void setBaseDataListTopTenMarketOperatorCell_ID(Collection<BaseData> failureCauseClass) {
+	this.data=failureCauseClass;
 	
 	}
 

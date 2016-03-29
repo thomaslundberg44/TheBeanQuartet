@@ -214,4 +214,22 @@ public class BaseDataCRUDService {
       	return ImsiForAnFailureCauseClass;
         
 	}
+	
+	@POST
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Path("/TopTenMarketOperatorCell_ID")
+	public BaseDataList getTopTenMarketOperatorCell_ID(Options obj) throws JsonParseException, JsonMappingException, IOException{
+		String modelValue1=obj.getOption1().toString();
+		String modelValue2=obj.getOption2().toString();
+		String modelValue3=obj.getOption3().toString();
+		
+		System.out.println(modelValue1+"  "+modelValue2+"  "+modelValue3);
+		
+		BaseDataList TopTenMarketOperatorCell_ID = new BaseDataList();
+		TopTenMarketOperatorCell_ID.setBaseDataListTopTenMarketOperatorCell_ID(
+				service.getTopTenMarketOperatorCell_ID(modelValue1, modelValue2, modelValue3));
+      	return TopTenMarketOperatorCell_ID;
+        
+	}
 }

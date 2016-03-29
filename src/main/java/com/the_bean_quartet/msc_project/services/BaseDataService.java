@@ -37,4 +37,8 @@ public interface BaseDataService {
 	
 	public Collection<BaseData> getAllFailureCauseClass();
 	public Collection<BaseData> getImsiForAnFailureCauseClass(String failureCauseClass);
+	
+	public Collection<BaseData> getTopTenMarketOperatorCell_ID(String failureCauseClass, String startTime, String finishTime);
+
+	
 }
