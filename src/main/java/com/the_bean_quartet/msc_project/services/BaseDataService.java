@@ -26,6 +26,7 @@ public interface BaseDataService {
 	public Collection<BaseData> getListImsiWithFailureTimeRange(String startTime, String finishTime);
 
 	public Collection<BaseData> getIMSIData();
+	
 	public Collection<BaseData>getCauseCodeWithCallFailureForAnImsi(String imsi);
 
 	public Collection<BaseData> getSelectedBaseData(String imsiValue);
@@ -33,4 +34,7 @@ public interface BaseDataService {
 	public Collection<BaseData> getTop10ImsiBaseData(String startTime, String finishTime);
 	
 	public Collection<BaseData> getImsiFailureCount(String imsiValue,String startTime, String finishTime);
+	
+	public Collection<BaseData> getAllFailureCauseClass();
+	public Collection<BaseData> getImsiForAnFailureCauseClass(String failureCauseClass);
 }

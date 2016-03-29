@@ -182,6 +182,36 @@ public class JPABaseDataDAO implements BaseDataDAO {
 			return CauseCodeWithCallFailureForAnImsi;
 	}
 
-	
+	public Collection<BaseData> getAllFailureCauseClass(){
+		Query query = em.createQuery("select DISTINCT(bd.failureClass.failureClass) from BaseData bd");
+		List<BaseData> failureCauseClass = query.getResultList(); 
+		return failureCauseClass;
+	}
+	public Collection<BaseData> getImsiForAnFailureCauseClass(String failureCauseClass){
+		Integer intFailureCauseClass= Integer.valueOf(failureCauseClass);		
+		System.out.println("111111111111111111111111111   "+intFailureCauseClass);
+		
+		Query query  = em.createQuery("select DISTINCT(bd.imsi) from BaseData bd where bd.failureClass.failureClass =:failureCauseClass");
+		Integer x = 1;
+
+		System.out.println("222222222222222222"+intFailureCauseClass);
+			query.setParameter("failureCauseClass", intFailureCauseClass);
+			
+			List<BaseData> ImsiForAnFailureCauseClass = query.getResultList(); 
+			
+//			List<BaseData> ImsiForAnFailureCauseClassString; 
+//
+//			List<BaseData> StringImsiForAnFailureCauseClass=;
+//			for(int i=0; i<=ImsiForAnFailureCauseClass.size();i++){
+//				String temp = ImsiForAnFailureCauseClass.get(i).toString();
+//				StringImsiForAnFailureCauseClass.add(temp);
+//			}
+//			
+//			for(int i=0; i<=ImsiForAnFailureCauseClassString.size();i++){
+//
+//			ImsiForAnFailureCauseClassString.add(i, StringImsiForAnFailureCauseClass);
+//			}
+		return ImsiForAnFailureCauseClass;
+	}
 	
 }

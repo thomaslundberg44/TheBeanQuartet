@@ -188,4 +188,30 @@ public class BaseDataCRUDService {
       	return eachImsiSearch;
         
 	}
+	
+	@Path("/failureCauseClass")
+	@GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public BaseDataList getAllFailureCauseClass() {
+        BaseDataList failureCauseClass = new BaseDataList();
+        failureCauseClass.setBaseDataCollection(service.getAllFailureCauseClass());
+        return failureCauseClass;
+    }
+	
+	@POST
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Path("/ImsiForAnFailureCauseClass")
+	public BaseDataList getImsiForAnFailureCauseClass(String failureCauseClass) throws JsonParseException, JsonMappingException, IOException{
+		ObjectMapper mp = new ObjectMapper();
+		String failureCauseClassValue = mp.readValue(failureCauseClass, String.class);
+		System.out.println(failureCauseClassValue+"111111111111111111111111111111111");
+
+		
+		BaseDataList ImsiForAnFailureCauseClass = new BaseDataList();
+		ImsiForAnFailureCauseClass.setBaseDataListImsiForAnFailureCauseClass
+									(service.getImsiForAnFailureCauseClass(failureCauseClassValue));
+      	return ImsiForAnFailureCauseClass;
+        
+	}
 }

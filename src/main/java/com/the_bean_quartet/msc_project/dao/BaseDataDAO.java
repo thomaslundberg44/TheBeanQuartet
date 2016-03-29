@@ -18,6 +18,9 @@ public interface BaseDataDAO {
 	Collection<BaseData> getEachImsiSearchData(String startTime, String finishTime);
 	Collection<BaseData> getListImsiWithFailureTimeRange(String startTime, String finishTime);
 	Collection<BaseData> getCauseCodeWithCallFailureForAnImsi(String imsi);
+	Collection<BaseData> getAllFailureCauseClass();
+	Collection<BaseData> getImsiForAnFailureCauseClass(String failureCauseClass);
+
 
 
 	Collection<BaseData> getAllIMSIData();

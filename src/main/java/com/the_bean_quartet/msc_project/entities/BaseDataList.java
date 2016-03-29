@@ -12,7 +12,8 @@ public class BaseDataList implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private Collection<BaseData> data;
-	
+	private Collection<String> dataString;
+
 	public Collection<BaseData> getBaseDataCollection() {
 		return data;
 	}
@@ -36,5 +37,10 @@ public class BaseDataList implements Serializable {
 	this.data=listImsiData;
 	
 	}
+	public void setBaseDataListImsiForAnFailureCauseClass(Collection<BaseData> failureCauseClass) {
+	this.data=failureCauseClass;
+	
+	}
+
 	
 }
