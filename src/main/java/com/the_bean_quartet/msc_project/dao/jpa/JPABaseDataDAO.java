@@ -197,8 +197,7 @@ public class JPABaseDataDAO implements BaseDataDAO {
 		System.out.println("222222222222222222"+intFailureCauseClass);
 			query.setParameter("failureCauseClass", intFailureCauseClass);
 			
-			List<BaseData> ImsiForAnFailureCauseClass = query.getResultList(); 
-			
+			List<BaseData> ImsiForAnFailureCauseClass = query.getResultList(); 		
 //			List<BaseData> ImsiForAnFailureCauseClassString; 
 //
 //			List<BaseData> StringImsiForAnFailureCauseClass=;
@@ -206,7 +205,6 @@ public class JPABaseDataDAO implements BaseDataDAO {
 //				String temp = ImsiForAnFailureCauseClass.get(i).toString();
 //				StringImsiForAnFailureCauseClass.add(temp);
 //			}
-//			
 //			for(int i=0; i<=ImsiForAnFailureCauseClassString.size();i++){
 //
 //			ImsiForAnFailureCauseClassString.add(i, StringImsiForAnFailureCauseClass);
