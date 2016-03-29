@@ -36,11 +36,15 @@
 	<div class="row border">
 		<div class="col-md-6">
 			<ul class="nav nav-pills nav-justified">
-				<li><a onclick="EvenID_CauseCodeByEMSI()" href="#">Event ID
+				<li><a onclick="userStory4()" href="#">Event ID
 						and Cause Code by EMSI with call failures</a></li>
+<<<<<<< HEAD
 				<li><a onclick="CauseCodeWithCallFailureForAnImsi()" href="#">Unique 
 				Cause Codes associated with its call failures</a></li>						
 				<li><a onclick="NumberOf_FailureInImsi()" href="#">Number Of
+=======
+				<li><a onclick="userStory5()" href="#">Number Of
+>>>>>>> 31228768873185076c62544e6591fffdf3015a29
 						failures by given IMSI</a></li>
 			</ul>
 		</div>
@@ -68,6 +72,7 @@
 
 
 	<script>
+<<<<<<< HEAD
 		function EvenID_CauseCodeByEMSI() {
 	        $("#msgbox").fadeOut(function(){
         		$(this).text(
@@ -95,6 +100,28 @@
 			frame = document.getElementById("frame");
 			frame.innerHTML = '<iframe src="userStoryFive.html" width="98%" height="100%"></iframe>';
 		}
+=======
+	/*User Story 4*/
+	function userStory4() {
+        $("#msgbox").fadeOut(function(){
+    		$(this).text(
+    				'Display, for a given affected IMSI, the Event ID and Cause Code for any / all failures affecting that IMSI.'
+    				).fadeIn();
+		});
+		frame = document.getElementById("frame");
+		frame.innerHTML = '<iframe src="userStoryFourDisplayUsingImsi.html" width="98%" height="100%"></iframe>';
+	}
+	/*User Story 5*/
+	function userStory5(){
+		$("#msgbox").fadeOut(function(){
+    		$(this).text(
+    				'Display, for a given IMSI, the number of failures during given time period.'
+    				).fadeIn();
+		});
+		frame = document.getElementById("frame");
+		frame.innerHTML = '<iframe src="userStoryFive.html" width="98%" height="100%"></iframe>';
+	}
+>>>>>>> 31228768873185076c62544e6591fffdf3015a29
 	</script>
 
 </body>
