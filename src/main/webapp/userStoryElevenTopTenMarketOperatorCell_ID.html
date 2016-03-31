@@ -111,6 +111,8 @@
 					url : 'rest/basedata/TopTenMarketOperatorCell_ID',
 					data : JSON.stringify(obj1),
 					success : function message(data) {
+					//alert(JSON.stringify(data));
+
 						var htmltext=" ";
 						   $.each(data, function (index, value) {
 						       var TableRow = "<tr>";
