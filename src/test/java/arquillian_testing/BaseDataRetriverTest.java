@@ -47,6 +47,8 @@ public class BaseDataRetriverTest {
 		assertFalse(baseDataService.getSelectedBaseData("344930000000011").isEmpty());
 		assertFalse(baseDataService.getModelData().isEmpty());
 		assertTrue(baseDataService.getListImsiWithFailureTimeRange("11/01/2013 17:15", "11/01/2013 18:15").isEmpty());
+		assertFalse(baseDataService.getImsiFailureCount("344930000000011", "11/01/2013 17:15", "11/01/2013 18:15").isEmpty());
+		assertTrue(baseDataService.getTop10ImsiBaseData("11/01/2013 17:15", "11/01/2013 18:15").isEmpty());
 	}
 	
 	

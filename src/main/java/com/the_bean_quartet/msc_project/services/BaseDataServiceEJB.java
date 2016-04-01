@@ -83,4 +83,9 @@ public class BaseDataServiceEJB implements BaseDataService {
 		return baseDAO.getTopTenMarketOperatorCell_ID(failureCauseClass, startTime, finishTime);
 	}
 
+	public Collection<BaseData> getSelectedModelEventCauseData(String model) {
+		return baseDAO.getAllModelEventCauseData(model);
+
+	}
+
 }

@@ -98,6 +98,17 @@ public class RESTBaseDataTest {
 		System.out.println("2222222222222222222222");
     }
     
+    @Test
+    public void restBasedataImsiFailureCountRestAssuredTest()
+    {
+    
+    	given().queryParam("","").when().
+    	get("http://localhost:8080/TheBeanQuartet/rest/basedata/imsiFailureCount").then().
+    	statusCode(200).
+    	contentType(ContentType.JSON).
+    	body("baseDataCollection.", hasItems());
+    }
+    
 
 
 }

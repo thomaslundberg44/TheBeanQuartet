@@ -98,11 +98,6 @@
 			<h1 align="center">Welcome</h1>
 		</div>
 	</div>
-
-
-
-
-
 	<script>
 		function userStory9() {
 	        $("#msgbox").fadeOut(function(){
@@ -120,7 +115,7 @@
         				).fadeIn();
     		});
 			frame = document.getElementById("frame");
-			frame.innerHTML = '<iframe src="UserStoryTen.html" width="98%" height="100%"></iframe>';
+			frame.innerHTML = '<iframe src="UserStoryTenSample.html" width="98%" height="100%"></iframe>';
 		}
 		function userStory11(){
 	        $("#msgbox").fadeOut(function(){
@@ -157,6 +152,7 @@
         				).fadeIn();
     		});
 			frame = document.getElementById("frame");
+
 			frame.innerHTML = '<iframe src="userStorySevenListImsiFailure.html" width="98%" height="1000"></iframe>';
 		}
 		/*User Story 8*/
@@ -178,9 +174,12 @@
     		});
 			frame = document.getElementById("frame");
 			frame.innerHTML = '<iframe src="userStoryFourteenImsiForAnFailureCauseClass.html" width="98%" height="100%"></iframe>';
+
+			frame.innerHTML = '<iframe src="UserStoryTenSample.html" width="98%" height="100%"></iframe>';
+
 		}
 		
-		/*User Story 4*/
+	
 		function userStory4() {
 	        $("#msgbox").fadeOut(function(){
         		$(this).text(

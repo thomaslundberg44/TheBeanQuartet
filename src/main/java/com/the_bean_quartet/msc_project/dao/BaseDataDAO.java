@@ -36,6 +36,10 @@ public interface BaseDataDAO {
 	 * user story 5
 	 * */
 	Collection<BaseData> getImsiFailureCount(String imsiValue,String startTime, String finishTime);
+	/*
+	 * user story 10
+	 * */
+	Collection<BaseData> getAllModelEventCauseData(String model);
 	
 	
 }

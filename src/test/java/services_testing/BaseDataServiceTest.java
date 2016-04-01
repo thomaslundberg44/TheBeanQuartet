@@ -40,6 +40,8 @@ public class BaseDataServiceTest {
 		when((mockedDAOALl.getAllIMSIRelatedData("1"))).thenReturn(mockedEvents);
 		when((mockedDAOALl.getEachImsiSearchData("11/01/2013 17:15"," 11/01/2013 18:15"))).thenReturn(mockedEvents);
 		when((mockedDAOALl.getAllModelSearchData("1", "11/01/2013 17:15"," 11/01/2013 18:15"))).thenReturn(mockedEvents);
+		when((mockedDAOALl.getImsiFailureCount("6", "11/01/2013 17:15"," 11/01/2013 18:15"))).thenReturn(mockedEvents);
+		when((mockedDAOALl.getTop10ImsiSearchData("11/01/2013 17:15"," 11/01/2013 18:15"))).thenReturn(mockedEvents);
 		when((mockedDAOALl.getAllModelData())).thenReturn(mockedEvents);
 		baseDataEJB = new BaseDataServiceEJB();
 		baseDataEJB.setDao(mockedDAOALl);
@@ -54,6 +56,8 @@ public class BaseDataServiceTest {
 		Collection<BaseData> baseData13= baseDataEJB.getEachImsiBaseData("11/01/2013 17:15"," 11/01/2013 18:15");
 		Collection<BaseData> baseData14= baseDataEJB.getSelectedModelBaseData("1", "11/01/2013 17:15"," 11/01/2013 18:15");
 		Collection<BaseData> baseData15= baseDataEJB.getModelData();
+		Collection<BaseData> baseData16=baseDataEJB.getImsiFailureCount("6", "11/01/2013 17:15", " 11/01/2013 18:15");
+		Collection<BaseData> baseData17=baseDataEJB.getTop10ImsiBaseData("11/01/2013 17:15", " 11/01/2013 18:15");
 		
 		assertEquals(baseData1,baseData.iterator().next());
 		assertEquals(baseData1,baseData11.iterator().next());
@@ -61,6 +65,8 @@ public class BaseDataServiceTest {
 		assertEquals(baseData1,baseData13.iterator().next());
 		assertEquals(baseData1,baseData14.iterator().next());
 		assertEquals(baseData1,baseData15.iterator().next());
+		assertEquals(baseData1,baseData16.iterator().next());
+		assertEquals(baseData1,baseData17.iterator().next());
 		
 	}
 
