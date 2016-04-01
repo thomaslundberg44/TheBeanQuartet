@@ -18,9 +18,13 @@
 <link rel="stylesheet" href="css/style1.css">
 <link rel="stylesheet" href="css/style.css">
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
 <script type="text/javascript" language="javascript"
 	src="media/js/jquery.js"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+	
+	
+	
+
 
 </head>
 
@@ -35,12 +39,30 @@
 	</div>
 
 	<div class="row border">
-		<div class="col-md-6">
+		<div class="col-md-6 dropdown">
 			<ul class="nav nav-pills nav-justified">
-				<li><a onclick="callFailbyEMSI()" href="#">Call Failures by
-						IMSI</a></li>
-				<li><a onclick="callFailbyTimePeriodUsingPhoneModel()" href="#">Call Failures by
-						time</a></li>
+				<li>
+					<a href="#" data-toggle="dropdown">
+						Support Engineer 
+					</a>
+					<ul class="dropdown-menu">
+					<!-- user story in order 7, 8, 14 -->
+						<li><a onclick="userStory7()" href="#">IMSIs with call failures during time period</a></li>
+						<li><a onclick="userStory8()" href="#">Model of phone, count call failures during a time period</a></li>
+						<li><a onclick="userStory14()" href="#">Failure Cause Class, the IMSIs that were affected.</a></li>
+					</ul>
+				</li>
+				<li>
+					<a href="#" data-toggle="dropdown">
+						Customer Service Representative 
+					</a>
+					<ul class="dropdown-menu">
+					<!-- user story in order 4, 5, 6 -->
+						<li><a onclick="userStory4()" href="#">For affected IMSI, show the Event ID and Cause Code</a></li>
+						<li><a onclick="userStory5()" href="#">Count, for a given IMSI, the number of failures during a time period.</a></li>
+						<li><a onclick="userStory6()" href="#">For a given IMSI, show unique Cause Codes</a></li>
+					</ul>
+				</li>
 			</ul>
 		</div>
 
@@ -56,6 +78,13 @@
 	</div>
 
 	<div id="wrapper">
+	
+	
+
+	
+	
+	
+	
 		<div id="header2">
 		<br>
 		<div align="center" style="color: white;"id="msgbox"></div>
@@ -66,7 +95,8 @@
 	</div>
 
 	<script>
-		function callFailbyEMSI() {
+		/*User Story 7*/
+		function userStory7() {
 	        $("#msgbox").fadeOut(function(){
         		$(this).text(
         				'List of all IMSIs with call failures during a given time period'
@@ -75,7 +105,8 @@
 			frame = document.getElementById("frame");
 			frame.innerHTML = '<iframe src="userStorySevenListImsiFailure.html" width="98%" height="1000"></iframe>';
 		}
-		function callFailbyTimePeriodUsingPhoneModel() {
+		/*User Story 8*/
+		function userStory8() {
 	        $("#msgbox").fadeOut(function(){
         		$(this).text(
         				'Counts, for a given model of phone, the number of call failures it has had during a given time period.'
@@ -83,6 +114,47 @@
     		});
 			frame = document.getElementById("frame");
 			frame.innerHTML = '<iframe src="userStoryEightSearchByPhoneModel.html" width="98%" height="100%"></iframe>';
+		}
+		/*User Story 14*/
+		function userStory14() {
+	        $("#msgbox").fadeOut(function(){
+        		$(this).text(
+        				'Display, for a given failure Cause Class, the IMSIs that were affected.'
+        				).fadeIn();
+    		});
+			frame = document.getElementById("frame");
+			frame.innerHTML = '<iframe src="unknown.html" width="98%" height="100%"></iframe>';
+		}
+		
+		/*User Story 4*/
+		function userStory4() {
+	        $("#msgbox").fadeOut(function(){
+        		$(this).text(
+        				'Display, for a given affected IMSI, the Event ID and Cause Code for any / all failures affecting that IMSI.'
+        				).fadeIn();
+    		});
+			frame = document.getElementById("frame");
+			frame.innerHTML = '<iframe src="userStoryFourDisplayUsingImsi.html" width="98%" height="100%"></iframe>';
+		}
+		/*User Story 5*/
+		function userStory5(){
+			$("#msgbox").fadeOut(function(){
+        		$(this).text(
+        				'Display, for a given IMSI, the number of failures during given time period.'
+        				).fadeIn();
+    		});
+			frame = document.getElementById("frame");
+			frame.innerHTML = '<iframe src="userStoryFive.html" width="98%" height="100%"></iframe>';
+		}
+		/*User Story 6*/
+		function userStory6(){
+			$("#msgbox").fadeOut(function(){
+        		$(this).text(
+        				'Display, for a given IMSI, all the unique Cause Codes associated with its call failures'
+        		).fadeIn();
+    		});
+			frame = document.getElementById("frame");
+			frame.innerHTML = '<iframe src="unknown.html" width="98%" height="100%"></iframe>';
 		}
 	</script>
 

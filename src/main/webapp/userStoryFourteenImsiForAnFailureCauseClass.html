@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>UserStoryFourteen</title>
+
+<link type="text/css" href="bootstrap/css/bootstrap.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" media="all" href="media/css/daterangepicker.css" />
+<script type="text/javascript" src="media/js/jquery.js"></script>
+<script type="text/javascript" src="media/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="media/js/moment.min.js"></script>
+<script type="text/javascript" src="media/js/daterangepicker.js"></script>
+
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/style1.css">
+
+
+</head>
+<title>User Story Fourteen</title>
+</head>
+<body>
+	<div class='indexPage'>
+		<div>
+			<a style="color: white;" id="hide-show">Hide/Show: Search box</a>
+		</div>
+		<div id="search">
+			<br> <br>
+			<div class="login-card">
+				<form role="form" id="details">
+					<div class="dropdown">
+						<label>Select available Failure cause Class values:</label> <br> <select
+							class="form-control" id="failure"></select>
+					</div>
+					<br> <input type="submit" class="login login-submit"
+						value="Submit">
+				</form>
+				<a onclick="Help()" href="#">help</a>
+			</div>
+			<br> <br>
+		</div>
+	</div>
+
+
+	<div align="center">
+		<table id="myTable" class="table table-striped table-bordered" style="width: 100%">
+			<thead>
+				<tr>
+					<th>Imsi</th>
+				</tr>
+			</thead>
+			<tbody id="TableCont">
+			</tbody>
+		</table>
+	</div>
+
+	<script>
+	
+		$("#hide-show").click(function(){
+	        $("#search").toggle();
+		});
+		
+		//get a reference to the select element
+		var $select = $('#failure');
+		var $tbSelect = $('#imageTable');
+
+		//request the JSON data and parse into the select element
+		$.ajax({
+			async : false,
+			url : 'http://localhost:8080/TheBeanQuartet/rest/basedata/failureCauseClass',
+			dataType : 'JSON',
+			success : function(data) {
+				//clear the current content of the select
+				$select.html('');
+				//iterate over the data and append a select option
+				$.each(data.baseDataCollection, function(i, val) {
+					$select.append('<option>' + val + '</option>');
+					console.log(val);
+				})
+			}
+		});
+
+		$("#details").submit(function getImsiData() {
+			var checkfailure = document.getElementById("failure").value;
+			$.ajax({
+				async : false,
+				type : 'POST',
+				url : 'rest/basedata/ImsiForAnFailureCauseClass',
+				data : JSON.stringify(checkfailure),
+				success : function output(jdata) {
+					//alert(JSON.stringify(data));
+					var htmltext=" ";
+					   $.each(jdata, function (index, value) {
+					       var TableRow = "<tr>";
+					       $.each(value, function (key, val) {
+					           TableRow += "<td>" + val[0] + "</td>"+"</tr>";
+					       });
+					      htmltext+=TableRow;
+					   });
+					 $("#TableCont").html(htmltext);
+				},
+				contentType : 'application/json'
+			});
+			return false;
+		});
+		function Help(){
+			alert(help);
+		}
+		var help=" I want to display, for a given failure Cause Class, the IMSIs that were affected";
+	</script>
+
+</body>
+</html>

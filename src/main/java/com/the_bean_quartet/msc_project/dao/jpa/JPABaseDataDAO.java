@@ -156,7 +156,68 @@ public class JPABaseDataDAO implements BaseDataDAO {
 	}
 	
 	
+	public Collection<BaseData> getCauseCodeWithCallFailureForAnImsi(String imsi){
+		Long longImsi=Long.valueOf(imsi);
+		System.out.println("111111111111111111111111111   "+longImsi);
+		Query query  = em.createQuery("select DISTINCT(bd.eventCause.id.causeCode),"
+				+ "bd.failureClass.failureClass "
+				+ "from BaseData bd "
+				+ "where bd.imsi =:imsi");
 
+			System.out.println("222222222222222222"+longImsi);
+			query.setParameter("imsi", longImsi);
+			List<BaseData> CauseCodeWithCallFailureForAnImsi = query.getResultList(); 
+			return CauseCodeWithCallFailureForAnImsi;
+	}
+
+	public Collection<BaseData> getAllFailureCauseClass(){
+		Query query = em.createQuery("select DISTINCT(bd.failureClass.failureClass) from BaseData bd");
+		List<BaseData> failureCauseClass = query.getResultList(); 
+		return failureCauseClass;
+	}
+	public Collection<BaseData> getImsiForAnFailureCauseClass(String failureCauseClass){
+		Integer intFailureCauseClass= Integer.valueOf(failureCauseClass);		
+		System.out.println("111111111111111111111111111   "+intFailureCauseClass);
+		
+		Query query  = em.createQuery("select DISTINCT(bd.imsi) from BaseData bd where bd.failureClass.failureClass =:failureCauseClass");
+		Integer x = 1;
+
+		System.out.println("222222222222222222"+intFailureCauseClass);
+			query.setParameter("failureCauseClass", intFailureCauseClass);
+			
+			List<BaseData> ImsiForAnFailureCauseClass = query.getResultList(); 		
+//			List<BaseData> ImsiForAnFailureCauseClassString; 
+//
+//			List<BaseData> StringImsiForAnFailureCauseClass=;
+//			for(int i=0; i<=ImsiForAnFailureCauseClass.size();i++){
+//				String temp = ImsiForAnFailureCauseClass.get(i).toString();
+//				StringImsiForAnFailureCauseClass.add(temp);
+//			}
+//			for(int i=0; i<=ImsiForAnFailureCauseClassString.size();i++){
+//
+//			ImsiForAnFailureCauseClassString.add(i, StringImsiForAnFailureCauseClass);
+//			}
+		return ImsiForAnFailureCauseClass;
+	}
 	
+	public Collection<BaseData> getTopTenMarketOperatorCell_ID(String failureCauseClass, String startTime, String finishTime){
+		Integer intFailureCauseClass= Integer.valueOf(failureCauseClass);		
+
+		
+		Query query = em.createQuery("select DISTINCT(bd.ueTable.marketingName), bd.mccData.operator, bd.cellId "
+				+ "from BaseData bd "
+				+ "where bd.date >=:dateStart and bd.date <:dateEnd "
+				+ "and bd.failureClass.failureClass =:failureCauseClass");
+		
+		query.setParameter("failureCauseClass", intFailureCauseClass);
+		query.setParameter("dateStart", startTime);
+		query.setParameter("dateEnd", finishTime);
+		query.setMaxResults(10);
+		List<BaseData> TopTenMarketOperatorCell_ID = query.getResultList();
+		return TopTenMarketOperatorCell_ID;
+	}
+
+
+
 	
 }

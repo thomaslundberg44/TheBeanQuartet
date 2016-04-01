@@ -116,19 +116,13 @@
 		function viewUsers() {
 	        $("#msgbox").fadeOut(function(){
         		$(this).text(
-<<<<<<< HEAD
-        				'Below shows the system users'
-        				).fadeIn();
-    		});
-			frame = document.getElementById("frame");
-			frame.innerHTML = '<iframe src="viewUser.html" width="98%" height="1000"></iframe>';
-=======
+
         				'Below shows the system users.'
         				).fadeIn();
     		});
 			frame = document.getElementById("frame");
 			frame.innerHTML = '<iframe src="viewUser.html" width="100%" height="1000"></iframe>';
->>>>>>> d396130872619da9aee706674259504de07d1466
+
 		}
 		function createUser() {
 	        $("#msgbox").fadeOut(function(){

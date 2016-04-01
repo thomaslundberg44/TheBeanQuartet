@@ -110,6 +110,20 @@ public class BaseDataCRUDService {
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
+	@Path("/causeCodeWithCallFailure")
+	public BaseDataList getCauseCodeWithCallFailureForAnImsi(String imsi) throws JsonParseException, JsonMappingException, IOException{
+		ObjectMapper mp = new ObjectMapper();
+		String imsiValue = mp.readValue(imsi, String.class);
+		System.out.println(imsiValue+"111111111111111111111111111111111");
+		BaseDataList CauseCodeWithCallFailure = new BaseDataList();
+		CauseCodeWithCallFailure.setBaseDataCollection(service.getCauseCodeWithCallFailureForAnImsi(imsiValue));
+      	return CauseCodeWithCallFailure;
+        
+	}
+	
+	@POST
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("/imsiFailureCount")
 	public BaseDataList getIMSIFailureCount(Options obj) throws JsonParseException, JsonMappingException, IOException{
 		String modelValue1=obj.getOption1().toString();
@@ -120,6 +134,7 @@ public class BaseDataCRUDService {
 		
 		BaseDataList allDataIMSI = new BaseDataList();
 		allDataIMSI.setBaseDataCollection(service.getImsiFailureCount(modelValue1, modelValue2, modelValue3));
+		System.out.println(allDataIMSI);
       	return allDataIMSI;
         
 	}
@@ -174,6 +189,50 @@ public class BaseDataCRUDService {
 		BaseDataList eachImsiSearch = new BaseDataList();
 		eachImsiSearch.setBaseDataEachImsiSearchCollection(service.getTop10ImsiBaseData(modelValue1, modelValue2));
       	return eachImsiSearch;
+        
+	}
+	
+	@Path("/failureCauseClass")
+	@GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public BaseDataList getAllFailureCauseClass() {
+        BaseDataList failureCauseClass = new BaseDataList();
+        failureCauseClass.setBaseDataCollection(service.getAllFailureCauseClass());
+        return failureCauseClass;
+    }
+	
+	@POST
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Path("/ImsiForAnFailureCauseClass")
+	public BaseDataList getImsiForAnFailureCauseClass(String failureCauseClass) throws JsonParseException, JsonMappingException, IOException{
+		ObjectMapper mp = new ObjectMapper();
+		String failureCauseClassValue = mp.readValue(failureCauseClass, String.class);
+		System.out.println(failureCauseClassValue+"111111111111111111111111111111111");
+
+		
+		BaseDataList ImsiForAnFailureCauseClass = new BaseDataList();
+		ImsiForAnFailureCauseClass.setBaseDataListImsiForAnFailureCauseClass
+									(service.getImsiForAnFailureCauseClass(failureCauseClassValue));
+      	return ImsiForAnFailureCauseClass;
+        
+	}
+	
+	@POST
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Path("/TopTenMarketOperatorCell_ID")
+	public BaseDataList getTopTenMarketOperatorCell_ID(Options obj) throws JsonParseException, JsonMappingException, IOException{
+		String modelValue1=obj.getOption1().toString();
+		String modelValue2=obj.getOption2().toString();
+		String modelValue3=obj.getOption3().toString();
+		
+		System.out.println(modelValue1+"  "+modelValue2+"  "+modelValue3);
+		
+		BaseDataList TopTenMarketOperatorCell_ID = new BaseDataList();
+		TopTenMarketOperatorCell_ID.setBaseDataListTopTenMarketOperatorCell_ID(
+				service.getTopTenMarketOperatorCell_ID(modelValue1, modelValue2, modelValue3));
+      	return TopTenMarketOperatorCell_ID;
         
 	}
 }

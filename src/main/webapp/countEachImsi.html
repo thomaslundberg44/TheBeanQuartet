@@ -49,7 +49,6 @@
 
 	<script>
 	/*
-
 //get a reference to the select element
 <var $select = $('#model');
 var $tbSelect=$('#imageTable');
@@ -67,7 +66,6 @@ $.ajax({
     })
   }
 });	
-
 */
 function obj(option1, option2, option3, option4) {
 	this.option1 = option1;
@@ -75,7 +73,6 @@ function obj(option1, option2, option3, option4) {
 	this.option3 = option3;
 	this.option4 = option4;
 }
-
 $("#submit").submit(
 		
 		function search() {
@@ -86,7 +83,6 @@ $("#submit").submit(
 					"",
 					""
 			);
-
 			$.ajax({
 				async:false,
 				type : 'POST',
@@ -101,9 +97,6 @@ $("#submit").submit(
 			});
 						
 		});
-
-
-
 </script>
 
 </body>
