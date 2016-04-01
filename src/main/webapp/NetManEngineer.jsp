@@ -67,11 +67,6 @@
 			<h1 align="center">Welcome</h1>
 		</div>
 	</div>
-
-
-
-
-
 	<script>
 		function callFailAndDurationByEMSI() {
 	        $("#msgbox").fadeOut(function(){
@@ -100,7 +95,7 @@
         				).fadeIn();
     		});
 			frame = document.getElementById("frame");
-			frame.innerHTML = '<iframe src="UserStoryTen.html" width="98%" height="100%"></iframe>';
+			frame.innerHTML = '<iframe src="UserStoryTenSample.html" width="98%" height="100%"></iframe>';
 		}
 		
 	</script>

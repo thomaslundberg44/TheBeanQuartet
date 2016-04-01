@@ -68,4 +68,8 @@ public class BaseDataServiceEJB implements BaseDataService {
 		return baseDAO.getImsiFailureCount(imsiValue,startTime, finishTime);
 	}
 
+	public Collection<BaseData> getSelectedModelEventCauseData(String model) {
+		return baseDAO.getAllModelEventCauseData(model);
+	}
+
 }

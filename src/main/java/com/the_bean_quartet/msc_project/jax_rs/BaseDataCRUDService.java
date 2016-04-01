@@ -48,19 +48,6 @@ public class BaseDataCRUDService {
         dataModel.setBaseDataModelCollection(service.getModelData());
         return dataModel;
     }
-//	@POST
-//	@Produces(MediaType.APPLICATION_JSON)
-//	@Consumes(MediaType.APPLICATION_JSON)
-//	//@Path("/modelSearch")
-//	public BaseDataList getIMSIRelatedBaseData(String model) throws JsonParseException, JsonMappingException, IOException{
-//		ObjectMapper mp = new ObjectMapper();
-//		String modelValue = mp.readValue(model, String.class);
-//		System.out.println(modelValue);
-//		BaseDataList allDataIMSI = new BaseDataList();
-//		allDataIMSI.setBaseDataModelCollection(service.getSelectedModelBaseData(modelValue));
-//      	return allDataIMSI;
-//        
-//	}
 	
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
@@ -78,8 +65,24 @@ public class BaseDataCRUDService {
 		BaseDataList allDataModel = new BaseDataList();
 		allDataModel.setBaseDataModelCollection(service.getSelectedModelBaseData(obj.getOption1().toString(),obj.getOption2().toString(),obj.getOption3().toString()));
       	return allDataModel;
+	}
+	
+	@POST
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Path("/eventCauseSearch")
+	public BaseDataList getModelRelatedEventCauseData(Options obj) throws JsonParseException, JsonMappingException, IOException{
+
+		System.out.println(obj.getOption1());
+		
+		String modelValue1 = obj.getOption1().toString();
+		BaseDataList allDataModel = new BaseDataList();
+		allDataModel.setBaseDataModelCollection(service.getSelectedModelEventCauseData(obj.getOption1().toString()));
+      	return allDataModel;
         
 	}
+
+	
 	@Path("/imsi")
 	@GET
     @Produces(MediaType.APPLICATION_JSON)
