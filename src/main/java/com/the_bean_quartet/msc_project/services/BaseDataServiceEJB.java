@@ -73,6 +73,12 @@ public class BaseDataServiceEJB implements BaseDataService {
 		return baseDAO.getImsiFailureCount(imsiValue,startTime, finishTime);
 	}
 
+
+	public Collection<BaseData> getSelectedModelEventCauseData(String model) {
+		return baseDAO.getAllModelEventCauseData(model);
+	}
+
+
 	public Collection<BaseData> getAllFailureCauseClass(){
 		return baseDAO.getAllFailureCauseClass();
 	}
@@ -81,10 +87,7 @@ public class BaseDataServiceEJB implements BaseDataService {
 	}
 	public Collection<BaseData> getTopTenMarketOperatorCell_ID(String failureCauseClass, String startTime, String finishTime) {
 		return baseDAO.getTopTenMarketOperatorCell_ID(failureCauseClass, startTime, finishTime);
-	}
 
-	public Collection<BaseData> getSelectedModelEventCauseData(String model) {
-		return baseDAO.getAllModelEventCauseData(model);
 
 	}
 

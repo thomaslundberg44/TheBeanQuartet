@@ -175,8 +175,6 @@
 			frame = document.getElementById("frame");
 			frame.innerHTML = '<iframe src="userStoryFourteenImsiForAnFailureCauseClass.html" width="98%" height="100%"></iframe>';
 
-			frame.innerHTML = '<iframe src="UserStoryTenSample.html" width="98%" height="100%"></iframe>';
-
 		}
 		
 	
