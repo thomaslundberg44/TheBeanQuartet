@@ -29,9 +29,6 @@ import com.the_bean_quartet.msc_project.utilities.ProcessXLSFile;
 
 @Path("/xls_crud")
 public class XLSFileCRUDService {
-	
-	//private static final String UPLOADED_FILE_PATH = "D:\\Project\\jboss-as-7.1.1.Final\\bin\\";
-//	private static final String UPLOADED_FILE_PATH = "home/tommy/software/wildfly-8.2.1.Final/bin/";
 
 	@Inject private BaseDataService baseDataService;
 	@Inject private ErrorDataService errorService;
@@ -146,7 +143,9 @@ public class XLSFileCRUDService {
 		fop.flush();
 		fop.close();
 		
-		ProcessXLSFile processXls = new ProcessXLSFile(baseDataService, errorService, failureClassService, eventCauseService, mccDataService, ueDataService);
+		ProcessXLSFile processXls = new ProcessXLSFile(baseDataService, errorService, 
+				failureClassService, eventCauseService, 
+				mccDataService, ueDataService);
 		processXls.processXLSSpreadsheet(file);
 	}
 	

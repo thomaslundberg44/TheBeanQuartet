@@ -13,7 +13,6 @@ import javax.persistence.Query;
 import com.the_bean_quartet.msc_project.dao.BaseDataDAO;
 import com.the_bean_quartet.msc_project.entities.BaseData;
 
-
 @Stateless
 @Local
 public class JPABaseDataDAO implements BaseDataDAO {
@@ -38,11 +37,12 @@ public class JPABaseDataDAO implements BaseDataDAO {
 
 
 	public void addCollectionData(Collection<BaseData> data) {
-		Query query = em.createQuery("from BaseData");
-		List<BaseData> dataList = query.getResultList();
+		System.out.println("In Base Data JPA. Adding collection size: "+data.size());
 		for(BaseData dataItem : data) {
-			if(!dataList.contains(dataItem))
+			if(em != null)
 				em.persist(dataItem);
+			else
+				System.out.println("Entity manager null!");
 		}
 	}
 	

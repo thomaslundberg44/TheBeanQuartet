@@ -72,7 +72,7 @@ public class ProcessXLSFile {
 	 * @param Takes a xls spreadsheet file
 	 */
 	public void processXLSSpreadsheet(File xlsFile) {
-		
+		System.out.println("In ProcessXLSFile class, processing file at path: "+xlsFile.getAbsolutePath());
 		try {
 			FileInputStream file = new FileInputStream(xlsFile);
 			HSSFWorkbook workbook = new HSSFWorkbook(file);
@@ -93,6 +93,7 @@ public class ProcessXLSFile {
 	}
 	
 	private void readEventCauseDataSheet(HSSFSheet sheet) {
+		System.out.println("Reading event cause sheet!");
 		eventList = new ArrayList<EventCause>();
 		for(Row row : sheet) {
 			if(row.getRowNum() > 0) // first row contains headings/null values

@@ -33,6 +33,7 @@ public class BaseDataServiceEJB implements BaseDataService {
 	}
 
 	public void addCollectionToDataset(Collection<BaseData> data) {
+		System.out.println("In Base Data Service: Adding collection of size: "+data.size());
 		baseDAO.addCollectionData(data);
 	}
 	public Collection<BaseData> getModelData() {
