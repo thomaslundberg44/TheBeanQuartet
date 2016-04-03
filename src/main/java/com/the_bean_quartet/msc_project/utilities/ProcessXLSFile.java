@@ -23,17 +23,11 @@ import com.the_bean_quartet.msc_project.entities.MccData;
 import com.the_bean_quartet.msc_project.entities.MccDataId;
 import com.the_bean_quartet.msc_project.entities.UETypeClass;
 import com.the_bean_quartet.msc_project.services.BaseDataService;
-import com.the_bean_quartet.msc_project.services.BaseDataServiceEJB;
 import com.the_bean_quartet.msc_project.services.ErrorDataService;
-import com.the_bean_quartet.msc_project.services.ErrorDataServiceEJB;
 import com.the_bean_quartet.msc_project.services.EventCauseService;
-import com.the_bean_quartet.msc_project.services.EventCauseServiceEJB;
 import com.the_bean_quartet.msc_project.services.FailureDataService;
-import com.the_bean_quartet.msc_project.services.FailureDataServiceEJB;
 import com.the_bean_quartet.msc_project.services.MccDataService;
-import com.the_bean_quartet.msc_project.services.MccDataServiceEJB;
 import com.the_bean_quartet.msc_project.services.UETypeService;
-import com.the_bean_quartet.msc_project.services.UETypeServiceJEJB;
 
 public class ProcessXLSFile {
 	

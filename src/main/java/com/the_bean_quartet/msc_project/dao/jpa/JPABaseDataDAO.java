@@ -38,22 +38,22 @@ public class JPABaseDataDAO implements BaseDataDAO {
 
 	public void addCollectionData(Collection<BaseData> data) {
 		System.out.println("In Base Data JPA. Adding collection size: "+data.size());
-		System.out.println("Entity manager = "+em.toString());
+//		System.out.println("Entity manager = "+em.toString());
 		for(BaseData dataItem : data) {
-			System.out.println("Base data row ('"+
-						dataItem.getDate()+"', '"+dataItem.getEventCause().getId().getEventId()+
-						"', '"+dataItem.getFailureClass().getFailureClass()+
-						"', '"+dataItem.getUeTable().getTac()+
-						"', '"+dataItem.getMccData().getMcc()+
-						"', '"+dataItem.getMccData().getMnc()+
-						"', '"+dataItem.getCellId()+
-						"', '"+dataItem.getDuration()+
-						"', '"+dataItem.getEventCause().getCauseCode()+
-						"', '"+dataItem.getNeVersion()+
-						"', '"+dataItem.getImsi()+
-						"', '"+dataItem.getHeir3Id()+
-						"', '"+dataItem.getHeir32Id()+
-						"', '"+dataItem.getHeir321Id()+"')");
+//			System.out.println("Base data row ('"+
+//						dataItem.getDate()+"', '"+dataItem.getEventCause().getId().getEventId()+
+//						"', '"+dataItem.getFailureClass().getFailureClass()+
+//						"', '"+dataItem.getUeTable().getTac()+
+//						"', '"+dataItem.getMccData().getMcc()+
+//						"', '"+dataItem.getMccData().getMnc()+
+//						"', '"+dataItem.getCellId()+
+//						"', '"+dataItem.getDuration()+
+//						"', '"+dataItem.getEventCause().getCauseCode()+
+//						"', '"+dataItem.getNeVersion()+
+//						"', '"+dataItem.getImsi()+
+//						"', '"+dataItem.getHeir3Id()+
+//						"', '"+dataItem.getHeir32Id()+
+//						"', '"+dataItem.getHeir321Id()+"')");
 			em.persist(dataItem);
 		}
 	}

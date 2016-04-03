@@ -29,18 +29,12 @@ public class FileSystemWatch {
 
 	private static final String FOLDER_PATH = "/home/tommy/Documents/testWatchFolder/";
 
-	@Inject
-	private BaseDataService dataService;
-	@Inject
-	private ErrorDataService errorService;
-	@Inject
-	private FailureDataService failureService;
-	@Inject
-	private EventCauseService eventService;
-	@Inject
-	private UETypeService ueService;
-	@Inject
-	private MccDataService mccService;
+	@Inject	private BaseDataService dataService;
+	@Inject	private ErrorDataService errorService;
+	@Inject	private FailureDataService failureService;
+	@Inject	private EventCauseService eventService;
+	@Inject	private UETypeService ueService;
+	@Inject	private MccDataService mccService;
 
 	@Asynchronous
 	public void fileSystemWatch() {
@@ -49,15 +43,7 @@ public class FileSystemWatch {
 			Path dir = Paths.get(FOLDER_PATH);
 			dir.register(watcher, ENTRY_CREATE, ENTRY_DELETE, ENTRY_MODIFY);
 
-			Runtime.getRuntime().addShutdownHook(new Thread("Shutdown file system watch service") {
-				public void run() {
-					try {
-						watcher.close();
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
-				}
-			});
+			allowWatchServiceShutdown(watcher);
 
 			System.out.println("Watch Service registered for dir: " + dir.getFileName());
 
@@ -69,28 +55,12 @@ public class FileSystemWatch {
 					return;
 				}
 
-				for (WatchEvent<?> event : key.pollEvents()) {
-					WatchEvent.Kind<?> kind = event.kind();
-
-					@SuppressWarnings("unchecked")
-					WatchEvent<Path> ev = (WatchEvent<Path>) event;
-					Path fileName = ev.context();
-
-					System.out.println(kind.name() + ": " + fileName);
-
-					if (kind == ENTRY_MODIFY && fileName.toString().equals("data.xls")) {
-						System.out.println("My source file has changed!!!");
-						ProcessXLSFile processFile = new ProcessXLSFile(dataService, errorService, failureService,
-								eventService, mccService, ueService);
-						processFile.processXLSSpreadsheet(new File(FOLDER_PATH + fileName.toFile()));
-					}
-
-				}
+				for (WatchEvent<?> event : key.pollEvents())
+					handleWatchEvent(event);
 
 				boolean valid = key.reset();
-				if (!valid) {
+				if (!valid)
 					break;
-				}
 			}
 
 		} catch (IOException ex) {
@@ -98,4 +68,32 @@ public class FileSystemWatch {
 		}
 	}
 
+	private void handleWatchEvent(WatchEvent<?> event) {
+		WatchEvent.Kind<?> kind = event.kind();
+
+		@SuppressWarnings("unchecked")
+		WatchEvent<Path> ev = (WatchEvent<Path>) event;
+		Path fileName = ev.context();
+
+		System.out.println(kind.name() + ": " + fileName);
+
+		if (kind == ENTRY_MODIFY && fileName.toString().endsWith(".xls")) {
+			System.out.println("My source file has changed!!!");
+			ProcessXLSFile processFile = new ProcessXLSFile(dataService, errorService, failureService,
+					eventService, mccService, ueService);
+			processFile.processXLSSpreadsheet(new File(FOLDER_PATH + fileName.toFile()));
+		}
+	}
+
+	private void allowWatchServiceShutdown(final WatchService watcher) {
+		Runtime.getRuntime().addShutdownHook(new Thread("Shutdown watch service") {
+			public void run() {
+				try {
+					watcher.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
 }
