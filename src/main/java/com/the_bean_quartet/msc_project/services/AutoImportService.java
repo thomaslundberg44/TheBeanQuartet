@@ -10,9 +10,14 @@ import com.the_bean_quartet.msc_project.utilities.FileSystemWatch;
 @Singleton
 @Startup
 public class AutoImportService {
-
-	@EJB private FileSystemWatch fileSysWatch;
 	
+	@EJB
+	private FileSystemWatch fileSysWatch;
+
+	public void setFileSystemWatch(FileSystemWatch fileSysWatch) {
+		this.fileSysWatch = fileSysWatch;
+	}
+
 	@PostConstruct
 	public void startFileSystemWatch() {
 		fileSysWatch.fileSystemWatch();

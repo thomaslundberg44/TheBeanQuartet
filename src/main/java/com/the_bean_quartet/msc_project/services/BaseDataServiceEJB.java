@@ -7,6 +7,8 @@ import javax.ejb.Local;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 import com.the_bean_quartet.msc_project.dao.BaseDataDAO;
 import com.the_bean_quartet.msc_project.entities.BaseData;
@@ -16,9 +18,12 @@ import com.the_bean_quartet.msc_project.entities.BaseData;
 @TransactionAttribute(TransactionAttributeType.REQUIRED)
 public class BaseDataServiceEJB implements BaseDataService {
 
+	@PersistenceContext 
+	private EntityManager em;
+	
 	@EJB // uses reflection
 	private BaseDataDAO baseDAO;
-
+	
 	public void setDao(BaseDataDAO dao) {
 		// do something really important on injection
 		this.baseDAO = dao;

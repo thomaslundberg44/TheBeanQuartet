@@ -1,7 +1,6 @@
 package com.the_bean_quartet.msc_project.jax_rs;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
@@ -133,6 +132,18 @@ public class XLSFileCRUDService {
 
 		File file = new File(filename);
 		
+		ProcessXLSFile processXls = new ProcessXLSFile(baseDataService, errorService, 
+				failureClassService, eventCauseService, 
+				mccDataService, ueDataService);
+		processXls.processXLSSpreadsheet(file);
+	}
+	
+	/**
+	 * Take a Excel file from external class and process
+	 * 
+	 * @param Excel spreadsheet file
+	 */
+	public void writeFile(File file) {
 		ProcessXLSFile processXls = new ProcessXLSFile(baseDataService, errorService, 
 				failureClassService, eventCauseService, 
 				mccDataService, ueDataService);

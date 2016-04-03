@@ -6,6 +6,8 @@ import java.util.List;
 
 import javax.ejb.Local;
 import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -15,6 +17,7 @@ import com.the_bean_quartet.msc_project.entities.BaseData;
 
 @Stateless
 @Local
+@TransactionAttribute(TransactionAttributeType.REQUIRED)
 public class JPABaseDataDAO implements BaseDataDAO {
 
 	@PersistenceContext
@@ -35,29 +38,12 @@ public class JPABaseDataDAO implements BaseDataDAO {
 	public void clearAllEntries() {
 	}
 
-
 	public void addCollectionData(Collection<BaseData> data) {
 		System.out.println("In Base Data JPA. Adding collection size: "+data.size());
-//		System.out.println("Entity manager = "+em.toString());
 		for(BaseData dataItem : data) {
-//			System.out.println("Base data row ('"+
-//						dataItem.getDate()+"', '"+dataItem.getEventCause().getId().getEventId()+
-//						"', '"+dataItem.getFailureClass().getFailureClass()+
-//						"', '"+dataItem.getUeTable().getTac()+
-//						"', '"+dataItem.getMccData().getMcc()+
-//						"', '"+dataItem.getMccData().getMnc()+
-//						"', '"+dataItem.getCellId()+
-//						"', '"+dataItem.getDuration()+
-//						"', '"+dataItem.getEventCause().getCauseCode()+
-//						"', '"+dataItem.getNeVersion()+
-//						"', '"+dataItem.getImsi()+
-//						"', '"+dataItem.getHeir3Id()+
-//						"', '"+dataItem.getHeir32Id()+
-//						"', '"+dataItem.getHeir321Id()+"')");
 			em.persist(dataItem);
 		}
 	}
-	
 
 	public Collection<BaseData> getAllData() {
 		Query query = em.createQuery("from BaseData");
