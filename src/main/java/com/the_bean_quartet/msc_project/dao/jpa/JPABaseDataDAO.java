@@ -187,24 +187,23 @@ public class JPABaseDataDAO implements BaseDataDAO {
 		Integer intFailureCauseClass= Integer.valueOf(failureCauseClass);		
 		System.out.println("111111111111111111111111111   "+intFailureCauseClass);
 		
-		Query query  = em.createQuery("select DISTINCT(bd.imsi) from BaseData bd where bd.failureClass.failureClass =:failureCauseClass");
-		Integer x = 1;
+		//Query query  = em.createQuery("select DISTINCT(bd.imsi), bd.failureClass.failureClass from BaseData bd where bd.failureClass.failureClass =:failureCauseClass");
+		Query query  = em.createQuery("select DISTINCT (bd.imsi),count(bd.failureClass) from BaseData bd where bd.failureClass.failureClass =:failureCauseClass group by bd.imsi order by bd.failureClass");
 
+		query.setParameter("failureCauseClass", intFailureCauseClass);
 		System.out.println("222222222222222222"+intFailureCauseClass);
-			query.setParameter("failureCauseClass", intFailureCauseClass);
-			
-			List<BaseData> ImsiForAnFailureCauseClass = query.getResultList(); 		
-//			List<BaseData> ImsiForAnFailureCauseClassString; 
+		List<BaseData> ImsiForAnFailureCauseClass = query.getResultList(); 		
+//		List<BaseData> ImsiForAnFailureCauseClassString; 
 //
-//			List<BaseData> StringImsiForAnFailureCauseClass=;
-//			for(int i=0; i<=ImsiForAnFailureCauseClass.size();i++){
-//				String temp = ImsiForAnFailureCauseClass.get(i).toString();
-//				StringImsiForAnFailureCauseClass.add(temp);
-//			}
-//			for(int i=0; i<=ImsiForAnFailureCauseClassString.size();i++){
+//		List<BaseData> StringImsiForAnFailureCauseClass=;
+//		for(int i=0; i<=ImsiForAnFailureCauseClass.size();i++){
+//			String temp = ImsiForAnFailureCauseClass.get(i).toString();
+//			StringImsiForAnFailureCauseClass.add(temp);
+//		}
+//		for(int i=0; i<=ImsiForAnFailureCauseClassString.size();i++){
 //
-//			ImsiForAnFailureCauseClassString.add(i, StringImsiForAnFailureCauseClass);
-//			}
+//		ImsiForAnFailureCauseClassString.add(i, StringImsiForAnFailureCauseClass);
+//		}
 		return ImsiForAnFailureCauseClass;
 	}
 	
