@@ -9,6 +9,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
+import javax.ejb.Stateless;
+import javax.inject.Inject;
+
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
@@ -29,14 +32,15 @@ import com.the_bean_quartet.msc_project.services.FailureDataService;
 import com.the_bean_quartet.msc_project.services.MccDataService;
 import com.the_bean_quartet.msc_project.services.UETypeService;
 
+@Stateless
 public class ProcessXLSFile {
 	
-	private BaseDataService baseDataService;
-	private ErrorDataService errorService;
-	private FailureDataService failureClassService;
-	private EventCauseService eventCauseService;
-	private MccDataService mccDataService;
-	private UETypeService ueDataService;
+	@Inject private BaseDataService baseDataService;
+	@Inject private ErrorDataService errorService;
+	@Inject private FailureDataService failureClassService;
+	@Inject private EventCauseService eventCauseService;
+	@Inject private MccDataService mccDataService;
+	@Inject private UETypeService ueDataService;
 	
 	private Collection<BaseData> baseList;
 	private Collection<ErrorData> errorList;
@@ -45,18 +49,6 @@ public class ProcessXLSFile {
 	private Collection<MccData> mccList;
 	private Collection<UETypeClass> ueList;
 	
-	public ProcessXLSFile(BaseDataService baseDataService, ErrorDataService errorService,
-			FailureDataService failureClassService, EventCauseService eventCauseService,
-			MccDataService mccDataService, UETypeService ueDataService) {
-		this.baseDataService = baseDataService;
-		this.eventCauseService = eventCauseService;
-		this.failureClassService = failureClassService;
-		this.errorService = errorService;
-		this.ueDataService = ueDataService;
-		this.mccDataService = mccDataService;
-	}
-	
-	// dummy default constructor for testing
 	public ProcessXLSFile() { }
 
 	/**

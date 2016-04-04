@@ -18,23 +18,13 @@ import org.apache.commons.io.IOUtils;
 import org.jboss.resteasy.plugins.providers.multipart.InputPart;
 import org.jboss.resteasy.plugins.providers.multipart.MultipartFormDataInput;
 
-import com.the_bean_quartet.msc_project.services.BaseDataService;
-import com.the_bean_quartet.msc_project.services.ErrorDataService;
-import com.the_bean_quartet.msc_project.services.EventCauseService;
-import com.the_bean_quartet.msc_project.services.FailureDataService;
-import com.the_bean_quartet.msc_project.services.MccDataService;
-import com.the_bean_quartet.msc_project.services.UETypeService;
 import com.the_bean_quartet.msc_project.utilities.ProcessXLSFile;
 
 @Path("/xls_crud")
 public class XLSFileCRUDService {
-
-	@Inject private BaseDataService baseDataService;
-	@Inject private ErrorDataService errorService;
-	@Inject private FailureDataService failureClassService;
-	@Inject private EventCauseService eventCauseService;
-	@Inject private MccDataService mccDataService;
-	@Inject private UETypeService ueDataService;
+	
+	@Inject
+	private ProcessXLSFile processXls;
 	
 	/**
 	 * Handles an XLS spreadsheet and passes file to be processed and persisted
@@ -132,21 +122,6 @@ public class XLSFileCRUDService {
 
 		File file = new File(filename);
 		
-		ProcessXLSFile processXls = new ProcessXLSFile(baseDataService, errorService, 
-				failureClassService, eventCauseService, 
-				mccDataService, ueDataService);
-		processXls.processXLSSpreadsheet(file);
-	}
-	
-	/**
-	 * Take a Excel file from external class and process
-	 * 
-	 * @param Excel spreadsheet file
-	 */
-	public void writeFile(File file) {
-		ProcessXLSFile processXls = new ProcessXLSFile(baseDataService, errorService, 
-				failureClassService, eventCauseService, 
-				mccDataService, ueDataService);
 		processXls.processXLSSpreadsheet(file);
 	}
 	

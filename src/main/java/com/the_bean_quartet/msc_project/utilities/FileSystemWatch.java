@@ -8,7 +8,6 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.ClosedWatchServiceException;
 import java.nio.file.FileSystem;
-import java.nio.file.Path;
 import java.nio.file.WatchEvent;
 import java.nio.file.WatchKey;
 import java.nio.file.WatchService;
@@ -16,24 +15,26 @@ import java.nio.file.WatchService;
 import javax.ejb.Asynchronous;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
 
-import com.the_bean_quartet.msc_project.jax_rs.XLSFileCRUDService;
-
+@Path("/watchservice")
 @Stateless
 public class FileSystemWatch {
 
 	private static final String FOLDER_PATH = "/home/tommy/Documents/testWatchFolder/";
 
 	@Inject
-	private XLSFileCRUDService fileService;
+	private ProcessXLSFile fileService;
 
+	@GET
 	@Asynchronous
+	@Path("/start")
 	public void fileSystemWatch() {
-		Path dir = new File(FOLDER_PATH).toPath();
-		FileSystem fileSystem = dir.getFileSystem();
+		java.nio.file.Path watchDir = new File(FOLDER_PATH).toPath();
+		FileSystem fileSystem = watchDir.getFileSystem();
 		try (WatchService watcher = fileSystem.newWatchService()) {
-			dir.register(watcher, ENTRY_CREATE, ENTRY_DELETE, ENTRY_MODIFY);
-
+			watchDir.register(watcher, ENTRY_CREATE, ENTRY_DELETE, ENTRY_MODIFY);
 			allowWatchServiceShutdown(watcher);
 
 			watchLoop(watcher);
@@ -65,14 +66,14 @@ public class FileSystemWatch {
 		WatchEvent.Kind<?> kind = event.kind();
 
 		@SuppressWarnings("unchecked")
-		WatchEvent<Path> ev = (WatchEvent<Path>) event;
-		Path fileName = ev.context();
+		WatchEvent<java.nio.file.Path> ev = (WatchEvent<java.nio.file.Path>) event;
+		java.nio.file.Path fileName = ev.context();
 
 		System.out.println(kind.name() + ": " + fileName);
 
 		if (kind == ENTRY_MODIFY && fileName.toString().endsWith(".xls")) {
 			System.out.println("Source file being watched has changed!");
-			fileService.writeFile(new File(FOLDER_PATH + fileName.toFile()));
+			fileService.processXLSSpreadsheet(new File(FOLDER_PATH + fileName.toFile()));
 		}
 	}
 
