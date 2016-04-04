@@ -1,4 +1,4 @@
-package restAssuredTest;
+package restAssuredTestForGet;
 
 
 

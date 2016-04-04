@@ -59,6 +59,7 @@ public class JPABaseDataDAO implements BaseDataDAO {
 	}
 
 	public Collection<BaseData> getAllModelSearchData(String model, String startTime, String finishTime) {
+		
 		Query query = em.createQuery("select bd.ueTable.tac from BaseData bd where bd.ueTable.marketingName =:uetypes");
 		query.setParameter("uetypes", model);
 		int UEData = (Integer) query.getResultList().get(0);
@@ -106,16 +107,23 @@ public class JPABaseDataDAO implements BaseDataDAO {
 	}
 	
 	public Collection<BaseData> getListImsiWithFailureTimeRange(String startTime, String finishTime){
+	//	long timer = System.currentTimeMillis();		
 
 		Query query = em.createQuery("select DISTINCT(bd.imsi), bd.failureClass from BaseData bd "
 				+ "where bd.date >=:dateStart and bd.date <:dateEnd group by bd.imsi");
 		query.setParameter("dateStart", startTime);
 		query.setParameter("dateEnd", finishTime);
+//		countTime(timer);
 		List<BaseData> ListImsiWithFailureTimeRange = query.getResultList();
 		return ListImsiWithFailureTimeRange;
 	
 	}
-
+	public void countTime(long startTime){
+		
+		long endTime = System.currentTimeMillis();
+		float duration = (endTime-startTime)/1000.0f;
+		System.out.print("111111111Time took: "+duration);
+	}
 	public Collection<BaseData> getTop10ImsiSearchData(String startTime, String finishTime) {
 		Query query = em.createQuery("select DISTINCT (bd.imsi),count(bd.failureClass) from BaseData bd "
 				+ "where bd.date >=:dateStart and bd.date <:dateEnd group by bd.imsi order by bd.failureClass");

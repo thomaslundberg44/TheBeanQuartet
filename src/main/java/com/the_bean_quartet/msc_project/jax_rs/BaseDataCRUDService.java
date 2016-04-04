@@ -24,6 +24,13 @@ public class BaseDataCRUDService {
 	@Inject
 	private BaseDataService service;
 	
+	public void countTime(long startTime){
+		
+		long endTime = System.currentTimeMillis();
+		float duration = (endTime-startTime)/1000.0f;
+		System.out.print("Time took "+duration);
+	}
+	
 	@GET
     @Produces(MediaType.APPLICATION_JSON)
     public BaseDataList getBaseData() {
@@ -54,17 +61,19 @@ public class BaseDataCRUDService {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("/modelSearch")
 	public BaseDataList getModelRelatedBaseData(Options obj) throws JsonParseException, JsonMappingException, IOException{
+		long startTime = System.currentTimeMillis();		
 
-		System.out.println(obj.getOption1());
-		System.out.println(obj.getOption2());
-		System.out.println(obj.getOption3());
+//		System.out.println(obj.getOption1());
+//		System.out.println(obj.getOption2());
+//		System.out.println(obj.getOption3());
 		
 		String modelValue1 = obj.getOption1().toString();
 		String modelValue2 = obj.getOption2().toString();
 		String modelValue3 = obj.getOption3().toString();
 		BaseDataList allDataModel = new BaseDataList();
 		allDataModel.setBaseDataModelCollection(service.getSelectedModelBaseData(obj.getOption1().toString(),obj.getOption2().toString(),obj.getOption3().toString()));
-      	return allDataModel;
+		countTime(startTime);
+		return allDataModel;
 	}
 	
 	@POST
@@ -72,13 +81,17 @@ public class BaseDataCRUDService {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("/eventCauseSearch")
 	public BaseDataList getModelRelatedEventCauseData(Options obj) throws JsonParseException, JsonMappingException, IOException{
+		long startTime = System.currentTimeMillis();		
 
-		System.out.println(obj.getOption1());
+		//System.out.println(obj.getOption1());
 		
 		String modelValue1 = obj.getOption1().toString();
 		BaseDataList allDataModel = new BaseDataList();
 		allDataModel.setBaseDataModelCollection(service.getSelectedModelEventCauseData(obj.getOption1().toString()));
-      	return allDataModel;
+		
+		countTime(startTime);
+		
+		return allDataModel;
         
 	}
 
@@ -98,11 +111,15 @@ public class BaseDataCRUDService {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("/imsirelation")
 	public BaseDataList getIMSIRelatedBaseData(String imsiVal) throws JsonParseException, JsonMappingException, IOException{
+		long startTime = System.currentTimeMillis();		
 		ObjectMapper mp = new ObjectMapper();
 		String imsiValue = mp.readValue(imsiVal, String.class);
-		System.out.println(imsiValue);
+//		System.out.println(imsiValue+"1111111111111111111111111111111111111111111111");
 		BaseDataList allDataIMSI = new BaseDataList();
 		allDataIMSI.setBaseDataCollection(service.getSelectedBaseData(imsiValue));
+		
+		countTime(startTime);
+		
       	return allDataIMSI;
         
 	}
@@ -112,12 +129,17 @@ public class BaseDataCRUDService {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("/causeCodeWithCallFailure")
 	public BaseDataList getCauseCodeWithCallFailureForAnImsi(String imsi) throws JsonParseException, JsonMappingException, IOException{
+		long startTime = System.currentTimeMillis();		
+
 		ObjectMapper mp = new ObjectMapper();
 		String imsiValue = mp.readValue(imsi, String.class);
-		System.out.println(imsiValue+"111111111111111111111111111111111");
+	//	System.out.println(imsiValue+"111111111111111111111111111111111");
 		BaseDataList CauseCodeWithCallFailure = new BaseDataList();
 		CauseCodeWithCallFailure.setBaseDataCollection(service.getCauseCodeWithCallFailureForAnImsi(imsiValue));
-      	return CauseCodeWithCallFailure;
+      
+		countTime(startTime);
+		
+		return CauseCodeWithCallFailure;
         
 	}
 	
@@ -126,15 +148,20 @@ public class BaseDataCRUDService {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("/imsiFailureCount")
 	public BaseDataList getIMSIFailureCount(Options obj) throws JsonParseException, JsonMappingException, IOException{
+		long startTime = System.currentTimeMillis();		
+
 		String modelValue1=obj.getOption1().toString();
 		String modelValue2=obj.getOption2().toString();
 		String modelValue3=obj.getOption3().toString();
 		
-		System.out.println(modelValue1+"  "+modelValue2+"  "+modelValue3);
+		//System.out.println(modelValue1+"  "+modelValue2+"  "+modelValue3);
 		
 		BaseDataList allDataIMSI = new BaseDataList();
 		allDataIMSI.setBaseDataCollection(service.getImsiFailureCount(modelValue1, modelValue2, modelValue3));
-		System.out.println(allDataIMSI);
+		
+		countTime(startTime);
+		
+		//System.out.println(allDataIMSI);
       	return allDataIMSI;
         
 	}
@@ -144,15 +171,20 @@ public class BaseDataCRUDService {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("/countEachImsi")
 	public BaseDataList getCountEachImsiBaseData(Options obj) throws JsonParseException, JsonMappingException, IOException{
+		long startTime = System.currentTimeMillis();		
+
 		String modelValue1 = obj.getOption1().toString();
 		String modelValue2 = obj.getOption2().toString();
 		
-		System.out.println(obj.getOption1());
-		System.out.println(obj.getOption2());
+//		System.out.println(obj.getOption1());
+//		System.out.println(obj.getOption2());
 		
 		BaseDataList eachImsiSearch = new BaseDataList();
 		eachImsiSearch.setBaseDataEachImsiSearchCollection(service.getEachImsiBaseData(modelValue1, modelValue2));
-      	return eachImsiSearch;
+		
+		countTime(startTime);
+		
+		return eachImsiSearch;
         
 	}
 	
@@ -162,15 +194,19 @@ public class BaseDataCRUDService {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("/listImsiWithFailureDateRange")
 	public BaseDataList getlistImsiWithFailureDateRange(Options obj) throws JsonParseException, JsonMappingException, IOException{
+		long startTime = System.currentTimeMillis();		
+
 		String modelValue1 = obj.getOption1().toString();
 		String modelValue2 = obj.getOption2().toString();
 		
-		System.out.println(obj.getOption1());
-		System.out.println(obj.getOption2());
+//		System.out.println(obj.getOption1());
+//		System.out.println(obj.getOption2());
 		
 		BaseDataList listImsiWithFailureDateRangeSearch = new BaseDataList();
 		listImsiWithFailureDateRangeSearch.setBaseDataListImsiWithFailureCollection(service.
 				getListImsiWithFailureTimeRange(modelValue1, modelValue2));
+		countTime(startTime);
+
       	return listImsiWithFailureDateRangeSearch;
         
 	}
@@ -180,15 +216,20 @@ public class BaseDataCRUDService {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("/top10Imsi")
 	public BaseDataList getTopTenImsiBaseData(Options obj) throws JsonParseException, JsonMappingException, IOException{
+		long startTime = System.currentTimeMillis();		
+
 		String modelValue1 = obj.getOption1().toString();
 		String modelValue2 = obj.getOption2().toString();
 		
-		System.out.println(obj.getOption1());
-		System.out.println(obj.getOption2());
+//		System.out.println(obj.getOption1());
+//		System.out.println(obj.getOption2());
 		
 		BaseDataList eachImsiSearch = new BaseDataList();
 		eachImsiSearch.setBaseDataEachImsiSearchCollection(service.getTop10ImsiBaseData(modelValue1, modelValue2));
-      	return eachImsiSearch;
+      
+		countTime(startTime);
+		
+		return eachImsiSearch;
         
 	}
 	
@@ -206,15 +247,20 @@ public class BaseDataCRUDService {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("/ImsiForAnFailureCauseClass")
 	public BaseDataList getImsiForAnFailureCauseClass(String failureCauseClass) throws JsonParseException, JsonMappingException, IOException{
+		long startTime = System.currentTimeMillis();		
+
 		ObjectMapper mp = new ObjectMapper();
 		String failureCauseClassValue = mp.readValue(failureCauseClass, String.class);
-		System.out.println(failureCauseClassValue+"111111111111111111111111111111111");
+//		System.out.println(failureCauseClassValue+"111111111111111111111111111111111");
 
 		
 		BaseDataList ImsiForAnFailureCauseClass = new BaseDataList();
 		ImsiForAnFailureCauseClass.setBaseDataListImsiForAnFailureCauseClass
 									(service.getImsiForAnFailureCauseClass(failureCauseClassValue));
-      	return ImsiForAnFailureCauseClass;
+      	
+		countTime(startTime);
+		
+		return ImsiForAnFailureCauseClass;
         
 	}
 	
@@ -223,16 +269,20 @@ public class BaseDataCRUDService {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("/TopTenMarketOperatorCell_ID")
 	public BaseDataList getTopTenMarketOperatorCell_ID(Options obj) throws JsonParseException, JsonMappingException, IOException{
+		long startTime = System.currentTimeMillis();		
+
 		String modelValue1=obj.getOption1().toString();
 		String modelValue2=obj.getOption2().toString();
 		String modelValue3=obj.getOption3().toString();
 		
-		System.out.println(modelValue1+"  "+modelValue2+"  "+modelValue3);
+//		System.out.println(modelValue1+"  "+modelValue2+"  "+modelValue3);
 		
 		BaseDataList TopTenMarketOperatorCell_ID = new BaseDataList();
 		TopTenMarketOperatorCell_ID.setBaseDataListTopTenMarketOperatorCell_ID(
 				service.getTopTenMarketOperatorCell_ID(modelValue1, modelValue2, modelValue3));
-      	return TopTenMarketOperatorCell_ID;
+      
+		countTime(startTime);
+		return TopTenMarketOperatorCell_ID;
         
 	}
 }
