@@ -15,6 +15,9 @@
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/style1.css">
 
+<link rel="stylesheet" type="text/css" href="dropList/style.css" />
+<link rel="stylesheet" type="text/css" href="dropList/dropList.css" />
+<script src="dropList/jquery.dropList.1.0.0.js"></script>
 
 </head>
 <title>User Story Six</title>
@@ -28,11 +31,15 @@
 			<br> <br>
 			<div class="login-card">
 				<form role="form" id="details">
-					<div class="dropdown">
-						<label>Select available IMSI values:</label> <br> <select
-							class="form-control" id="imsi"></select>
+						<label>Select available IMSI values:</label> <br> 
+					<div>
+						<div class="" id="dwrapper3">
+							<select id="dlist3">
+							</select>
+						</div>
 					</div>
-					<br> <input type="submit" class="login login-submit"
+
+					<input type="submit" class="login login-submit"
 						value="Submit">
 				</form>
 				<a onclick="Help()" href="#">help</a>
@@ -41,14 +48,12 @@
 		</div>
 	</div>
 
-
 	<div align="center">
 		<table id="myTable" class="table table-striped table-bordered" style="width: 100%">
 			<thead>
 				<tr>
 					<th>Cause-Code</th>
 					<th>FailureClass</th>
-
 				</tr>
 			</thead>
 			<tbody id="TableCont">
@@ -58,12 +63,13 @@
 
 	<script>
 	
+	
 		$("#hide-show").click(function(){
 	        $("#search").toggle();
 		});
-		
+
 		//get a reference to the select element
-		var $select = $('#imsi');
+		var $select = $('#dlist3');
 		var $tbSelect = $('#imageTable');
 
 		//request the JSON data and parse into the select element
@@ -76,14 +82,18 @@
 				$select.html('');
 				//iterate over the data and append a select option
 				$.each(data.baseDataCollection, function(i, val) {
-					$select.append('<option>' + val + '</option>');
-					console.log(val);
+					$select.append('<option value='+val+'>'+val+'</option>');
+					//console.log(val);
 				})
+				//initialise drop down search
+				$('#dlist3').dropList({
+					search		: true
+				});
 			}
 		});
 
 		$("#details").submit(function getImsiData() {
-			var checkImsi = document.getElementById("imsi").value;
+			var checkImsi = document.getElementById("dlist3").value;
 			$.ajax({
 				async : false,
 				type : 'POST',
