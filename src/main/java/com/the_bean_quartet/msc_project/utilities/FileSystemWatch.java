@@ -15,27 +15,36 @@ import java.nio.file.WatchService;
 import javax.ejb.Asynchronous;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
 
 @Path("/watchservice")
 @Stateless
 public class FileSystemWatch {
 
-	private static final String FOLDER_PATH = "/home/tommy/Documents/testWatchFolder/";
+	private String folder_path = "/home/tommy/Documents/testWatchFolder/";
 
 	@Inject
 	private ProcessXLSFile fileService;
 	
+	private static WatchService watcher;
+	private boolean watchLoopActive = false;
+	
 	public FileSystemWatch() {}
-
-	@GET
+	
+	/**
+	 * Start watch service in specified folder
+	 */
 	@Asynchronous
-	@Path("/start")
 	public void fileSystemWatch() {
-		java.nio.file.Path watchDir = new File(FOLDER_PATH).toPath();
+		java.nio.file.Path watchDir = new File(folder_path).toPath();
 		FileSystem fileSystem = watchDir.getFileSystem();
-		try (WatchService watcher = fileSystem.newWatchService()) {
+		try {
+			System.out.println("In file watch starter: starting watch service");
+			watcher = fileSystem.newWatchService();
 			watchDir.register(watcher, ENTRY_CREATE, ENTRY_DELETE, ENTRY_MODIFY);
 			
 			allowWatchServiceShutdown(watcher);
@@ -49,15 +58,45 @@ public class FileSystemWatch {
 		}
 	}
 	
+	/**
+	 * Set new directory path for watch service
+	 * If watcher has already been started, stop and restart in new path
+	 * 
+	 * @param The new path for directory to be watched
+	 */
+	@POST
+	@Path("/setpath")
+	@Consumes("text/plain")
+	public void setWatchDirPath(String path) {
+		System.out.println("Request for new watch service path: "+path);
+		this.folder_path = path;
+		if(watcher != null) {
+			try {
+				watchLoopActive = false;
+				watcher.close();
+				watcher = null;
+			} catch (IOException e) {
+				System.out.println("Failed to shut down watcher");
+			}
+			fileSystemWatch();
+		}
+	}
+	
+	/**
+	 * Get the watch service directory path
+	 * @param watcher
+	 */
 	@GET
-	@Path("/stop")
-	public void stopFileWatch() {
-		
+	@Path("/getpath")
+	@Produces("text/plain")
+	public String getWatchDirPath() {
+		return folder_path;
 	}
 
 	private void watchLoop(WatchService watcher) {
 		WatchKey key = null;
-		while (true) {
+		watchLoopActive = true;
+		while (watchLoopActive) {
 			try {
 				key = watcher.take();
 				for (WatchEvent<?> watchEvent : key.pollEvents())
@@ -82,7 +121,7 @@ public class FileSystemWatch {
 
 		if (kind == ENTRY_MODIFY && fileName.toString().endsWith(".xls")) {
 			System.out.println("Source file being watched has changed!");
-			fileService.processXLSSpreadsheet(new File(FOLDER_PATH + fileName.toFile()));
+			fileService.processXLSSpreadsheet(new File(folder_path + fileName.toFile()));
 		}
 	}
 
