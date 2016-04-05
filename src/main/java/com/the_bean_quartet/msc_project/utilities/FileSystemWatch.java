@@ -26,6 +26,8 @@ public class FileSystemWatch {
 
 	@Inject
 	private ProcessXLSFile fileService;
+	
+	public FileSystemWatch() {}
 
 	@GET
 	@Asynchronous
@@ -44,6 +46,12 @@ public class FileSystemWatch {
 		} catch (ClosedWatchServiceException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	@GET
+	@Path("/stop")
+	public void stopFileWatch() {
+		
 	}
 
 	private void watchLoop(WatchService watcher) {
