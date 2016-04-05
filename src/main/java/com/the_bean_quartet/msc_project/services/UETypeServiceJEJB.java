@@ -2,7 +2,6 @@ package com.the_bean_quartet.msc_project.services;
 
 import java.util.Collection;
 
-import javax.ejb.EJB;
 import javax.ejb.Local;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
@@ -17,7 +16,7 @@ import com.the_bean_quartet.msc_project.entities.UETypeClass;
 @TransactionAttribute(TransactionAttributeType.REQUIRED)
 public class UETypeServiceJEJB implements UETypeService{
 
-	@EJB
+	@Inject
 	private UETypeClassDAO ueTypeClassDAO;
 
 

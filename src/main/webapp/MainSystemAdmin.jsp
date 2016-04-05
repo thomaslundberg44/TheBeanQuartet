@@ -102,15 +102,6 @@
 			frame.innerHTML = '';
 		});
 	*/
-		// function to start auto-import service
-		function startAutoImport() {
-			alert("Starting auto-import")
-			$.ajax({
-				async:false,
-				type:"GET",
-				url:"rest/watchservice/start"})
-		}
-		startAutoImport();
 	
 		function viewTables() {
 	        $("#msgbox").fadeOut(function(){

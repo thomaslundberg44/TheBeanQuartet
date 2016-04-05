@@ -37,6 +37,7 @@ public class FileSystemWatch {
 		FileSystem fileSystem = watchDir.getFileSystem();
 		try (WatchService watcher = fileSystem.newWatchService()) {
 			watchDir.register(watcher, ENTRY_CREATE, ENTRY_DELETE, ENTRY_MODIFY);
+			
 			allowWatchServiceShutdown(watcher);
 
 			watchLoop(watcher);

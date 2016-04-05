@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.ejb.Local;
 import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -43,6 +45,7 @@ public class JPAFailureClassDAO implements FailureClassDAO {
 		return failures;
 	}
 
+	@TransactionAttribute (TransactionAttributeType.REQUIRES_NEW)
 	public void addListFailures(Collection<FailureClass> failureClassList) {
 		Query query = em.createQuery("from FailureClass");
 		List<FailureClass> failureClasses = query.getResultList(); 

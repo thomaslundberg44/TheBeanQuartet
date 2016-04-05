@@ -37,7 +37,8 @@ public class JPABaseDataDAO implements BaseDataDAO {
 	
 	public void clearAllEntries() {
 	}
-
+	
+	@TransactionAttribute (TransactionAttributeType.REQUIRES_NEW)
 	public void addCollectionData(Collection<BaseData> data) {
 		System.out.println("In Base Data JPA. Adding collection size: "+data.size());
 		for(BaseData dataItem : data) {

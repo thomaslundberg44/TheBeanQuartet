@@ -2,7 +2,6 @@ package com.the_bean_quartet.msc_project.services;
 
 import java.util.Collection;
 
-import javax.ejb.EJB;
 import javax.ejb.Local;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
@@ -16,7 +15,7 @@ import com.the_bean_quartet.msc_project.entities.FailureClass;
 @Local
 @TransactionAttribute(TransactionAttributeType.REQUIRED)
 public class FailureDataServiceEJB implements FailureDataService{
-	@EJB
+	@Inject
 	private FailureClassDAO failuresDAO;
 
 	

@@ -2,11 +2,11 @@ package com.the_bean_quartet.msc_project.services;
 
 import java.util.Collection;
 
-import javax.ejb.EJB;
 import javax.ejb.Local;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
+import javax.inject.Inject;
 
 import com.the_bean_quartet.msc_project.dao.ErrorDataDAO;
 import com.the_bean_quartet.msc_project.entities.ErrorData;
@@ -16,7 +16,7 @@ import com.the_bean_quartet.msc_project.entities.ErrorData;
 @TransactionAttribute(TransactionAttributeType.REQUIRED)
 public class ErrorDataServiceEJB implements ErrorDataService {
 	
-	@EJB // uses reflection
+	@Inject // uses reflection
 	private ErrorDataDAO errorDAO;
 
 	public Collection<ErrorData> getErrorData() {
