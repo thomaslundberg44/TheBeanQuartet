@@ -96,6 +96,8 @@
 				url : 'rest/basedata/top10Imsi',
 				data : JSON.stringify(obj1),
 				success : function message(data) {
+					alert(JSON.stringify(data));
+
 					var htmltext="";
 					   $.each(data, function (index, value) {
 					       var TableRow = "<tr>";

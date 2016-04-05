@@ -58,6 +58,7 @@ public class JPABaseDataDAO implements BaseDataDAO {
 	}
 
 	public Collection<BaseData> getAllModelSearchData(String model, String startTime, String finishTime) {
+		
 		Query query = em.createQuery("select bd.ueTable.tac from BaseData bd where bd.ueTable.marketingName =:uetypes");
 		query.setParameter("uetypes", model);
 		int UEData = (Integer) query.getResultList().get(0);
@@ -105,16 +106,23 @@ public class JPABaseDataDAO implements BaseDataDAO {
 	}
 	
 	public Collection<BaseData> getListImsiWithFailureTimeRange(String startTime, String finishTime){
+	//	long timer = System.currentTimeMillis();		
 
 		Query query = em.createQuery("select DISTINCT(bd.imsi), bd.failureClass from BaseData bd "
 				+ "where bd.date >=:dateStart and bd.date <:dateEnd group by bd.imsi");
 		query.setParameter("dateStart", startTime);
 		query.setParameter("dateEnd", finishTime);
+//		countTime(timer);
 		List<BaseData> ListImsiWithFailureTimeRange = query.getResultList();
 		return ListImsiWithFailureTimeRange;
 	
 	}
-
+	public void countTime(long startTime){
+		
+		long endTime = System.currentTimeMillis();
+		float duration = (endTime-startTime)/1000.0f;
+		System.out.print("111111111Time took: "+duration);
+	}
 	public Collection<BaseData> getTop10ImsiSearchData(String startTime, String finishTime) {
 		Query query = em.createQuery("select DISTINCT (bd.imsi),count(bd.failureClass) from BaseData bd "
 				+ "where bd.date >=:dateStart and bd.date <:dateEnd group by bd.imsi order by bd.failureClass");
@@ -178,24 +186,23 @@ public class JPABaseDataDAO implements BaseDataDAO {
 		Integer intFailureCauseClass= Integer.valueOf(failureCauseClass);		
 		System.out.println("111111111111111111111111111   "+intFailureCauseClass);
 		
-		Query query  = em.createQuery("select DISTINCT(bd.imsi) from BaseData bd where bd.failureClass.failureClass =:failureCauseClass");
-		Integer x = 1;
+		//Query query  = em.createQuery("select DISTINCT(bd.imsi), bd.failureClass.failureClass from BaseData bd where bd.failureClass.failureClass =:failureCauseClass");
+		Query query  = em.createQuery("select DISTINCT (bd.imsi),count(bd.failureClass) from BaseData bd where bd.failureClass.failureClass =:failureCauseClass group by bd.imsi order by bd.failureClass");
 
+		query.setParameter("failureCauseClass", intFailureCauseClass);
 		System.out.println("222222222222222222"+intFailureCauseClass);
-			query.setParameter("failureCauseClass", intFailureCauseClass);
-			
-			List<BaseData> ImsiForAnFailureCauseClass = query.getResultList(); 		
-//			List<BaseData> ImsiForAnFailureCauseClassString; 
+		List<BaseData> ImsiForAnFailureCauseClass = query.getResultList(); 		
+//		List<BaseData> ImsiForAnFailureCauseClassString; 
 //
-//			List<BaseData> StringImsiForAnFailureCauseClass=;
-//			for(int i=0; i<=ImsiForAnFailureCauseClass.size();i++){
-//				String temp = ImsiForAnFailureCauseClass.get(i).toString();
-//				StringImsiForAnFailureCauseClass.add(temp);
-//			}
-//			for(int i=0; i<=ImsiForAnFailureCauseClassString.size();i++){
+//		List<BaseData> StringImsiForAnFailureCauseClass=;
+//		for(int i=0; i<=ImsiForAnFailureCauseClass.size();i++){
+//			String temp = ImsiForAnFailureCauseClass.get(i).toString();
+//			StringImsiForAnFailureCauseClass.add(temp);
+//		}
+//		for(int i=0; i<=ImsiForAnFailureCauseClassString.size();i++){
 //
-//			ImsiForAnFailureCauseClassString.add(i, StringImsiForAnFailureCauseClass);
-//			}
+//		ImsiForAnFailureCauseClassString.add(i, StringImsiForAnFailureCauseClass);
+//		}
 		return ImsiForAnFailureCauseClass;
 	}
 	

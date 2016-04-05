@@ -94,6 +94,7 @@ User story #7 - As a Support Engineer I want to see a list of all IMSIs with cal
 			url : 'rest/basedata/listImsiWithFailureDateRange',
 			data : JSON.stringify(obj1),
 			success : function message(data) {
+				alert(JSON.stringify(data));
 				var htmltext=" ";
 				   $.each(data, function (index, value) {
 				       var TableRow = "<tr>";

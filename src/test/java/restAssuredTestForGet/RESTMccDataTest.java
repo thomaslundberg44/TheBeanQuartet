@@ -1,4 +1,4 @@
-package restAssuredTest;
+package restAssuredTestForGet;
 
 
 
@@ -12,25 +12,27 @@ import com.jayway.restassured.http.ContentType;
 import com.the_bean_quartet.msc_project.entities.Options;
 import com.the_bean_quartet.msc_project.entities.SysUser;
 
-public class RESTUserDataTest {
+public class RESTMccDataTest {
 	
 
     @Test
-    public void restUserdataRestAssuredTest()
+    public void restMccdataRestAssuredTest()
     {
     	System.out.println("1111111111111111111111111");
 
         given().
         	queryParam( " ", " ").
         when().
-            get("http://localhost:8080/TheBeanQuartet/rest/userdata").
+            get("http://localhost:8080/TheBeanQuartet/rest/mccdata").
         then().
         statusCode(200).
         contentType(ContentType.JSON).
-        body("userData.id", hasItems(1)).
-        body("userData.userType", hasItems("administrator\r")).
-        body("userData.userName", hasItems("Thomas")).
-        body("userData.userPassword", hasItems("1234"));
+        body("data.id.mcc", hasItems(238)).
+        body("data.id.mnc", hasItems(1)).
+        body("data.mcc", hasItems(238)).
+        body("data.mnc", hasItems(1)).
+        body("data.country", hasItems("Denmark")).
+        body("data.operator", hasItems("TDC-DK"));
     	System.out.println("2222222222222222222222");
 
     }

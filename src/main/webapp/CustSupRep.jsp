@@ -38,13 +38,11 @@
 			<ul class="nav nav-pills nav-justified">
 				<li><a onclick="userStory4()" href="#">Event ID
 						and Cause Code by EMSI with call failures</a></li>
-<<<<<<< HEAD
 				<li><a onclick="CauseCodeWithCallFailureForAnImsi()" href="#">Unique 
 				Cause Codes associated with its call failures</a></li>						
 				<li><a onclick="NumberOf_FailureInImsi()" href="#">Number Of
-=======
+				  failures during given time period</a></li>
 				<li><a onclick="userStory5()" href="#">Number Of
->>>>>>> 31228768873185076c62544e6591fffdf3015a29
 						failures by given IMSI</a></li>
 			</ul>
 		</div>
@@ -72,7 +70,6 @@
 
 
 	<script>
-<<<<<<< HEAD
 		function EvenID_CauseCodeByEMSI() {
 	        $("#msgbox").fadeOut(function(){
         		$(this).text(
@@ -100,8 +97,8 @@
 			frame = document.getElementById("frame");
 			frame.innerHTML = '<iframe src="userStoryFive.html" width="98%" height="100%"></iframe>';
 		}
-=======
-	/*User Story 4*/
+
+		/*User Story 4*/
 	function userStory4() {
         $("#msgbox").fadeOut(function(){
     		$(this).text(
@@ -121,7 +118,6 @@
 		frame = document.getElementById("frame");
 		frame.innerHTML = '<iframe src="userStoryFive.html" width="98%" height="100%"></iframe>';
 	}
->>>>>>> 31228768873185076c62544e6591fffdf3015a29
 	</script>
 
 </body>

@@ -1,4 +1,4 @@
-package restAssuredTest;
+package restAssuredTestForPost;
 
 import static com.jayway.restassured.RestAssured.get;
 import static com.jayway.restassured.RestAssured.given;
@@ -15,48 +15,48 @@ import com.the_bean_quartet.msc_project.entities.SysUser;
 
 public class UserCRUDServiceTest {
 	
-	@Test
-	public void addUserTest(){
-		// Initializing Rest API's URL
-		String apiUrl = "http://localhost:8080/TheBeanQuartet/rest/user";
-		
-		System.out.println("11111111111111111");
-		// Initializing payload or API body
-//		String apiInput = "{\"id\":0,\"username\":\"Test\",\"password\":\"1234\",\"usertype\":"
-//				+ "\"System Administrator\"}";
-		SysUser apiInput = new SysUser("Test","1234","Admin");
-		System.out.println("22222222222222222222");
-
-		// Building request using requestSpecBuilder
-		RequestSpecBuilder builder = new RequestSpecBuilder();
-		System.out.println("22222222222222222222");
-
-		builder.setContentType("application/json; charset= UTF-8");
-		System.out.println("22222222222222222222");
-		
-		builder.setBody(apiInput);
-		System.out.println("22222222222222222222");
-		
-		RequestSpecification requestSpec = builder.build();
-		// Making post request with authentication
-		Response response = given().spec(requestSpec).when().post(apiUrl);
-
-		// Automatically check the result with assert methods
-		// The server has fulfilled the request 
-		// but does not need to return an entity-body, 
-		// and might want to return updated meta information.
-		assertEquals(204, response.getStatusCode());
-	
-		//assertEquals(400, response.getStatusCode());
-
-	}
+//	@Test
+//	public void addUserTest(){
+//		// Initializing Rest API's URL
+//		String apiUrl = "http://localhost:8080/TheBeanQuartet/rest/user";
+//		
+//		System.out.println("11111111111111111");
+//		// Initializing payload or API body
+////		String apiInput = "{\"id\":0,\"username\":\"Test\",\"password\":\"1234\",\"usertype\":"
+////				+ "\"System Administrator\"}";
+//		SysUser apiInput = new SysUser("Test","1234","Admin");
+//		System.out.println("22222222222222222222");
+//
+//		// Building request using requestSpecBuilder
+//		RequestSpecBuilder builder = new RequestSpecBuilder();
+//		System.out.println("22222222222222222222");
+//
+//		builder.setContentType("application/json; charset= UTF-8");
+//		System.out.println("22222222222222222222");
+//		
+//		builder.setBody(apiInput);
+//		System.out.println("22222222222222222222");
+//		
+//		RequestSpecification requestSpec = builder.build();
+//		// Making post request with authentication
+//		Response response = given().spec(requestSpec).when().post(apiUrl);
+//
+//		// Automatically check the result with assert methods
+//		// The server has fulfilled the request 
+//		// but does not need to return an entity-body, 
+//		// and might want to return updated meta information.
+//		assertEquals(204, response.getStatusCode());
+//	
+//		//assertEquals(400, response.getStatusCode());
+//
+//	}
 	
 //	@Test
 //	public void checkUserExistenceTest(){
 //		// Initializing Rest API's URL
-//				String apiUrl = "http://localhost:8080/maven_Project/rest/users/checkUserExistence";
+//				String apiUrl = "http://localhost:8080/TheBeanQuartet/rest/user/verify";
 //				// Initializing payload or API body
-//				String apiInput = "Yang";
+//				String apiInput = "Kang";
 //				// Building request using requestSpecBuilder
 //				RequestSpecBuilder builder = new RequestSpecBuilder();
 //				builder.setBody(apiInput);
