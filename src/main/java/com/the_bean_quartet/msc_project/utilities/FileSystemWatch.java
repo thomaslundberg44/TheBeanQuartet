@@ -21,46 +21,56 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 
+import com.the_bean_quartet.msc_project.entities.FilePath;
+import com.the_bean_quartet.msc_project.services.FilePathService;
+
 @Path("/watchservice")
 @Stateless
 public class FileSystemWatch {
 
-	private String folder_path = "/home/tommy/Documents/testWatchFolder/";
+	@Inject private ProcessXLSFile fileService;
+	@Inject private FilePathService filePathService;
 
-	@Inject
-	private ProcessXLSFile fileService;
-	
 	private static WatchService watcher;
-	private boolean watchLoopActive = false;
-	
+	private static boolean watchLoopActive = false;
+
+	private static Thread watchThread;
+
 	public FileSystemWatch() {}
-	
+
 	/**
 	 * Start watch service in specified folder
 	 */
 	@Asynchronous
 	public void fileSystemWatch() {
-		java.nio.file.Path watchDir = new File(folder_path).toPath();
-		FileSystem fileSystem = watchDir.getFileSystem();
-		try {
-			System.out.println("In file watch starter: starting watch service");
-			watcher = fileSystem.newWatchService();
-			watchDir.register(watcher, ENTRY_CREATE, ENTRY_DELETE, ENTRY_MODIFY);
-			
-			allowWatchServiceShutdown(watcher);
+		watchThread = new Thread(new Runnable() {
+			public void run() {
+				String folderPath = getDirectoryPath();
+				java.nio.file.Path watchDir = new File(folderPath).toPath();
+				FileSystem fileSystem = watchDir.getFileSystem();
+				try {
+					System.out.println("FileSystemWatch - "+"starting "
+							+ "watch service for directory: "+folderPath);
+					watcher = fileSystem.newWatchService();
+					watchDir.register(watcher, ENTRY_CREATE, ENTRY_DELETE, ENTRY_MODIFY);
 
-			watchLoop(watcher);
-			
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (ClosedWatchServiceException e) {
-			e.printStackTrace();
-		}
+					allowWatchServiceShutdown(watcher);
+
+					watchLoop(watcher, folderPath);
+
+				} catch (IOException e) {
+					e.printStackTrace();
+				} catch (ClosedWatchServiceException e) {
+					e.printStackTrace();
+				}
+			}
+		});
+		watchThread.start();
 	}
-	
+
 	/**
-	 * Set new directory path for watch service
-	 * If watcher has already been started, stop and restart in new path
+	 * Set new directory path for watch service If watcher has already been
+	 * started, stop and restart in new path
 	 * 
 	 * @param The new path for directory to be watched
 	 */
@@ -68,49 +78,57 @@ public class FileSystemWatch {
 	@Path("/setpath")
 	@Consumes("text/plain")
 	public void setWatchDirPath(String path) {
-		System.out.println("Request for new watch service path: "+path);
-		this.folder_path = path;
-		if(watcher != null) {
-			try {
-				watchLoopActive = false;
-				watcher.close();
-				watcher = null;
-			} catch (IOException e) {
-				System.out.println("Failed to shut down watcher");
-			}
-			fileSystemWatch();
-		}
+		if(!(path.endsWith("/") || path.endsWith("\\")))
+			path += "/";
+		System.out.println("Request for new watch service path: " + path);
+		writeNewFilePath(path);
+		watchLoopActive = false;
+		watchThread.interrupt();
+		fileSystemWatch();
+	}
+	
+	private void writeNewFilePath(String path) {
+		FilePath filePath = filePathService.getFilePath("auto_import_folder");
+		filePathService.updateFilePath(filePath.getId(), path);
+		System.out.println("Attempting to write new file path: "+path);
 	}
 	
 	/**
 	 * Get the watch service directory path
+	 * 
 	 * @param watcher
 	 */
 	@GET
 	@Path("/getpath")
 	@Produces("text/plain")
 	public String getWatchDirPath() {
-		return folder_path;
+		return getDirectoryPath();
+	}
+	
+	private String getDirectoryPath() {
+		String filePath = filePathService.getFilePath("auto_import_folder").getPath();
+		System.out.println("Got file path for folder watcher: "+filePath);
+		return filePath;
 	}
 
-	private void watchLoop(WatchService watcher) {
+	private void watchLoop(WatchService watcher, String folderPath) {
 		WatchKey key = null;
 		watchLoopActive = true;
 		while (watchLoopActive) {
 			try {
 				key = watcher.take();
 				for (WatchEvent<?> watchEvent : key.pollEvents())
-					handleWatchEvent(watchEvent);
+					handleWatchEvent(watchEvent, folderPath);
 
 			} catch (InterruptedException e) {
 				System.out.println("Watcher key interrupted: " + e.getMessage());
 			}
-			if (!key.reset())
+			if(!(key == null) && !key.reset() )
 				break;
 		}
 	}
 
-	private void handleWatchEvent(WatchEvent<?> event) {
+	private void handleWatchEvent(WatchEvent<?> event, String folderPath) {
 		WatchEvent.Kind<?> kind = event.kind();
 
 		@SuppressWarnings("unchecked")
@@ -121,7 +139,7 @@ public class FileSystemWatch {
 
 		if (kind == ENTRY_MODIFY && fileName.toString().endsWith(".xls")) {
 			System.out.println("Source file being watched has changed!");
-			fileService.processXLSSpreadsheet(new File(folder_path + fileName.toFile()));
+			fileService.processXLSSpreadsheet(new File(folderPath + fileName.toFile()));
 		}
 	}
 

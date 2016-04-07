@@ -16,9 +16,6 @@ import com.the_bean_quartet.msc_project.entities.BaseData;
 @TransactionAttribute(TransactionAttributeType.REQUIRED)
 public class BaseDataServiceEJB implements BaseDataService {
 
-//	@PersistenceContext 
-//	private EntityManager em;
-	
 	@Inject // uses reflection
 	private BaseDataDAO baseDAO;
 	
