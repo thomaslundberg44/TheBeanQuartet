@@ -39,40 +39,40 @@
 	<div class="row border">
 		<div class="col-md-6 dropdown">
 			<ul class="nav nav-pills nav-justified">
-				<li><a href="#" data-toggle="dropdown"> Network Management
+				<li><a id="Network manager" href="#" data-toggle="dropdown"> Network Management
 						Engineer </a>
 					<ul class="dropdown-menu">
-						<li><a onclick="userStory9()" href="#"> Count, for each
+						<li><a id="userStory9" onclick="userStory9()" href="#"> Count, for each
 								IMSI, number of call failures and duration during a time period
 						</a></li>
-						<li><a onclick="userStory10()" href="#"> For a model of
+						<li><a id="userStory10" onclick="userStory10()" href="#"> For a model of
 								phone, Show failure Event Id/Cause Code combinations and the
 								number of occurrences.</a></li>
-						<li><a onclick="userStory11()" href="#"> Show top 10
+						<li><a id="userStory11" onclick="userStory11()" href="#"> Show top 10
 								Market/Operator/Cell ID combinations with call failures during a
 								time period </a></li>
 						<li><a onclick="userStory12()" href="#"> Show top 10
 								IMSIs that had call failures during a time period</a></li>
 					</ul></li>
-				<li><a href="#" data-toggle="dropdown"> Support Engineer </a>
+				<li><a id="support manager" href="#" data-toggle="dropdown"> Support Engineer </a>
 					<ul class="dropdown-menu">
 						<!-- user story in order 7, 8, 14 -->
-						<li><a onclick="userStory7()" href="#">IMSIs with call
+						<li><a id="userStory7" onclick="userStory7()" href="#">IMSIs with call
 								failures during time period</a></li>
-						<li><a onclick="userStory8()" href="#">Model of phone,
+						<li><a id="userStory8" onclick="userStory8()" href="#">Model of phone,
 								count call failures during a time period</a></li>
-						<li><a onclick="userStory14()" href="#">Failure Cause
+						<li><a id="userStory14" onclick="userStory14()" href="#">Failure Cause
 								Class, the IMSIs that were affected.</a></li>
 					</ul></li>
-				<li><a href="#" data-toggle="dropdown"> Customer Service
+				<li><a id="customer rep" href="#" data-toggle="dropdown"> Customer Service
 						Representative </a>
 					<ul class="dropdown-menu">
 						<!-- user story in order 4, 5, 6 -->
-						<li><a onclick="userStory4()" href="#">For affected IMSI,
+						<li><a id="userStory4" onclick="userStory4()" href="#">For affected IMSI,
 								show the Event ID and Cause Code</a></li>
-						<li><a onclick="userStory5()" href="#">Count, for a given
+						<li><a id="userStory5" onclick="userStory5()" href="#">Count, for a given
 								IMSI, the number of failures during a time period.</a></li>
-						<li><a onclick="userStory6()" href="#">For a given IMSI,
+						<li><a id="userStory6" onclick="userStory6()" href="#">For a given IMSI,
 								show unique Cause Codes</a></li>
 					</ul></li>
 			</ul>
@@ -84,7 +84,7 @@
 						Welcome -
 						<%=session.getAttribute("user")%>
 					</div></li>
-				<li><a href="logout.jsp">Logout</a></li>
+				<li><a id="logout" href="logout.jsp">Logout</a></li>
 			</ul>
 		</div>
 	</div>
@@ -92,7 +92,7 @@
 	<div id="wrapper">
 		<div id="header2">
 		<br>
-		<div align="center" style="color: white;"id="msgbox"></div>
+		<div id="msgbox" align="center" style="color: white;"></div>
 		</div>
 		<div id="frame" align="center">
 			<h1 align="center">Welcome</h1>
@@ -152,8 +152,6 @@
         				).fadeIn();
     		});
 			frame = document.getElementById("frame");
-
-			frame.innerHTML = '<iframe src="UserStoryTenSample.html" width="98%" height="100%"></iframe>';
 			frame.innerHTML = '<iframe src="userStorySevenListImsiFailure.html" width="98%" height="1000"></iframe>';
 		}
 		/*User Story 8*/
