@@ -1,7 +1,6 @@
 package com.the_bean_quartet.msc_project.jax_rs;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
@@ -19,26 +18,13 @@ import org.apache.commons.io.IOUtils;
 import org.jboss.resteasy.plugins.providers.multipart.InputPart;
 import org.jboss.resteasy.plugins.providers.multipart.MultipartFormDataInput;
 
-import com.the_bean_quartet.msc_project.services.BaseDataService;
-import com.the_bean_quartet.msc_project.services.ErrorDataService;
-import com.the_bean_quartet.msc_project.services.EventCauseService;
-import com.the_bean_quartet.msc_project.services.FailureDataService;
-import com.the_bean_quartet.msc_project.services.MccDataService;
-import com.the_bean_quartet.msc_project.services.UETypeService;
 import com.the_bean_quartet.msc_project.utilities.ProcessXLSFile;
 
 @Path("/xls_crud")
 public class XLSFileCRUDService {
 	
-	//private static final String UPLOADED_FILE_PATH = "D:\\Project\\jboss-as-7.1.1.Final\\bin\\";
-//	private static final String UPLOADED_FILE_PATH = "home/tommy/software/wildfly-8.2.1.Final/bin/";
-
-	@Inject private BaseDataService baseDataService;
-	@Inject private ErrorDataService errorService;
-	@Inject private FailureDataService failureClassService;
-	@Inject private EventCauseService eventCauseService;
-	@Inject private MccDataService mccDataService;
-	@Inject private UETypeService ueDataService;
+	@Inject
+	private ProcessXLSFile processXls;
 	
 	/**
 	 * Handles an XLS spreadsheet and passes file to be processed and persisted
@@ -135,18 +121,7 @@ public class XLSFileCRUDService {
 	private void writeFile(byte[] content, String filename) throws IOException {
 
 		File file = new File(filename);
-
-		if (!file.exists()) {
-			file.createNewFile();
-		}
 		
-		FileOutputStream fop = new FileOutputStream(file);
-
-		fop.write(content);
-		fop.flush();
-		fop.close();
-		
-		ProcessXLSFile processXls = new ProcessXLSFile(baseDataService, errorService, failureClassService, eventCauseService, mccDataService, ueDataService);
 		processXls.processXLSSpreadsheet(file);
 	}
 	

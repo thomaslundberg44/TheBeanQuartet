@@ -4,9 +4,36 @@
 <meta charset="UTF-8">
 <title>Upload Excel Spreadsheet</title>
 <link rel="stylesheet" type="text/css" href="css/style.css"></link>
+<script type="text/javascript" src="media/js/jquery.js"></script>
 
+<script type="text/javascript">
+	function getCurrentAutoImportPath() {
+		$.ajax({
+		    url: "rest/watchservice/getpath",
+		    async: false,
+		    dataType: "text",
+		    success: function(data){
+		        document.getElementById("folder_path").value = data;
+		    },
+		});
+	}
+
+	function updateAutoImportPath() {
+		var newPath = document.getElementById("folder_path").value;
+		$.ajax({
+			type: "POST",
+			async: false,
+			url:"rest/watchservice/setpath",
+			data: newPath,
+			contentType: "text/plain",
+			success: function() {
+				alert("Sent new path: "+newPath);
+			},
+		});
+	}
+</script>
 </head>
-<body class="indexPage">
+<body class="indexPage" onload="getCurrentAutoImportPath()">
 	
 	<br />
 	<br />
@@ -22,13 +49,22 @@
 
 			<p>
 				<h4 align="center">Choose a file to upload:</h4><br /><br /> 
-				<input type="file" name="uploadedFile" size="50"
+				<input id="formInput" type="file" name="uploadedFile" size="50"
 					accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,
 					application/vnd.ms-excel" />
 			</p>
 
-			<input type="submit" value="Upload It" class="login login-submit"/>
+			<input id="uploadButton" type="submit" value="Upload It" class="login login-submit"/>
 		</form>
+	</div>
+	<div id="auto_import_path" class="login-card">
+		<div id="fpath" class="form-group">
+				<label>Enter Auto-Import Folder Path:</label> <br>
+				<input type="text" class="form-control bfh-text" placeholder="" id="folder_path">
+		</div>
+		<input type="submit" class="login login-submit"
+				value="Update Path" onclick="updateAutoImportPath();">
+			
 	</div>
 
 </body>

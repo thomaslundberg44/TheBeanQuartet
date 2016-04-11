@@ -9,6 +9,10 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
+import javax.ejb.Local;
+import javax.ejb.Stateless;
+import javax.inject.Inject;
+
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
@@ -23,26 +27,22 @@ import com.the_bean_quartet.msc_project.entities.MccData;
 import com.the_bean_quartet.msc_project.entities.MccDataId;
 import com.the_bean_quartet.msc_project.entities.UETypeClass;
 import com.the_bean_quartet.msc_project.services.BaseDataService;
-import com.the_bean_quartet.msc_project.services.BaseDataServiceEJB;
 import com.the_bean_quartet.msc_project.services.ErrorDataService;
-import com.the_bean_quartet.msc_project.services.ErrorDataServiceEJB;
 import com.the_bean_quartet.msc_project.services.EventCauseService;
-import com.the_bean_quartet.msc_project.services.EventCauseServiceEJB;
 import com.the_bean_quartet.msc_project.services.FailureDataService;
-import com.the_bean_quartet.msc_project.services.FailureDataServiceEJB;
 import com.the_bean_quartet.msc_project.services.MccDataService;
-import com.the_bean_quartet.msc_project.services.MccDataServiceEJB;
 import com.the_bean_quartet.msc_project.services.UETypeService;
-import com.the_bean_quartet.msc_project.services.UETypeServiceJEJB;
 
+@Local
+@Stateless
 public class ProcessXLSFile {
 	
-	private BaseDataService baseDataService;
-	private ErrorDataService errorService;
-	private FailureDataService failureClassService;
-	private EventCauseService eventCauseService;
-	private MccDataService mccDataService;
-	private UETypeService ueDataService;
+	@Inject private BaseDataService baseDataService;
+	@Inject private ErrorDataService errorService;
+	@Inject private FailureDataService failureClassService;
+	@Inject private EventCauseService eventCauseService;
+	@Inject private MccDataService mccDataService;
+	@Inject private UETypeService ueDataService;
 	
 	private Collection<BaseData> baseList;
 	private Collection<ErrorData> errorList;
@@ -51,18 +51,6 @@ public class ProcessXLSFile {
 	private Collection<MccData> mccList;
 	private Collection<UETypeClass> ueList;
 	
-	public ProcessXLSFile(BaseDataService baseDataService, ErrorDataService errorService,
-			FailureDataService failureClassService, EventCauseService eventCauseService,
-			MccDataService mccDataService, UETypeService ueDataService) {
-		this.baseDataService = baseDataService;
-		this.eventCauseService = eventCauseService;
-		this.failureClassService = failureClassService;
-		this.errorService = errorService;
-		this.ueDataService = ueDataService;
-		this.mccDataService = mccDataService;
-	}
-	
-	// dummy default constructor for testing
 	public ProcessXLSFile() { }
 
 	/**
@@ -72,7 +60,7 @@ public class ProcessXLSFile {
 	 * @param Takes a xls spreadsheet file
 	 */
 	public void processXLSSpreadsheet(File xlsFile) {
-		
+		System.out.println("In ProcessXLSFile class, processing file at path: "+xlsFile.getAbsolutePath());
 		try {
 			FileInputStream file = new FileInputStream(xlsFile);
 			HSSFWorkbook workbook = new HSSFWorkbook(file);
@@ -93,6 +81,7 @@ public class ProcessXLSFile {
 	}
 	
 	private void readEventCauseDataSheet(HSSFSheet sheet) {
+		System.out.println("Reading event cause sheet!");
 		eventList = new ArrayList<EventCause>();
 		for(Row row : sheet) {
 			if(row.getRowNum() > 0) // first row contains headings/null values

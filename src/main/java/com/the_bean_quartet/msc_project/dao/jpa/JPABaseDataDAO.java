@@ -6,6 +6,8 @@ import java.util.List;
 
 import javax.ejb.Local;
 import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -13,9 +15,9 @@ import javax.persistence.Query;
 import com.the_bean_quartet.msc_project.dao.BaseDataDAO;
 import com.the_bean_quartet.msc_project.entities.BaseData;
 
-
 @Stateless
 @Local
+@TransactionAttribute(TransactionAttributeType.REQUIRED)
 public class JPABaseDataDAO implements BaseDataDAO {
 
 	@PersistenceContext
@@ -35,17 +37,14 @@ public class JPABaseDataDAO implements BaseDataDAO {
 	
 	public void clearAllEntries() {
 	}
-
-
+	
+	@TransactionAttribute (TransactionAttributeType.REQUIRES_NEW)
 	public void addCollectionData(Collection<BaseData> data) {
-		Query query = em.createQuery("from BaseData");
-		List<BaseData> dataList = query.getResultList();
+		System.out.println("In Base Data JPA. Adding collection size: "+data.size());
 		for(BaseData dataItem : data) {
-			if(!dataList.contains(dataItem))
-				em.persist(dataItem);
+			em.persist(dataItem);
 		}
 	}
-	
 
 	public Collection<BaseData> getAllData() {
 		Query query = em.createQuery("from BaseData");

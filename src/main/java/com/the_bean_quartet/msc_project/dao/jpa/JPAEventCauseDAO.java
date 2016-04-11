@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.ejb.Local;
 import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -37,6 +39,7 @@ public class JPAEventCauseDAO implements EventCauseDAO {
 		return events;
 	}
 
+	@TransactionAttribute (TransactionAttributeType.REQUIRES_NEW)
 	public void addListEvents(Collection<EventCause> eventList) {
 		Query query = em.createQuery("from EventCause");
 		List<EventCause> events = query.getResultList();

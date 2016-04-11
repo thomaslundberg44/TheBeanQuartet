@@ -57,7 +57,7 @@
 				<li><a onclick="viewUsers()" href="#">View Users</a></li>
 				<li><a onclick="editUser()" href="#">Edit User</a></li>
 				<li><a onclick="createUser()" href="#">Create User</a></li>
-				<li><a onclick="uploadFile()" href="#">Upload File</a></li>
+				<li><a id="upload" onclick="uploadFile()" href="#">Upload File</a></li>
 			</ul>
 		</div>
 

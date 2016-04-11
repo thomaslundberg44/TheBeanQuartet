@@ -2,11 +2,11 @@ package com.the_bean_quartet.msc_project.services;
 
 import java.util.Collection;
 
-import javax.ejb.EJB;
 import javax.ejb.Local;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
+import javax.inject.Inject;
 
 import com.the_bean_quartet.msc_project.dao.BaseDataDAO;
 import com.the_bean_quartet.msc_project.entities.BaseData;
@@ -16,9 +16,9 @@ import com.the_bean_quartet.msc_project.entities.BaseData;
 @TransactionAttribute(TransactionAttributeType.REQUIRED)
 public class BaseDataServiceEJB implements BaseDataService {
 
-	@EJB // uses reflection
+	@Inject // uses reflection
 	private BaseDataDAO baseDAO;
-
+	
 	public void setDao(BaseDataDAO dao) {
 		// do something really important on injection
 		this.baseDAO = dao;
@@ -33,6 +33,7 @@ public class BaseDataServiceEJB implements BaseDataService {
 	}
 
 	public void addCollectionToDataset(Collection<BaseData> data) {
+		System.out.println("In Base Data Service: Adding collection of size: "+data.size());
 		baseDAO.addCollectionData(data);
 	}
 	public Collection<BaseData> getModelData() {
