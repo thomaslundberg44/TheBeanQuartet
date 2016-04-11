@@ -2,6 +2,8 @@ package utilties_testing;
 
 import static org.junit.Assert.assertTrue;
 
+import java.util.concurrent.TimeUnit;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.Alert;
@@ -51,7 +53,12 @@ public class uploadPerformanceSelenium {
 		
 		// ensure time is within tolerance
 		System.out.println("Time taken for upload: "+duration+" milliseconds");
-		assertTrue(duration < 120000);
+		int twoMinsMillis = (1000*60*2);
+		
+		System.out.print("Asserting that: "+duration+" is less than: "+twoMinsMillis+"....  ");
+		System.out.println((duration < twoMinsMillis));
+		
+		assertTrue(duration < twoMinsMillis);
 		
 		alert.accept();
 	}
