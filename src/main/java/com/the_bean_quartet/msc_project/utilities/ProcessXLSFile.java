@@ -33,7 +33,7 @@ import com.the_bean_quartet.msc_project.services.FailureDataService;
 import com.the_bean_quartet.msc_project.services.MccDataService;
 import com.the_bean_quartet.msc_project.services.UETypeService;
 
-@Local
+//@Local
 @Stateless
 public class ProcessXLSFile {
 	
