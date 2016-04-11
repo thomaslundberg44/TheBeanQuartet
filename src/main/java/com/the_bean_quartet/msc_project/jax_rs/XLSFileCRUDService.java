@@ -54,7 +54,7 @@ public class XLSFileCRUDService {
 				float duration = startTimerAndWrite(fileName, bytes);
 				System.out.println("File processed in "+duration+" seconds");
 				
-				String redirectScript = "<div id='success'</div><script type='text/javascript'>"
+				String redirectScript = "<script type='text/javascript'>"
 						+ "window.alert('File upload complete. Time taken: "+duration+" seconds');"
 						+ "window.location.assign('http://localhost:8080/TheBeanQuartet/uploadXLS.html');"
 						+ "</script>";
