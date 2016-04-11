@@ -16,6 +16,12 @@
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/style1.css">
 
+<link href="select2/select2.css" rel="stylesheet"/>   
+<link href="select2/s2-docs.css" rel="stylesheet"/>     
+<link href="select2/select2.min.css" rel="stylesheet"/>       
+<script type="text/javascript" src="select2/select2.js"></script>
+<script type="text/javascript" src="select2/select2.full.js"></script>
+
 
 
 </head>
@@ -32,7 +38,9 @@
 				<form role="form" id="details">
 					<div class="dropdown">
 						<label>Select Phone Model:</label> <br> <select
-							class="form-control" id="model"></select>
+							id="select2" tabindex="-1"
+							class="js-example-basic-single form-control">
+						</select>
 					</div><br>
 					<input type="submit" class="login login-submit" value="Submit">
 				</form>
@@ -60,13 +68,19 @@
 			</tbody>
 		</table>
 	</div>
+	
+	
 	<script type="text/javascript">
+	
+		$(document).ready(function() {
+			$(".js-example-basic-single").select2();
+		});
 	
 		$("#hide-show").click(function(){
 	        $("#search").toggle();
 		});
 		
-		var $select = $('#model');
+		var $select = $('#select2');
 		//request the JSON data and parse into the select element
 		$.ajax({
 					async: false,
@@ -84,7 +98,7 @@
 		
 		$("#details").submit(
 				function postDate() {
-					var obj1 = new obj(document.getElementById("model").value,"","", "");
+					var obj1 = new obj(document.getElementById("select2").value,"","", "");
 					$.ajax({
 						async : false,
 						type : 'POST',
@@ -95,7 +109,7 @@
 							   $.each(data, function (index, value) {
 							       var TableRow = "<tr>";
 							       $.each(value, function (key, val) {
-							           TableRow += "<td>" + document.getElementById("model").value + "</td>";
+							           TableRow += "<td>" + document.getElementById("select2").value + "</td>";
 							           TableRow += "<td>" + val[0] + "</td>";
 							           TableRow += "<td>" + val[1] + "</td>";
 							           TableRow += "<td>" + val[3] + "</td>";
