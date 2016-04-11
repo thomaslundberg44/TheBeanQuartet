@@ -37,7 +37,7 @@
 		<div class="col-md-6">
 			<ul class="nav nav-pills nav-justified">
 				<li><a onclick="userStory4()" href="#">Event ID
-						and Cause Code by EMSI with call failures</a></li>
+						and Cause Code by IMSI with call failures</a></li>
 				<li><a onclick="CauseCodeWithCallFailureForAnImsi()" href="#">Unique 
 				Cause Codes associated with its call failures</a></li>						
 				<li><a onclick="NumberOf_FailureInImsi()" href="#">Number Of
