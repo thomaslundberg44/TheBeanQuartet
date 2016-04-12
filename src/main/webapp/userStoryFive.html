@@ -8,11 +8,13 @@
 
 	<link type="text/css" href="media/bootstrap-3.3.6-dist/css/bootstrap.min.css" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" media="all" href="media/css/daterangepicker.css" />
+<link rel="stylesheet" type="text/css" href="media/css/jquery.dataTables.css">
 	<script type="text/javascript" src="media/js/jquery.js"></script>
+	<script type="text/javascript" src="media/js/jquery.dataTables.js"></script>
 	<script type="text/javascript" src="media/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="media/js/moment.min.js"></script>
 	<script type="text/javascript" src="media/js/daterangepicker.js"></script>
-	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/style2.css">
 	<link rel="stylesheet" href="css/style1.css">
 	
 	<link href="select2/select2.css" rel="stylesheet"/>   
@@ -43,11 +45,11 @@
 						<br><br>
 						<label><i
 							class="glyphicon glyphicon-calendar fa fa-calendar"></i> Enter
-							Time Period:</label> <input type="text" name="daterange"
+							Time Period:</label> <input type="text" id="daterange" name="daterange"
 							value="01/01/2013 1:30 PM - 30/01/2013 2:00 PM"
 							class="form-control">
 					</div>
-					<input type="submit" class="login login-submit" value="Submit">
+					<input type="submit" id="submit" class="login login-submit" value="Submit">
 				</form>
 				<a onclick="Help()" href="#">help</a>
 			</div>
@@ -56,7 +58,7 @@
 	</div>
 	
 	<div align="center">
-		<table id="myTable" class="table table-striped table-bordered"
+		<table id="myTable" class="display"
 			style="width: 100%">
 			<thead>
 				<tr>
@@ -64,8 +66,12 @@
 					<th>Call Failures</th>
 				</tr>
 			</thead>
-			<tbody id="TableCont">
-			</tbody>
+			<tfoot>
+				<tr>
+					<th>IMSI</th>
+					<th>Call Failures</th>
+				</tr>
+			</tfoot>
 		</table>
 	</div>
 	
@@ -74,6 +80,13 @@
 		$(document).ready(function() {
 			$(".js-example-basic-single").select2();
 		});
+
+		//initialise empty data table
+		$('#myTable').DataTable( {
+			"language": {
+				"emptyTable":     "No data to display"
+			}
+		} );
 	
 		$("#hide-show").click(function(){
 	        $("#search").toggle();
@@ -139,16 +152,16 @@
 					url : 'rest/basedata/imsiFailureCount',
 					data : JSON.stringify(obj1),
 					success : function message(data) {
-						var htmltext="";
-						   $.each(data, function (index, value) {
-						       var TableRow = "<tr>";
-						       $.each(value, function (key, val) {
-						           TableRow += "<td>" + val[0] + "</td>";
-						           TableRow += "<td>" + val[1] + "</td>"+"</tr>";
-						       });
-						      htmltext+=TableRow;
-						   });
-						 $("#TableCont").html(htmltext);
+						var table = $('#myTable').dataTable();
+						table.fnClearTable();
+						$.each(data, function(index, value) {
+					        $.each(value, function (key, val) {
+					            table.dataTable().fnAddData([
+					                val[0],
+					                val[1]
+					            ]);
+					        });
+					    });
 					},
 					contentType : 'application/json'
 				});
