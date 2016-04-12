@@ -16,6 +16,12 @@
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/style1.css">
 
+<link href="select2/select2.css" rel="stylesheet"/>   
+<link href="select2/s2-docs.css" rel="stylesheet"/>     
+<link href="select2/select2.min.css" rel="stylesheet"/>       
+<script type="text/javascript" src="select2/select2.js"></script>
+<script type="text/javascript" src="select2/select2.full.js"></script> 
+
 
 
 </head>
@@ -32,8 +38,11 @@
 				<form role="form" id="details">
 					<div class="dropdown">
 						<label>Select Phone Model:</label> <br> <select
-							class="form-control" id="model"></select>
+							id="select2" tabindex="-1"
+							class="js-example-basic-single form-control">
+						</select> 
 					</div>
+					<br>
 					<div>
 						<label>
 						<i class="glyphicon glyphicon-calendar fa fa-calendar"></i> Enter Time Period:
@@ -65,6 +74,10 @@
 
 	<script type="text/javascript">
 	
+		$(document).ready(function() {
+			$(".js-example-basic-single").select2();
+		});
+	
 		$("#hide-show").click(function(){
 	        $("#search").toggle();
 		});
@@ -86,7 +99,7 @@
 						endDate = end.format('YYYY-MM-DD HH:mm');
 			});
 		});
-		var $select = $('#model');
+		var $select = $('#select2');
 		//request the JSON data and parse into the select element
 		$.ajax({
 					async: false,
@@ -103,7 +116,7 @@
 				});
 		$("#details").submit(
 			function postDate() {
-				var obj1 = new obj(document.getElementById("model").value,startDate, endDate, "");
+				var obj1 = new obj(document.getElementById("select2").value,startDate, endDate, "");
 				$.ajax({
 					async : false,
 					type : 'POST',

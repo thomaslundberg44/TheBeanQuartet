@@ -2,8 +2,6 @@ package utilties_testing;
 
 import static org.junit.Assert.assertTrue;
 
-import java.util.concurrent.TimeUnit;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.Alert;
