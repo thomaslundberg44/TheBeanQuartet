@@ -39,8 +39,7 @@
 	<div class="row border">
 		<div class="col-md-6 dropdown">
 			<ul class="nav nav-pills nav-justified">
-				<li><a href="#" data-toggle="dropdown"> Network Management
-						Engineer </a>
+				<li><a href="#" data-toggle="dropdown">Network Management Engineer</a>
 					<ul class="dropdown-menu">
 						<li><a onclick="userStory9()" href="#"> Count, for each
 								IMSI, number of call failures and duration during a time period
