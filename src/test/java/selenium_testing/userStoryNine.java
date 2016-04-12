@@ -46,7 +46,9 @@ public class userStoryNine {
 		driver.get(baseUrl+"/userStoryNineCountEachImsi.html");
 		assertTrue(driver.findElement(By.id("myTable")).isDisplayed());
 		System.out.println("Table is not empty");
-
+		String date="01/01/2013 1:30 PM - 30/01/2013 2:00 PM";
+		driver.findElement(By.id("daterange")).sendKeys(date);
+		driver.findElement(By.id("applyBtn")).click();
 		// start timer and press upload button
 		long start = System.currentTimeMillis();
 		driver.findElement(By.id("submit")).click();
@@ -64,6 +66,7 @@ public class userStoryNine {
 		System.out.println((duration < twoSecond));
 		
 		assertTrue(duration < twoSecond);
+		driver.close();
 		
 	}
 	

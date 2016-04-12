@@ -25,7 +25,7 @@ public class userStoryFour {
 	@Test
 	public void testQueryTime() throws Exception {		
 
-		String imsi="344930000000011";
+		String imsi="344930000000003";
 		driver.get(baseUrl);
 		
 		driver.findElement(By.id("username")).clear();
@@ -71,6 +71,8 @@ public class userStoryFour {
 		System.out.println((duration < twoSecond));
 		
 		assertTrue(duration < twoSecond);
+		driver.close();
+		
 		
 	}
 	

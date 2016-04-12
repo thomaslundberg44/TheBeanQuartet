@@ -52,6 +52,7 @@ public class userStorySeven {
 		// start timer and press upload button
 		String date="01/01/2013 1:30 PM - 30/01/2013 2:00 PM";
 		driver.findElement(By.id("daterange")).sendKeys(date);
+		driver.findElement(By.id("applyBtn")).click();
 		//driver.findElement(By.className("range_inputs").linkText("Apply")).click();;
 		System.out.println(date+" passed in");
 		long start = System.currentTimeMillis();
@@ -72,6 +73,7 @@ public class userStorySeven {
 		System.out.println((duration < twoSecond));
 		
 		assertTrue(duration < twoSecond);
+		driver.close();
 		
 	}
 	

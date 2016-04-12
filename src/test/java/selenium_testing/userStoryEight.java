@@ -11,7 +11,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-public class userStorySix {
+public class userStoryEight {
 		
 	private WebDriver driver;
 	private String baseUrl;
@@ -25,7 +25,7 @@ public class userStorySix {
 	@Test
 	public void testQueryTime() throws Exception {		
 
-		String imsi="344930000000011";
+		String model="VEA3";
 		driver.get(baseUrl);
 		
 		driver.findElement(By.id("username")).clear();
@@ -36,21 +36,24 @@ public class userStorySix {
 		
 		System.out.println("Logged in as Network Management Engineer");
 		
-		driver.findElement(By.linkText("Customer Service Representative")).click();
-		System.out.println("Clicked Customer Service Representative");
+		driver.findElement(By.linkText("Support Engineer")).click();
+		System.out.println("Clicked Support Engineer");
 
-		String temp="For affected IMSI, show the Event ID and Cause Code";
+		String temp="Model of phone, count call failures during a time period";
 
 		driver.findElement(By.linkText(temp)).click();
 		System.out.println("Clicked on "+temp);
 		
-		driver.get(baseUrl+"/userStorySixGetCauseCodeAndFailureForAnImsi.html");
+		driver.get(baseUrl+"/userStoryEightSearchByPhoneModel.html");
 		System.out.println("111111111");
 		Thread.sleep(1000);
 		assertTrue(driver.findElement(By.id("myTable")).isDisplayed());
 		System.out.println("Table is not empty");
-		driver.findElement(By.id("select2")).sendKeys(imsi);
-		System.out.println(imsi+" passed in");
+		driver.findElement(By.id("select2")).sendKeys(model);
+		System.out.println(model+" passed in");
+		String date="01/01/2013 1:30 PM - 30/01/2013 2:00 PM";
+		driver.findElement(By.id("daterange")).sendKeys(date);
+		driver.findElement(By.id("applyBtn")).click();
 		// start timer and press upload button
 		long start = System.currentTimeMillis();
 		
@@ -72,7 +75,6 @@ public class userStorySix {
 		
 		assertTrue(duration < twoSecond);
 		driver.close();
-		
 	}
 	
 }

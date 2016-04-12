@@ -71,7 +71,7 @@ public class userStoryTen {
 		System.out.println((duration < twoSecond));
 		
 		assertTrue(duration < twoSecond);
-		
+		driver.close();
 	}
 	
 }

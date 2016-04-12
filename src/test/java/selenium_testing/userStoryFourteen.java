@@ -70,6 +70,7 @@ public class userStoryFourteen {
 		System.out.println((duration < twoSecond));
 		
 		assertTrue(duration < twoSecond);
+		driver.close();
 		
 	}
 	
