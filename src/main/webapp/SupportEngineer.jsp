@@ -123,7 +123,7 @@
         				).fadeIn();
     		});
 			frame = document.getElementById("frame");
-			frame.innerHTML = '<iframe src="unknown.html" width="98%" height="100%"></iframe>';
+			frame.innerHTML = '<iframe src="userStoryFourteenImsiForAnFailureCauseClass.html" width="98%" height="100%"></iframe>';
 		}
 		
 		/*User Story 4*/
@@ -154,7 +154,7 @@
         		).fadeIn();
     		});
 			frame = document.getElementById("frame");
-			frame.innerHTML = '<iframe src="unknown.html" width="98%" height="100%"></iframe>';
+			frame.innerHTML = '<iframe src="userStorySixGetCauseCodeAndFailureForAnImsi.html" width="98%" height="100%"></iframe>';
 		}
 	</script>
 
