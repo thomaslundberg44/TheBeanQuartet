@@ -49,7 +49,7 @@ public class userStoryFourteen {
 		Thread.sleep(1000);
 		assertTrue(driver.findElement(By.id("myTable")).isDisplayed());
 		System.out.println("Table is not empty");
-		driver.findElement(By.id("select2")).sendKeys("0");
+		driver.findElement(By.id("select2")).sendKeys("3");
 		//driver.findElement(By.className("range_inputs").linkText("Apply")).click();;
 
 		long start = System.currentTimeMillis();
