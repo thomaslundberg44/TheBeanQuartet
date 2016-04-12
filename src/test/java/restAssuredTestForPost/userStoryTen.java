@@ -21,7 +21,9 @@ public class userStoryTen {
 
 	//String myJson = "\"VEA3\"";
 	//String myJson = "VEA3";
+	//Object myJson = "{\"option1\":\"VEA2\",\"option2\":\"\",\"option3\":\"\",\"option4\":\"\"}";
 	String myJson = "{\"option1\":\"VEA2\",\"option2\":\"\",\"option3\":\"\",\"option4\":\"\"}";
+
 	//String myJson = "{\"Options\":\"VEA2\"}";
    //	Options choice = new Options ("VEA2","","","");
    	
@@ -37,13 +39,13 @@ public class userStoryTen {
 	Response response = given().spec(requestSpec).when().post("");
 
 	long startTime = System.currentTimeMillis();		
-//	Response r = 
+//	Response response = 
 //			given()
 //	.contentType("application/json").
-//	body(choice).
+//	body(myJson).
 //    when().
 //    post("");
-   //then().statusCode(200);
+ //  then().statusCode(200);
 	long endTime = System.currentTimeMillis();
 	float duration = (endTime-startTime)/1000.0f;
 	System.out.print("Time took "+duration);

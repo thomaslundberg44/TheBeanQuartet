@@ -39,41 +39,26 @@
 	<div class="row border">
 		<div class="col-md-6 dropdown">
 			<ul class="nav nav-pills nav-justified">
-				<li><a href="#" data-toggle="dropdown"> Network Management
-						Engineer </a>
+				<li><a href="#" data-toggle="dropdown">Network Management Engineer</a>
 					<ul class="dropdown-menu">
-						<li><a onclick="userStory9()" href="#"> Count, for each
-								IMSI, number of call failures and duration during a time period
-						</a></li>
-						<li><a onclick="userStory10()" href="#"> For a model of
-								phone, Show failure Event Id/Cause Code combinations and the
-								number of occurrences.</a></li>
-						<li><a onclick="userStory11()" href="#"> Show top 10
-								Market/Operator/Cell ID combinations with call failures during a
-								time period </a></li>
-						<li><a onclick="userStory12()" href="#"> Show top 10
-								IMSIs that had call failures during a time period</a></li>
+						<li><a onclick="userStory9()" href="#">Count, for each IMSI, number of call failures and duration during a time period</a></li>
+						<li><a onclick="userStory10()" href="#">For a model of phone, Show failure Event Id/Cause Code combinations and the number of occurrences</a></li>
+						<li><a onclick="userStory11()" href="#">Show top 10 Market/Operator/Cell ID combinations with call failures during a time period</a></li>
+						<li><a onclick="userStory12()" href="#">Show top 10 IMSIs that had call failures during a time period</a></li>
 					</ul></li>
-				<li><a href="#" data-toggle="dropdown"> Support Engineer </a>
+				<li><a href="#" data-toggle="dropdown">Support Engineer</a>
 					<ul class="dropdown-menu">
 						<!-- user story in order 7, 8, 14 -->
-						<li><a onclick="userStory7()" href="#">IMSIs with call
-								failures during time period</a></li>
-						<li><a onclick="userStory8()" href="#">Model of phone,
-								count call failures during a time period</a></li>
-						<li><a onclick="userStory14()" href="#">Failure Cause
-								Class, the IMSIs that were affected.</a></li>
+						<li><a onclick="userStory7()" href="#">IMSIs with call failures during time period</a></li>
+						<li><a onclick="userStory8()" href="#">Model of phone, count call failures during a time period</a></li>
+						<li><a onclick="userStory14()" href="#">Failure Cause Class, the IMSIs that were affected</a></li>
 					</ul></li>
-				<li><a href="#" data-toggle="dropdown"> Customer Service
-						Representative </a>
+				<li><a href="#" data-toggle="dropdown">Customer Service Representative</a>
 					<ul class="dropdown-menu">
 						<!-- user story in order 4, 5, 6 -->
-						<li><a onclick="userStory4()" href="#">For affected IMSI,
-								show the Event ID and Cause Code</a></li>
-						<li><a onclick="userStory5()" href="#">Count, for a given
-								IMSI, the number of failures during a time period.</a></li>
-						<li><a onclick="userStory6()" href="#">For a given IMSI,
-								show unique Cause Codes</a></li>
+						<li><a onclick="userStory4()" href="#">For affected IMSI, show the Event ID and Cause Code</a></li>
+						<li><a onclick="userStory5()" href="#">Count, for a given IMSI, the number of failures during a time period</a></li>
+						<li><a onclick="userStory6()" href="#">For a given IMSI, show unique Cause Codes</a></li>
 					</ul></li>
 			</ul>
 		</div>
