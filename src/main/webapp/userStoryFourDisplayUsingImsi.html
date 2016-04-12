@@ -1,19 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>UserStoryFour</title>
+	<meta charset="UTF-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>UserStoryFour</title>
 
-<link type="text/css" href="bootstrap/css/bootstrap.css" rel="stylesheet">
-<link rel="stylesheet" type="text/css" media="all" href="media/css/daterangepicker.css" />
-<script type="text/javascript" src="media/js/jquery.js"></script>
-<script type="text/javascript" src="media/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="media/js/moment.min.js"></script>
-<script type="text/javascript" src="media/js/daterangepicker.js"></script>
+	<link type="text/css" href="bootstrap/css/bootstrap.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" media="all" href="media/css/daterangepicker.css" />
+	<link rel="stylesheet" type="text/css" href="media/css/jquery.dataTables.css">
+	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
+	<script type="text/javascript" src="media/js/jquery.js"></script>
+	<script type="text/javascript" src="media/js/jquery.dataTables.js"></script>
+	<script type="text/javascript" src="media/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="media/js/moment.min.js"></script>
+	<script type="text/javascript" src="media/js/daterangepicker.js"></script>
 
-<link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/style1.css">
+	<link rel="stylesheet" href="css/style2.css">
+	<link rel="stylesheet" href="css/style1.css">
 
 <link href="select2/select2.css" rel="stylesheet"/>   
 <link href="select2/s2-docs.css" rel="stylesheet"/>     
@@ -50,9 +53,8 @@
 		</div>
 	</div>
 
-
 	<div align="center">
-		<table id="myTable" class="table table-striped table-bordered" style="width: 100%">
+		<table id="myTable" class="display" width="100%" cellspacing="0" >
 			<thead>
 				<tr>
 					<th>Event-Id</th>
@@ -62,20 +64,35 @@
 					<th>failureClass-Description</th>
 				</tr>
 			</thead>
-			<tbody id="TableCont">
-			</tbody>
+			<tfoot>
+				<tr>
+					<th>Event-Id</th>
+					<th>Cause-Code</th>
+					<th>Event-Cause-Description</th>
+					<th>Failure-Class</th>
+					<th>failureClass-Description</th>
+				</tr>
+			</tfoot>
 		</table>
 	</div>
 
 	<script>
-	
+
+		// initialise empty data table
+		$('#myTable').DataTable( {
+			"language": {
+				"emptyTable":     "No data to display"
+			}
+		} );
+
 		$("#hide-show").click(function(){
-	        $("#search").toggle();
+			$("#search").toggle();
 		});
+		
 		$(document).ready(function() {
 			$(".js-example-basic-single").select2();
 		});
-		
+
 		//get a reference to the select element
 		var $select = $('#select2');
 		var $tbSelect = $('#imageTable');
@@ -104,19 +121,19 @@
 				url : 'rest/basedata/imsirelation',
 				data : JSON.stringify(checkImsi),
 				success : function output(jdata) {
-					var htmltext=" ";
-					   $.each(jdata, function (index, value) {
-					       var TableRow = "<tr>";
-					       $.each(value, function (key, val) {
-					           TableRow += "<td>" + val[0] + "</td>";
-					           TableRow += "<td>" + val[1] + "</td>";
-					           TableRow += "<td>" + val[2] + "</td>";
-					           TableRow += "<td>" + val[3] + "</td>";
-					           TableRow += "<td>" + val[4] + "</td>"+"</tr>";
-					       });
-					      htmltext+=TableRow;
-					   });
-					 $("#TableCont").html(htmltext);
+					var table = $('#myTable').dataTable();
+					table.fnClearTable();
+					$.each(jdata, function(index, value) {
+						$.each(value, function (key, val) {
+							table.dataTable().fnAddData([
+								val[0],
+								val[1],
+								val[2],
+								val[3],
+								val[4]
+								]);
+						});
+					});
 				},
 				contentType : 'application/json'
 			});
@@ -126,7 +143,8 @@
 			alert(help);
 		}
 		var help="Select an IMSI to display, the Event ID and Cause Code for any / all failures affecting that IMSI.";
-	</script>
 
-</body>
-</html>
+		</script>
+
+	</body>
+	</html>
