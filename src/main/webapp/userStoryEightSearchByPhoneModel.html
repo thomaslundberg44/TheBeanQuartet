@@ -124,12 +124,14 @@
 					data : JSON.stringify(obj1),
 					success : function message(data) {
 						var htmltext=" ";
+						//alert(JSON.stringify(data));
 						   $.each(data, function (index, value) {
 						       var TableRow = "<tr>";
-						       $.each(value, function (key, val) {
-						           TableRow += "<td>" + document.getElementById("model").value + "</td>";
-						           TableRow += "<td>" + val + "</td></tr>";
-						       });
+						      // alert(value);
+						   	//   $.each(value, function (key, val) {
+						           TableRow += "<td>" + document.getElementById("select2").value + "</td>";
+						           TableRow += "<td>" + value + "</td></tr>";
+						    //   });
 						      htmltext+=TableRow;
 						   });
 						 $("#TableCont").html(htmltext);

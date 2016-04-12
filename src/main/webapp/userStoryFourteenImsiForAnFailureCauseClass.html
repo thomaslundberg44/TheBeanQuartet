@@ -100,13 +100,12 @@
 				url : 'rest/basedata/ImsiForAnFailureCauseClass',
 				data : JSON.stringify(checkfailure),
 				success : function output(jdata) {
-					alert(JSON.stringify(jdata));
-					
+					//alert(JSON.stringify(jdata));
 					var htmltext=" ";
 					   $.each(jdata, function (index, value) {
 					       var TableRow = "<tr>";
 					       $.each(value, function (key, val) {
-					           TableRow += "<td>" + val[1] + "</td></tr>";
+					           TableRow += "<td>" + val[0] + "</td></tr>";
 					       });
 					      htmltext+=TableRow;
 					   });
