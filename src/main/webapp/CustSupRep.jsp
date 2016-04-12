@@ -39,11 +39,9 @@
 				<li><a onclick="userStory4()" href="#">Event ID
 						and Cause Code by IMSI with call failures</a></li>
 				<li><a onclick="CauseCodeWithCallFailureForAnImsi()" href="#">Unique 
-				Cause Codes associated with its call failures</a></li>						
-				<li><a onclick="NumberOf_FailureInImsi()" href="#">Number Of
-				  failures during given time period</a></li>
+				Cause Codes associated with its call failures</a></li>
 				<li><a onclick="userStory5()" href="#">Number Of
-						failures by given IMSI</a></li>
+						failures by given IMSI during given time period</a></li>
 			</ul>
 		</div>
 
@@ -87,15 +85,6 @@
     		});
 			frame = document.getElementById("frame");
 			frame.innerHTML = '<iframe src="userStorySixGetCauseCodeAndFailureForAnImsi.html" width="98%" height="100%"></iframe>';
-		}
-		function NumberOf_FailureInImsi(){
-			$("#msgbox").fadeOut(function(){
-        		$(this).text(
-        				'Display, for a given IMSI, the number of failures during given time period.'
-        				).fadeIn();
-    		});
-			frame = document.getElementById("frame");
-			frame.innerHTML = '<iframe src="userStoryFive.html" width="98%" height="100%"></iframe>';
 		}
 
 		/*User Story 4*/
