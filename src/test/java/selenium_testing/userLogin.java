@@ -50,13 +50,16 @@ public class userLogin {
 	    driver.findElement(By.id("password")).sendKeys("1234");
 	    driver.findElement(By.name("Login")).click();
 	    logOut();
-	    Thread.sleep(2000); 
+	    Thread.sleep(2000);
+	    driver.close();
+	    System.out.println("finally quit");
 	    
 	  }
 	  
 	  public void logOut()
 	  {
-		    driver.close();
-		    System.out.println("finally quit");
+		    driver.findElement(By.id("logout")).click();
+		    System.out.println("logout");
+
 	  }
 }
