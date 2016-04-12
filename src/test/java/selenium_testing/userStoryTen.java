@@ -11,7 +11,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-public class sample {
+public class userStoryTen {
 		
 	private WebDriver driver;
 	private String baseUrl;
@@ -23,10 +23,11 @@ public class sample {
 	}
 
 	@Test
-	public void testFileImportTime() throws Exception {
+	public void testQueryTime() throws Exception {		
+
+		String model="VEA3";
 		driver.get(baseUrl);
 		
-		// log in as System Admin
 		driver.findElement(By.id("username")).clear();
 		driver.findElement(By.id("username")).sendKeys("Ivan");
 		driver.findElement(By.id("password")).clear();
@@ -38,25 +39,30 @@ public class sample {
 		driver.findElement(By.linkText("Network Management Engineer")).click();
 		System.out.println("Clicked Network Management Engineer");
 
-		String temp="Count, for each IMSI, number of call failures and duration during a time period";
-		//select.selectByVisibleText(temp);
-		//select.selectByIndex(1);
+		String temp="For a model of phone, Show failure Event Id/Cause Code combinations and the number of occurrences";
+
 		driver.findElement(By.linkText(temp)).click();
 		System.out.println("Clicked on "+temp);
 		
-		driver.get(baseUrl+"/userStoryNineCountEachImsi.html");
+		driver.get(baseUrl+"/UserStoryTenSample.html");
+		System.out.println("111111111");
+		Thread.sleep(1000);
 		assertTrue(driver.findElement(By.id("myTable")).isDisplayed());
 		System.out.println("Table is not empty");
-
+		driver.findElement(By.id("select2")).sendKeys(model);
+		System.out.println(model+" passed in");
 		// start timer and press upload button
 		long start = System.currentTimeMillis();
-		driver.findElement(By.id("submit")).click();
+		
+		driver.findElement(By.id("submit")).submit();
 		System.out.println("Submit");
-		List<WebElement> listA=driver.findElements(By.tagName("td"));
-		assertFalse(listA.isEmpty());
+		//List<WebElement> listA=driver.findElements(By.tagName("td"));
+//		WebElement web =driver.findElements(By.tagName("td")).get(0);
+//		assertFalse(web.getText()=="");
 		long end = System.currentTimeMillis();
 		float duration = end-start;
-		
+		assertFalse(driver.findElements(By.tagName("td")).isEmpty());
+
 		// ensure time is within tolerance
 		System.out.println("Time taken for upload: "+duration+" milliseconds");
 		int twoSecond = (1000*2);

@@ -11,7 +11,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-public class sample {
+public class userStoryNine {
 		
 	private WebDriver driver;
 	private String baseUrl;
@@ -23,10 +23,9 @@ public class sample {
 	}
 
 	@Test
-	public void testFileImportTime() throws Exception {
+	public void testQueryTime() throws Exception {
 		driver.get(baseUrl);
 		
-		// log in as System Admin
 		driver.findElement(By.id("username")).clear();
 		driver.findElement(By.id("username")).sendKeys("Ivan");
 		driver.findElement(By.id("password")).clear();

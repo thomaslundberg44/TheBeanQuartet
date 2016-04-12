@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-
 <meta charset="UTF-8">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>User Story Eight</title>
 
-<link type="text/css" href="media/bootstrap-3.3.6-dist/css/bootstrap.min.css" rel="stylesheet">
+<link type="text/css" href="bootstrap/css/bootstrap.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" media="all" href="media/css/daterangepicker.css" />
 <script type="text/javascript" src="media/js/jquery.js"></script>
 <script type="text/javascript" src="media/js/bootstrap.min.js"></script>
@@ -36,7 +35,7 @@
 			<br> <br>
 			<div class="login-card">
 				<form role="form" id="details">
-					<div class="dropdown">
+					<div>
 						<label>Select Phone Model:</label> <br> <select
 							id="select2" tabindex="-1"
 							class="js-example-basic-single form-control">
@@ -101,6 +100,7 @@
 		});
 		var $select = $('#select2');
 		//request the JSON data and parse into the select element
+		
 		$.ajax({
 					async: false,
 					url : 'http://localhost:8080/TheBeanQuartet/rest/basedata/modelType',
@@ -114,6 +114,7 @@
 						})
 					}
 				});
+		
 		$("#details").submit(
 			function postDate() {
 				var obj1 = new obj(document.getElementById("select2").value,startDate, endDate, "");
