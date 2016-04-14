@@ -45,7 +45,6 @@ public class userStoryEight {
 		System.out.println("Clicked on "+temp);
 		
 		driver.get(baseUrl+"/userStoryEightSearchByPhoneModel.html");
-		System.out.println("111111111");
 		Thread.sleep(1000);
 		assertTrue(driver.findElement(By.id("myTable")).isDisplayed());
 		System.out.println("Table is not empty");
@@ -62,9 +61,9 @@ public class userStoryEight {
 		//List<WebElement> listA=driver.findElements(By.tagName("td"));
 //		WebElement web =driver.findElements(By.tagName("td")).get(0);
 //		assertFalse(web.getText()=="");
+		assertFalse(driver.findElements(By.tagName("td")).isEmpty());
 		long end = System.currentTimeMillis();
 		float duration = end-start;
-		assertFalse(driver.findElements(By.tagName("td")).isEmpty());
 
 		// ensure time is within tolerance
 		System.out.println("Time taken for upload: "+duration+" milliseconds");

@@ -45,7 +45,6 @@ public class userStoryFour {
 		System.out.println("Clicked on "+temp);
 		
 		driver.get(baseUrl+"/userStoryFourDisplayUsingImsi.html");
-		System.out.println("111111111");
 		Thread.sleep(1000);
 		assertTrue(driver.findElement(By.id("myTable")).isDisplayed());
 		System.out.println("Table is not empty");
