@@ -104,15 +104,13 @@ User story #7 - As a Support Engineer I want to see a list of all IMSIs with cal
 			url : 'rest/basedata/listImsiWithFailureDateRange',
 			data : JSON.stringify(obj1),
 			success : function message(data) {
-				var table = $('#myTable').dataTable();
-				table.fnClearTable();
-				$.each(data, function(index, value) {
-			        $.each(value, function (key, val) {
-			            table.dataTable().fnAddData([
-			                val[0]
-			            ]);
-			        });
-			    });
+				$('#myTable').DataTable().destroy(); 
+				$('#myTable').DataTable( {
+					data: getTableArray(data),
+					columns: [
+					{ title: "IMSI with call failures" }
+					]
+				} );
 			},
 			contentType : 'application/json'
 		});
@@ -130,7 +128,15 @@ User story #7 - As a Support Engineer I want to see a list of all IMSIs with cal
 	}
 	var help="Submit to list all IMSIs with call failures during the given time period.";
 
-
+	function getTableArray(jdata) {
+		var array = [];
+		$.each(jdata, function(index, value) {
+			$.each(value, function (key, val) {
+				array.push([val[0]]);
+			});
+		});
+		return array;
+	}
 
 	</script>
 
