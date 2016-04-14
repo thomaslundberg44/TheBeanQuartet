@@ -69,6 +69,7 @@
 					<th>Market name</th>
 					<th>Operator</th>
 					<th>Cell Id</th>
+					<th>Occurrences</th>
 				</tr>
 			</thead>
 			<tfoot>
@@ -76,6 +77,7 @@
 					<th>Market name</th>
 					<th>Operator</th>
 					<th>Cell Id</th>
+					<th>Occurrences</th>
 				</tr>
 			</tfoot>
 		</table>
@@ -87,7 +89,8 @@
 		$('#myTable').DataTable( {
 			"language": {
 				"emptyTable":     "No data to display"
-			}
+			},
+			"order": [[ 3, "desc" ]]
 		} );
 	
 		$(document).ready(function() {
@@ -146,7 +149,8 @@
 					            table.dataTable().fnAddData([
 					                val[0],
 					                val[1],
-					                val[2]
+					                val[2],
+					                val[3]
 					            ]);
 					        });
 					    });

@@ -1,6 +1,7 @@
 package com.the_bean_quartet.msc_project.jax_rs;
 
 import java.io.IOException;
+import java.util.Collection;
 
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -232,6 +233,28 @@ public class BaseDataCRUDService {
 		return eachImsiSearch;
         
 	}
+	
+//	@POST
+//	@Produces(MediaType.APPLICATION_JSON)
+//	@Consumes(MediaType.APPLICATION_JSON)
+//	@Path("/top10Imsi")
+//	public Collection<Object[]> getTopTenImsiBaseData(Options obj) throws JsonParseException, JsonMappingException, IOException{
+//		//long startTime = System.currentTimeMillis();		
+//
+//		String modelValue1 = obj.getOption1().toString();
+//		String modelValue2 = obj.getOption2().toString();
+//		
+////		System.out.println(obj.getOption1());
+////		System.out.println(obj.getOption2());
+//		
+//		//BaseDataList eachImsiSearch = new BaseDataList();
+////		eachImsiSearch.setBaseDataEachImsiSearchCollection(service.getTop10ImsiBaseData(modelValue1, modelValue2));
+//      
+//		//countTime(startTime);
+//		
+//		return service.getTop10ImsiBaseData(modelValue1, modelValue2);
+//        
+//	}
 	
 	@Path("/failureCauseClass")
 	@GET

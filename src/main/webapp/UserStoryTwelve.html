@@ -70,7 +70,8 @@
 	$('#myTable').DataTable( {
 		"language": {
 			"emptyTable":     "No data to display"
-		}
+		},
+		"order": [[ 1, "desc" ]]
 	} );
 	
 	$("#hide-show").click(function(){
@@ -109,6 +110,7 @@
 				url : 'rest/basedata/top10Imsi',
 				data : JSON.stringify(obj1),
 				success : function message(data) {
+					//alert(JSON.stringify(data));
 					var table = $('#myTable').dataTable();
 					table.fnClearTable();
 					$.each(data, function(index, value) {
@@ -116,7 +118,7 @@
 				            table.dataTable().fnAddData([
 				                val[0],
 				                val[1]
-				            ]);
+				           ]);
 				        });
 				    });
 				},

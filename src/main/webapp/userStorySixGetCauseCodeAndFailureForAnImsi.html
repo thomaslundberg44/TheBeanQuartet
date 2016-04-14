@@ -67,12 +67,14 @@
 				<tr>
 					<th>Cause-Code</th>
 					<th>FailureClass</th>
+					<th>Failure Description</th>
 				</tr>
 			</thead>
 			<tfoot>
 				<tr>
 					<th>Cause-Code</th>
 					<th>FailureClass</th>
+					<th>Failure Description</th>
 				</tr>
 			</tfoot>
 		</table>
@@ -133,7 +135,8 @@
 				        $.each(value, function (key, val) {
 				            table.dataTable().fnAddData([
 				                val[0],
-				                val[1]
+				                val[1],
+				                val[2]
 				            ]);
 				        });
 				    });

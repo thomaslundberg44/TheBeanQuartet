@@ -30,6 +30,8 @@ public interface BaseDataDAO {
 	 *user story 12
  	 * */
 	Collection<BaseData> getTop10ImsiSearchData(String startTime,String finishTime);
+//	Collection<Object[]> getTop10ImsiSearchData(String startTime,String finishTime);
+
 	
 	Collection<BaseData> getAllIMSIRelatedData(String imsiVal);
 	/*

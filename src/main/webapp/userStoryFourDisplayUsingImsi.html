@@ -125,19 +125,17 @@
 				url : 'rest/basedata/imsirelation',
 				data : JSON.stringify(checkImsi),
 				success : function output(jdata) {
-					var table = $('#myTable').dataTable();
-					table.fnClearTable();
-					$.each(jdata, function(index, value) {
-						$.each(value, function (key, val) {
-							table.dataTable().fnAddData([
-								val[0],
-								val[1],
-								val[2],
-								val[3],
-								val[4]
-								]);
-						});
-					});
+					$('#myTable').DataTable().destroy(); 
+					$('#myTable').DataTable( {
+						data: getTableArray(jdata),
+						columns: [
+						{ title: "Event-Id" },
+						{ title: "Cause-Code" },
+						{ title: "Event-Cause-Description" },
+						{ title: "Failure-Class." },
+						{ title: "FailureClass-Description" }
+						]
+					} );
 				},
 				contentType : 'application/json'
 			});
@@ -148,6 +146,15 @@
 		}
 		var help="Select an IMSI to display, the Event ID and Cause Code for any / all failures affecting that IMSI.";
 
+		function getTableArray(jdata) {
+			var array = [];
+			$.each(jdata, function(index, value) {
+				$.each(value, function (key, val) {
+				    array.push([val[0],val[1],val[2],val[3],val[4]]);
+				});
+			});
+			return array;
+		}
 		</script>
 
 	</body>
