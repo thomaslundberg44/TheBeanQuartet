@@ -6,6 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>User Story Eleven</title>
 
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <link type="text/css" href="media/bootstrap-3.3.6-dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" media="all" href="media/css/daterangepicker.css" />
 <link rel="stylesheet" type="text/css" href="media/css/jquery.dataTables.css">
@@ -142,6 +143,7 @@
 					url : 'rest/basedata/TopTenMarketOperatorCell_ID',
 					data : JSON.stringify(obj1),
 					success : function message(data) {
+						alert(JSON.stringify(data));
 						var table = $('#myTable').dataTable();
 						table.fnClearTable();
 						$.each(data, function(index, value) {
@@ -171,6 +173,22 @@
 			alert(help);
 		}
 		var help="Enter a phone model and time period to count the number of call failures during that period";
+
+		function drawPieChart() {
+
+		}
+
+		function getChartData(dataStr) {
+			var dataArr = [];
+			$.each(dataStr, function(index, value) {
+				$.each(value, function (key, val) {
+					var Node = val[0]+", "+val[1]+", Cell Id: "+val[2];
+					dataArr.push([Node, val[3]]);
+				});
+			});
+			return dataArr;
+		}
+
 	</script>
 
 
