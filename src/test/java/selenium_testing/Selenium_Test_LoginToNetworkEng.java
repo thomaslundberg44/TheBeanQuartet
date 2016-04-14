@@ -1,23 +1,17 @@
 package selenium_testing;
 
-import static org.junit.Assert.*;
-
-import java.util.NoSuchElementException;
 import java.util.concurrent.TimeUnit;
 
-import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class Selenium_Test_LoginToNetworkEng {
 
-	  private WebDriver driver=null;
+	  private WebDriver driver;
 	  private String baseUrl;
 	  
 	  @Before
@@ -141,7 +135,7 @@ public class Selenium_Test_LoginToNetworkEng {
 	    System.out.println("logout");
 	    TimeUnit.SECONDS.sleep(3);
 	    
-	    driver.quit();
+	    driver.close();
 	    System.out.println("finally quit");
 	    
 	  }

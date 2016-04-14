@@ -1,4 +1,4 @@
-package utilties_testing;
+package selenium_testing;
 
 import static org.junit.Assert.assertTrue;
 

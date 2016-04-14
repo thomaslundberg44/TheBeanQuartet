@@ -51,7 +51,7 @@
 						Welcome -
 						<%=session.getAttribute("user")%>
 					</div></li>
-				<li><a href="logout.jsp">Logout</a></li>
+				<li><a id="logout" href="logout.jsp">Logout</a></li>
 			</ul>
 		</div>
 	</div>
