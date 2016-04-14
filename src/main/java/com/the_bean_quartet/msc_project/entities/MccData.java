@@ -46,7 +46,7 @@ public class MccData implements Serializable{
 	@Column(name="Operator")private String operator;
 	
 	// relationship field for BaseData table class
-	@OneToMany(mappedBy="mccData", cascade={CascadeType.ALL})
+	@OneToMany(mappedBy="mccData")
 	@JsonIgnore
 	private Collection<BaseData> data = new ArrayList<BaseData>();
 		

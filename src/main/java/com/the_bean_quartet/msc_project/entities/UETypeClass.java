@@ -35,7 +35,7 @@ public class UETypeClass implements Serializable{
 	@Column(name="Input_Mode")private String inputMode;
 	
 	// relationship map to base data
-	@OneToMany(mappedBy="ueTable", cascade={CascadeType.ALL})
+	@OneToMany(mappedBy="ueTable")
 	@JsonIgnore
 	private Set<BaseData> baseData = new HashSet<BaseData>();
 	

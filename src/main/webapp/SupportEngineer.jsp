@@ -71,6 +71,7 @@
 				<li><div align="center">
 						Welcome -
 						<%=session.getAttribute("user")%>
+						<br>(Support Engineer)
 					</div></li>
 				<li><a id="logout" href="logout.jsp">Logout</a></li>
 			</ul>

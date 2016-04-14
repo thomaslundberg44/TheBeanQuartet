@@ -45,11 +45,12 @@
 			</ul>
 		</div>
 
-		<div class="col-md-6">
+			<div class="col-md-6">
 			<ul class="nav nav-pills nav-justified navbar-right">
 				<li><div align="center">
 						Welcome -
 						<%=session.getAttribute("user")%>
+						<br>(Customer Support Representative)
 					</div></li>
 				<li><a id="logout" href="logout.jsp">Logout</a></li>
 			</ul>

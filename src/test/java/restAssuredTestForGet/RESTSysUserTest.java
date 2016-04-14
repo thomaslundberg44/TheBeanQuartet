@@ -86,26 +86,26 @@ public class RESTSysUserTest {
 //    	System.out.println("2222222222222222222222");
 //
 //    }
-    @Test
-    public void sysUserverifyRestAssuredTest()
-    {
-    	System.out.println("1111111111111111111111111");
-
-        given().
-            //queryParam("hello", 21060800).
-        	queryParam( " ", " ").
-        when().
-            get("http://localhost:8080/TheBeanQuartet/rest/user").
-        then().
-        statusCode(200).
-        contentType(ContentType.JSON).
-        body("sysUserCollection.id", hasItems(1)).
-        body("sysUserCollection.userType", hasItems("administrator\r")).
-        body("sysUserCollection.userName", hasItems("Thomas")).
-        body("sysUserCollection.userPassword", hasItems("1234"));
-    	System.out.println("2222222222222222222222");
-
-    }
+//    @Test
+//    public void sysUserverifyRestAssuredTest()
+//    {
+//    	System.out.println("1111111111111111111111111");
+//
+//        given().
+//            //queryParam("hello", 21060800).
+//        	queryParam( " ", " ").
+//        when().
+//            get("http://localhost:8080/TheBeanQuartet/rest/user").
+//        then().
+//        statusCode(200).
+//        contentType(ContentType.JSON).
+//        body("sysUserCollection.id", hasItems(1)).
+//        body("sysUserCollection.userType", hasItems("administrator\r")).
+//        body("sysUserCollection.userName", hasItems("Thomas")).
+//        body("sysUserCollection.userPassword", hasItems("1234"));
+//    	System.out.println("2222222222222222222222");
+//
+//    }
     
 
 }

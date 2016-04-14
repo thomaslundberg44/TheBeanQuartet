@@ -29,7 +29,7 @@ public class EventCause implements Serializable {
 	@Column(name="Description") private String description;
 	
 	// relationship field for BaseData table class
-	@OneToMany(mappedBy="eventCause", cascade={CascadeType.ALL})
+	@OneToMany(mappedBy="eventCause")
 	@JsonIgnore
 	private Collection<BaseData> data = new ArrayList<BaseData>();
 	
