@@ -59,9 +59,10 @@ public class userStoryFour {
 		//List<WebElement> listA=driver.findElements(By.tagName("td"));
 //		WebElement web =driver.findElements(By.tagName("td")).get(0);
 //		assertFalse(web.getText()=="");
+		assertFalse(driver.findElements(By.tagName("td")).isEmpty());
 		long end = System.currentTimeMillis();
 		float duration = end-start;
-		assertFalse(driver.findElements(By.tagName("td")).isEmpty());
+		
 
 		// ensure time is within tolerance
 		System.out.println("Time taken for upload: "+duration+" milliseconds");

@@ -58,12 +58,13 @@ public class userStorySeven {
 		long start = System.currentTimeMillis();
 		driver.findElement(By.id("submit")).submit();
 		System.out.println("Submit");
+		assertFalse(driver.findElements(By.tagName("td")).isEmpty());
 //		assertFalse(driver.findElements(By.tagName("td")).isEmpty());
 //		WebElement web =driver.findElements(By.tagName("td")).get(0);
 //		assertFalse(web.getText()!="");
 		long end = System.currentTimeMillis();
 		float duration = end-start;
-		assertFalse(driver.findElements(By.tagName("td")).isEmpty());
+		
 
 		// ensure time is within tolerance
 		System.out.println("Time taken for upload: "+duration+" milliseconds");

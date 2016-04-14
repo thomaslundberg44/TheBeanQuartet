@@ -1,4 +1,4 @@
-package selenium_testing;
+package user_story_nine_selenium;
 
 import static org.junit.Assert.*;
 
@@ -53,9 +53,8 @@ public class userStoryNine {
 		long start = System.currentTimeMillis();
 		driver.findElement(By.id("submit")).click();
 		System.out.println("Submit");
-//		List<WebElement> listA=driver.findElements(By.tagName("td"));
-//		assertFalse(listA.isEmpty());
-		assertFalse(driver.findElements(By.tagName("td")).isEmpty());
+		List<WebElement> listA=driver.findElements(By.tagName("td"));
+		assertFalse(listA.isEmpty());
 		long end = System.currentTimeMillis();
 		float duration = end-start;
 		

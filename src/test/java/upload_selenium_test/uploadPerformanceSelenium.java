@@ -1,4 +1,4 @@
-package selenium_testing;
+package upload_selenium_test;
 
 import static org.junit.Assert.assertTrue;
 
