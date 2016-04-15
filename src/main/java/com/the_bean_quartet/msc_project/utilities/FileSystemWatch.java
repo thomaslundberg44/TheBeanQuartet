@@ -139,7 +139,10 @@ public class FileSystemWatch {
 
 		if (kind == ENTRY_MODIFY && fileName.toString().endsWith(".xls")) {
 			System.out.println("Source file being watched has changed!");
+			long start = System.currentTimeMillis();
 			fileService.processXLSSpreadsheet(new File(folderPath + fileName.toFile()));
+			long end = System.currentTimeMillis();
+			System.out.println("File upload complete. Took "+(end-start)/1000.0+" seconds");
 		}
 	}
 

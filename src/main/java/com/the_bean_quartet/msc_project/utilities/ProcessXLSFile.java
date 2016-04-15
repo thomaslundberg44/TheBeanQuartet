@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
-import javax.ejb.Local;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
@@ -33,7 +32,6 @@ import com.the_bean_quartet.msc_project.services.FailureDataService;
 import com.the_bean_quartet.msc_project.services.MccDataService;
 import com.the_bean_quartet.msc_project.services.UETypeService;
 
-//@Local
 @Stateless
 public class ProcessXLSFile {
 	

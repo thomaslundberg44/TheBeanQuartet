@@ -63,6 +63,11 @@
 	</div>
 </div>
 
+
+<!-- Trigger/Open The Modal and display graph-->
+<button id="graphBtn" class="btn btn-primary btn-lg pull-right" 
+	style="visibility : hidden">View Graphical Representation</button>
+
 <div align="center">
 	<table id="myTable" class="display"
 	style="width: 100%">
@@ -84,9 +89,6 @@
 	</tfoot>
 </table>
 </div>
-
-<!-- Trigger/Open The Modal and display graph-->
-<button id="graphBtn" style="visibility : hidden">View Graphical Representation</button>
 
 <!-- Modal to display Graph -->
 <div id="myModal" class="modal">
@@ -206,9 +208,10 @@
 
 	        // Set chart options
 	        var options = {
+	        	backgroundColor: '#D5D5D5',
 	        	'title':'Node Failure Occurrences',
-	        	'width':700,
-	        	'height':500,
+	        	'width':800,
+	        	'height':600,
 	        	is3D: true
 	        };
 
